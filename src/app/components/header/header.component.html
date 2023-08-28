@@ -1,0 +1,54 @@
+<div class="header">
+    <div class="logo"></div>
+    <div class="menu">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <h1><i class="bi bi-house"></i></h1>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor03" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Wyjazdy
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div *ngFor="let tripType of tripTypes">
+                    <li><a class="dropdown-item" href="/wyjazdy/{{tripType.name}}">{{tripType.name}}</a></li>
+                  </div>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/szkolenia">Szkolenia</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/o-nas">O Nas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/kontakt">Kontakt</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="..."
+                aria-label="Szukaj"
+              />
+              <button class="btn btn-outline-success" type="submit">Szukaj</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+</div>
