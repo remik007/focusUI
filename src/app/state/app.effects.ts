@@ -6,15 +6,18 @@ import { exhaustMap, map, tap } from "rxjs";
 import { HttpService } from "../services/http.service";
 import { TripCategory } from "../models/tripcategory.model";
 import { ModalService } from "../components/_modal/modal.service";
+import { SubPage } from "../models/subpage.model";
+import { Contact } from "../models/contact.model";
+import { Trip } from "../models/trip.model";
 
 @Injectable()
 export class AppEffects {
 
     getTripCategoriesRequest$ = createEffect(() => {
+        
         return this.actions$.pipe(
             ofType(AppActions.getTripCategoriesRequest),
             exhaustMap((/*parameter*/) => {
-                
                 return this.httpService
                 .getTripCategories()
                 .pipe(map((getTripCategoriesResponse) =>{
@@ -48,6 +51,193 @@ export class AppEffects {
     );
 
 
+    getSubPagesRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getSubPagesRequest),
+            exhaustMap((/*parameter*/) => {
+                return this.httpService
+                .getSubPages()
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: SubPage[] = Object.assign(new Array<SubPage>(), jsonObj);
+                                return AppActions.getSubPagesRequestSuccess({subPages: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get sub page request failed.");
+                    return AppActions.getSubPagesRequestFailure({error: "Get sub page request failed."});
+                }))
+            })
+        )
+    })
+
+    getSubPagesFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getSubPagesRequestFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
+
+    
+    getContactDetailsRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getContactDetailsRequest),
+            exhaustMap((/*parameter*/) => {
+                return this.httpService
+                .getContactDetails()
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Contact = Object.assign(new Contact(), jsonObj);
+                                return AppActions.getContactDetailsRequestSuccess({contact: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get contact details request failed.");
+                    return AppActions.getTripCategoriesFailure({error: "Get contact details request failed."});
+                }))
+            })
+        )
+    })
+
+    getContactDetailsFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getContactDetailsRequestFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
+
+    getTripsRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getTripsRequest),
+            exhaustMap((action) => {
+                return this.httpService
+                .getTrips(action.categoryName)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Trip[] = Object.assign(new Array<Trip>(), jsonObj);
+                                return AppActions.getTripsRequestSuccess({trips: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get trips request failed.");
+                    return AppActions.getTripsRequestFailure({error: "Get trips request failed."});
+                }))
+            })
+        )
+    })
+
+    getTripsFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getTripsRequestFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
+
+
+    getTripRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getTripRequest),
+            exhaustMap((action) => {
+                return this.httpService
+                .getTrip(action.tripId)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Trip = Object.assign(Trip, jsonObj);
+                                return AppActions.getTripRequestSuccess({trip: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get trip request failed.");
+                    return AppActions.getTripRequestFailure({error: "Get trip request failed."});
+                }))
+            })
+        )
+    })
+
+    getTripFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getTripRequestFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
+
+    
+    getSubPageRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getSubPageDetailsRequest),
+            exhaustMap((action) => {
+                return this.httpService
+                .getSubPage(action.subPageName)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: SubPage = Object.assign(SubPage, jsonObj);
+                                return AppActions.getSubPageDetailsRequestSuccess({subPage: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get sub page request failed.");
+                    return AppActions.getSubPageDetailsRequestFailure({error: "Get sub page request failed."});
+                }))
+            })
+        )
+    })
+
+    getSubPageFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getSubPageDetailsRequestFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
 
     constructor(private actions$: Actions, private httpService: HttpService, private modalService: ModalService) {}
 }

@@ -4,13 +4,14 @@ import { Trip } from "../models/trip.model";
 import { TripCategory } from "../models/tripcategory.model";
 
 export interface IAppState{
-    tripCategories: TripCategory[];
+    tripCategories: Array<TripCategory>;
+    kupa: string;
     currentTripCategory: {
         trips: Trip[],
         categoryName: string;
     };
     contact: Contact;
     currentTrip: Trip;
-    subPages: SubPage[];
+    subPages: Array<SubPage>;
     currentSubPage: SubPage;
 }

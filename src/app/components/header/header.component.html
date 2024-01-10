@@ -28,12 +28,11 @@
                   </div>
                 </ul>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/szkolenia">Szkolenia</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/o-nas">O Nas</a>
-              </li>
+              <div *ngFor="let subPage of subPages">
+                <li class="nav-item">
+                  <a class="nav-link" href="/{{subPage.name}}">{{subPage.name}}</a>
+                </li>
+              </div>
               <li class="nav-item">
                 <a class="nav-link" href="/kontakt">Kontakt</a>
               </li>

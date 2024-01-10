@@ -8,6 +8,7 @@ import { SubPage } from "../models/subpage.model";
 
 export const initialState: IAppState = {
     tripCategories: new Array<TripCategory>(),
+    kupa: '',
     contact: {
         name: '',
         addressLine1: '',
@@ -53,13 +54,24 @@ export const initialState: IAppState = {
 
 const _reducer = createReducer(
     initialState,
+
     on(Actions.getTripCategoriesSuccess, (state, action) => {
+        
         return {
             ...state,
-            tripsCategories: action.tripCategories
-        }
+            tripsCategories: state.tripCategories.push(...action.tripCategories)
+        };
+    }),
+
+    on(Actions.getSubPagesRequestSuccess, (state, action) => {
+        
+        return {
+            ...state,
+            tripsCategories: state.subPages.push(...action.subPages)
+        };
     })
-)
+);
+
 
 export function AppReducer(state: IAppState | undefined, action: Action){
     return _reducer(state, action);

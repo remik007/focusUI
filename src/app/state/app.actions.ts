@@ -5,16 +5,16 @@ import { SubPage } from "../models/subpage.model";
 import { Contact } from "../models/contact.model";
 
 export const getTripCategoriesRequest = createAction(
-    '[Get] Get trip types request'
+    '[Get] Get trip categories request'
 );
 
 export const getTripCategoriesSuccess = createAction(
-    '[Get] Get trip types request success',
+    '[Get] Get trip categories request success',
     props<{tripCategories: TripCategory[]}>()
 );
 
 export const getTripCategoriesFailure = createAction(
-    '[Get] Get trip types request failure',
+    '[Get] Get trip categories request failure',
     props<{error: string}>()
 );
 
@@ -35,7 +35,7 @@ export const getTripsRequestFailure = createAction(
 
 export const getTripRequest = createAction(
     '[Get] Get trip request',
-    props<{tripId: string}>()
+    props<{tripId: number}>()
 );
 
 export const getTripRequestSuccess = createAction(
@@ -54,7 +54,7 @@ export const getContactDetailsRequest = createAction(
 
 export const getContactDetailsRequestSuccess = createAction(
     '[Get] Get contact details request success',
-    props<{trips: Contact}>()
+    props<{contact: Contact}>()
 );
 
 export const getContactDetailsRequestFailure = createAction(
@@ -63,12 +63,13 @@ export const getContactDetailsRequestFailure = createAction(
 );
 
 export const getSubPageDetailsRequest = createAction(
-    '[Get] Get sub page details request'
+    '[Get] Get sub page details request',
+    props<{subPageName: string}>()
 );
 
 export const getSubPageDetailsRequestSuccess = createAction(
     '[Get] Get sub page details request success',
-    props<{trips: SubPage}>()
+    props<{subPage: SubPage}>()
 );
 
 export const getSubPageDetailsRequestFailure = createAction(
@@ -82,7 +83,7 @@ export const getSubPagesRequest = createAction(
 
 export const getSubPagesRequestSuccess = createAction(
     '[Get] Get sub pages request success',
-    props<{trips: SubPage[]}>()
+    props<{subPages: SubPage[]}>()
 );
 
 export const getSubPagesRequestFailure = createAction(
