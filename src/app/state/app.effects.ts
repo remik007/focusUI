@@ -126,35 +126,35 @@ export class AppEffects {
         {dispatch: false}
     );
 
-    getTripsRequest$ = createEffect(() => {
+    getTripCategoryRequest$ = createEffect(() => {
         
         return this.actions$.pipe(
-            ofType(AppActions.getTripsRequest),
+            ofType(AppActions.getTripCategoryRequest),
             exhaustMap((action) => {
                 return this.httpService
-                .getTrips(action.categoryName)
+                .getTripCategory(action.categoryName)
                 .pipe(map((httpResponse) =>{
                     if(httpResponse.status == 200){
                         try{
                             if(httpResponse.body){
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
                                 let obj: Trip[] = Object.assign(new Array<Trip>(), jsonObj);
-                                return AppActions.getTripsRequestSuccess({trips: obj});
+                                return AppActions.getTripCategoryRequestSuccess({trips: obj});
                             }
                         } catch (error){
                             console.log(error);
                         }
                     }
                     console.log("Get trips request failed.");
-                    return AppActions.getTripsRequestFailure({error: "Get trips request failed."});
+                    return AppActions.getTripCategoryRequestFailure({error: "Get trips request failed."});
                 }))
             })
         )
     })
 
-    getTripsFailure$ = createEffect(() =>
+    getTripCategoryFailure$ = createEffect(() =>
     this.actions$.pipe(
-            ofType(AppActions.getTripsRequestFailure),
+            ofType(AppActions.getTripCategoryRequestFailure),
             tap(({error}) => {
                 console.log(error);
                 this.modalService.open('bad-request-modal');

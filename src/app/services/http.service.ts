@@ -34,7 +34,7 @@ export class HttpService{
         return of(test);
     }
 
-    getTrips(categoryName: string): Observable<HttpResponse<Object>>{
+    getTripCategory(categoryName: string): Observable<HttpResponse<Object>>{
         //return this.http.get(environment.getTripsUrl+"/"+categoryName, {responseType: 'text' as 'json', observe: 'response'});
         let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
         return of(test);

@@ -8,7 +8,6 @@ import { SubPage } from "../models/subpage.model";
 
 export const initialState: IAppState = {
     tripCategories: new Array<TripCategory>(),
-    kupa: '',
     contact: {
         name: '',
         addressLine1: '',
@@ -19,10 +18,7 @@ export const initialState: IAppState = {
         instagram: '',
         google: ''
     },
-    currentTripCategory: {
-        trips: new Array<Trip>(),
-        categoryName: ''
-    },
+    currentTripCategory: new TripCategory(),
     currentTrip: {
         id: '',
         name: '',

@@ -18,17 +18,17 @@ export const getTripCategoriesFailure = createAction(
     props<{error: string}>()
 );
 
-export const getTripsRequest = createAction(
-    '[Get] Get trips request',
+export const getTripCategoryRequest = createAction(
+    '[Get] Get trip category request',
     props<{categoryName: string}>()
 );
 
-export const getTripsRequestSuccess = createAction(
+export const getTripCategoryRequestSuccess = createAction(
     '[Get] Get trips request success',
     props<{trips: Trip[]}>()
 );
 
-export const getTripsRequestFailure = createAction(
+export const getTripCategoryRequestFailure = createAction(
     '[Get] Get trips request failure',
     props<{error: string}>()
 );

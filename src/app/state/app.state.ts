@@ -5,11 +5,7 @@ import { TripCategory } from "../models/tripcategory.model";
 
 export interface IAppState{
     tripCategories: Array<TripCategory>;
-    kupa: string;
-    currentTripCategory: {
-        trips: Trip[],
-        categoryName: string;
-    };
+    currentTripCategory: TripCategory;
     contact: Contact;
     currentTrip: Trip;
     subPages: Array<SubPage>;
