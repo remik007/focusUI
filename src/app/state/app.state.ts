@@ -1,17 +1,16 @@
 import { Contact } from "../models/contact.model";
 import { SubPage } from "../models/subpage.model";
 import { Trip } from "../models/trip.model";
-import { TripType } from "../models/triptype.model";
+import { TripCategory } from "../models/tripcategory.model";
 
 export interface IAppState{
-    tripsTypes: TripType[];
-    currentCategoryTrips: {
+    tripCategories: TripCategory[];
+    currentTripCategory: {
         trips: Trip[],
         categoryName: string;
     };
     contact: Contact;
     currentTrip: Trip;
-    about: SubPage;
-    workshops: SubPage;
+    subPages: SubPage[];
+    currentSubPage: SubPage;
 }
-

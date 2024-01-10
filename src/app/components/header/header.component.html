@@ -23,8 +23,8 @@
                   Wyjazdy
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <div *ngFor="let tripType of tripTypes">
-                    <li><a class="dropdown-item" href="/wyjazdy/{{tripType.name}}">{{tripType.name}}</a></li>
+                  <div *ngFor="let tripCategory of tripCategories">
+                    <li><a class="dropdown-item" href="/wyjazdy/{{tripCategory.name}}">{{tripCategory.name}}</a></li>
                   </div>
                 </ul>
               </li>

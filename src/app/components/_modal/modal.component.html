@@ -1,0 +1,11 @@
+﻿<div class="jw-modal" >
+    <div class="jw-modal-body" >
+        <div *ngIf="url!='text'" >
+            <div style="text-align: center;">
+                <iframe id="video-player" [src]="safeUrl" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" margin-left="auto" margin-right="auto" allowfullscreen></iframe>
+            </div>
+        </div>
+        <ng-content></ng-content>
+    </div>
+</div>
+<div class="jw-modal-background"></div>

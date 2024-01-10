@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
-import { WorkshopsComponent } from './components/workshops/workshops.component';
+import { SubPageComponent } from './components/subpage/subpage.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -19,6 +19,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
 import { CategoryComponent } from './components/category/category.component';
 import { ItemComponent } from './components/item/item.component';
+import { ModalModule } from './components/_modal';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,13 @@ import { ItemComponent } from './components/item/item.component';
     HeaderComponent,
     FooterComponent,
     AboutComponent,
-    WorkshopsComponent,
+    SubPageComponent,
     ContactComponent,
     CategoryComponent,
     ItemComponent
   ],
   imports: [
+    ModalModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,

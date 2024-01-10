@@ -1,11 +1,13 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { IAppState } from "./app.state";
 import * as Actions from "./app.actions";
-import { TripType } from "../models/triptype.model";
+import { TripCategory } from "../models/tripcategory.model";
 import { Trip } from "../models/trip.model";
+import { TransportType } from "../models/transporttype.model";
+import { SubPage } from "../models/subpage.model";
 
 export const initialState: IAppState = {
-    tripsTypes: new Array<TripType>(),
+    tripCategories: new Array<TripCategory>(),
     contact: {
         name: '',
         addressLine1: '',
@@ -16,28 +18,32 @@ export const initialState: IAppState = {
         instagram: '',
         google: ''
     },
-    currentCategoryTrips: {
+    currentTripCategory: {
         trips: new Array<Trip>(),
         categoryName: ''
     },
     currentTrip: {
         id: '',
         name: '',
+        shortName: '',
         shortDescription: '',
         description: '',
         prize: '',
-        newPrize: '',
+        oldPrize: '',
+        availableSeats: 0,
+        currentAvailableSeats: 0,
+        transportType: new TransportType(),
+        tripCategory: new TripCategory(),
+        from: new Date(),
+        to: new Date(),
+        isEnabled: false,
+        isDeleted: false,
         imageUrls: new Array<string>()
     },
-    about: {
+    subPages: new Array<SubPage>(),
+    currentSubPage: {
         id: '',
-        name: '',
-        shortDescription: '',
-        description: '',
-        imageUrl: ''
-    },
-    workshops: {
-        id: '',
+        shortName: '',
         name: '',
         shortDescription: '',
         description: '',
@@ -47,10 +53,10 @@ export const initialState: IAppState = {
 
 const _reducer = createReducer(
     initialState,
-    on(Actions.getTripTypesSuccess, (state, action) => {
+    on(Actions.getTripCategoriesSuccess, (state, action) => {
         return {
             ...state,
-            tripsTypes: action.tripTypes
+            tripsCategories: action.tripCategories
         }
     })
 )

@@ -2,36 +2,52 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import * as AppActions from './app.actions';
-import { exhaustMap, map } from "rxjs";
+import { exhaustMap, map, tap } from "rxjs";
 import { HttpService } from "../services/http.service";
-import { TripType } from "../models/triptype.model";
+import { TripCategory } from "../models/tripcategory.model";
+import { ModalService } from "../components/_modal/modal.service";
 
 @Injectable()
 export class AppEffects {
-    getTripTypesRequest$ = createEffect(() => {
+
+    getTripCategoriesRequest$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(AppActions.getTripTypesRequest),
+            ofType(AppActions.getTripCategoriesRequest),
             exhaustMap((/*parameter*/) => {
                 
                 return this.httpService
-                .getTripTypes()
-                .pipe(map((getTripTypesResponse) =>{
-                    if(getTripTypesResponse.status == 200){
+                .getTripCategories()
+                .pipe(map((getTripCategoriesResponse) =>{
+                    if(getTripCategoriesResponse.status == 200){
                         try{
-                            if(getTripTypesResponse.body){
-                                let tripTypesJson = JSON.parse(getTripTypesResponse.body.toString());
-                                let tripTypes: TripType[] = Object.assign(new Array<TripType>(), tripTypesJson);
-                                return AppActions.getTripTypesSuccess({tripTypes: tripTypes});
+                            if(getTripCategoriesResponse.body){
+                                let tripCategoriesJson = JSON.parse(getTripCategoriesResponse.body.toString());
+                                let tripCategories: TripCategory[] = Object.assign(new Array<TripCategory>(), tripCategoriesJson);
+                                return AppActions.getTripCategoriesSuccess({tripCategories: tripCategories});
                             }
                         } catch (error){
                             console.log(error);
                         }
                     }
-                    console.log("Get trip types request failed.");
-                    return AppActions.getTripTypesFailure({error: "Get trip types request failed."});
+                    console.log("Get trip categories request failed.");
+                    return AppActions.getTripCategoriesFailure({error: "Get trip categories request failed."});
                 }))
             })
         )
     })
-    constructor(private actions$: Actions, private httpService: HttpService) {}
+
+    getTripCategoriesFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getTripCategoriesFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
+
+
+
+    constructor(private actions$: Actions, private httpService: HttpService, private modalService: ModalService) {}
 }

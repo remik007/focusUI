@@ -1,0 +1,117 @@
+﻿/* MODAL STYLES
+-------------------------------*/
+
+jw-modal {
+    /* modals are hidden by default */
+    display: none;
+    font-size: 14px;
+
+    #video-player{
+        height: 500px;
+        width: 960px;      
+    }
+
+    .jw-modal {
+        /* modal container fixed across whole screen */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        
+
+        /* z-index must be higher than .jw-modal-background */
+        z-index: 1000;
+        
+       overflow: auto;
+
+        .jw-modal-body {
+            padding: 20px;
+            background: #fff;
+            border: 2px solid white;
+            border-radius: 8px;
+            text-align: left;
+            line-height: 1.6;
+
+            /* margin exposes part of the modal background */
+            //margin: 40px;
+        }
+    }
+
+    .jw-modal-background {
+        /* modal background fixed across whole screen */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        /* semi-transparent black  */
+        background-color: #000;
+        opacity: 0.75;
+        
+        /* z-index must be below .jw-modal and above everything else  */
+        z-index: 900;
+    }
+
+    @media screen and (max-width: 1050px) {
+
+        #video-player{
+            height: 400px;
+            width: 700px;  
+        }
+      }
+
+    @media screen and (max-width: 768px) {
+        jw-modal, .jw-modal, .jw-modal-body{
+            margin: 0px;
+            width: 100%;
+        }
+        #video-player{
+            height: 300px;
+            width: 500px;  
+        }
+      }
+     
+      @media screen and (max-width: 550px) {
+
+        #video-player{
+            height: 250px;
+            width: 300px;  
+        }
+      }
+
+      @media screen and (max-height: 900px) {
+        .jw-modal-body {
+            max-height: 800px;
+            overflow-y: auto;
+        }
+      }
+
+      @media screen and (max-height: 800px) {
+        .jw-modal-body {
+            max-height: 700px;
+            overflow-y: auto;
+        }
+      }
+
+      @media screen and (max-height: 700px) {
+        .jw-modal-body {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+      }
+
+      @media screen and (max-height: 570px) {
+        .jw-modal-body {
+            max-height: 560px;
+            overflow-y: auto;
+        }
+      }
+}
+
+body.jw-modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
+}
+
+
