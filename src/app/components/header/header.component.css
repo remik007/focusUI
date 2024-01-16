@@ -1,5 +1,27 @@
 .logo{
-    height: 300px;
+    height: 200px;
     width: 100%;
     background-color: aquamarine;
 }
+
+.btn-logout{
+    margin-left:40px;
+}
+
+@media (max-width: 993px){
+    .btn-logout{
+        margin-left:0px;
+        margin-top:10px;
+    }
+}
+
+.btn-login{
+    margin-left:40px;
+}
+
+@media (max-width: 993px){
+    .btn-login{
+        margin-left:0px;
+        margin-top:10px;
+    }
+  }

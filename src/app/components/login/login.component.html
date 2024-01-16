@@ -21,8 +21,14 @@
                     <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
                     Login
                 </button>
-                <a routerLink="../register" class="btn btn-link">Register</a>
             </div>
         </form>
     </div>
 </div>
+<jw-modal id="login-failed-modal" url="text">
+    <div>
+        <label style="margin-bottom: 50px;" aria-label="Błędny login lub hasło." class="input-label">Błędny login lub hasło.</label>
+        <br/>
+        <button class="btn-primary title-font dropbtn" (click)="closeModal('login-failed-modal');" tabindex="0">Close</button>
+    </div>
+</jw-modal>

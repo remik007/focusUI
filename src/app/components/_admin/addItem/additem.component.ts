@@ -4,11 +4,11 @@ import { environment } from "src/environment/environment";
 declare let tinymce: any;
 
 @Component({
-  selector: 'app-adminhome',
-  templateUrl: './adminhome.component.html',
-  styleUrls: ['./adminhome.component.css']
+  selector: 'app-additem',
+  templateUrl: './additem.component.html',
+  styleUrls: ['./additem.component.css']
 })
-export class AdminHomeComponent {
+export class AddItemComponent {
   source!: string;
   tinymceInit!: any;
   tinymceKey: string = environment.tinymceKey;

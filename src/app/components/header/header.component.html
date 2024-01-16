@@ -46,6 +46,8 @@
               />
               <button class="btn btn-outline-success" type="submit">Szukaj</button>
             </form>
+            <button *ngIf="!this._storageService.isLoggedIn()" class="btn btn-success btn-login" (click)="login();">Zaloguj</button>
+            <button *ngIf="this._storageService.isLoggedIn()" class="btn btn-secondary btn-logout" (click)="logout();">Wyloguj</button>
           </div>
         </div>
       </nav>

@@ -253,10 +253,11 @@ export class AppEffects {
                     if(httpResponse.status == 200){
                         try{
                             if(httpResponse.body){
+                                console.log("hello2");
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
                                 let obj: User = Object.assign(User, jsonObj);
-                                this.storageService.saveUser(obj);
-                                return AppActions.loginRequestSuccess();
+                                console.log("hello3");
+                                return AppActions.loginRequestSuccess({user: obj});
                             }
                         } catch (error){
                             console.log(error);
@@ -268,6 +269,18 @@ export class AppEffects {
             })
         )
     })
+
+    loginRequestSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.loginRequestSuccess),
+            tap(({user}) => {
+                console.log("hello");
+                console.log(user);
+                this.storageService.saveUser(user);
+            })
+        ),
+        {dispatch: false}
+    );
 
     loginRequestFailure$ = createEffect(() =>
     this.actions$.pipe(

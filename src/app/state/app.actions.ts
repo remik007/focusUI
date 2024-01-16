@@ -4,6 +4,7 @@ import { Trip } from "../models/trip.model";
 import { SubPage } from "../models/subpage.model";
 import { Contact } from "../models/contact.model";
 import { Login } from "../models/login.model";
+import { User } from "../models/user.model";
 
 export const getTripCategoriesRequest = createAction(
     '[Get] Get trip categories request'
@@ -100,7 +101,8 @@ export const loginRequest = createAction(
 )
 
 export const loginRequestSuccess = createAction(
-    '[Post] Login request success'
+    '[Post] Login request success',
+    props<{user: User}>()
 )
 
 export const loginRequestFailure = createAction(

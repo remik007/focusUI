@@ -4,12 +4,13 @@ import { Observable, of } from "rxjs";
 import { environment } from "src/environment/environment";
 import { Login } from "../models/login.model";
 import { Tokens } from "../models/tokens.model";
+import { StorageService } from "./storage.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService{
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient, private storageService: StorageService){}
 
     login(loginDetails: Login): Observable<HttpResponse<Object>>{
         return this.http.post(environment.loginUrl, loginDetails, {responseType: 'text' as 'json', observe: 'response'});
@@ -25,6 +26,8 @@ export class AuthService{
     
     logout(): Observable<HttpResponse<Object>>{
         //return this.http.post(environment.loginUrl, {responseType: 'text' as 'json', observe: 'response'});
+        console.log("test");
+        this.storageService.clean();
         let test = new HttpResponse<Object>({status: 200});
         return of(test);
     }
