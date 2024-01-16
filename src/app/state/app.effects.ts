@@ -9,6 +9,9 @@ import { ModalService } from "../components/_modal/modal.service";
 import { SubPage } from "../models/subpage.model";
 import { Contact } from "../models/contact.model";
 import { Trip } from "../models/trip.model";
+import { AuthService } from "../services/auth.service";
+import { User } from "../models/user.model";
+import { StorageService } from "../services/storage.service";
 
 @Injectable()
 export class AppEffects {
@@ -244,14 +247,16 @@ export class AppEffects {
         return this.actions$.pipe(
             ofType(AppActions.loginRequest),
             exhaustMap((action) => {
-                return this.httpService
+                return this.authService
                 .login(action.loginDetails)
                 .pipe(map((httpResponse) =>{
                     if(httpResponse.status == 200){
                         try{
                             if(httpResponse.body){
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
-                                return AppActions.loginRequestSuccess({accessToken: jsonObj["token"]});
+                                let obj: User = Object.assign(User, jsonObj);
+                                this.storageService.saveUser(obj);
+                                return AppActions.loginRequestSuccess();
                             }
                         } catch (error){
                             console.log(error);
@@ -275,5 +280,5 @@ export class AppEffects {
         {dispatch: false}
     );
 
-    constructor(private actions$: Actions, private httpService: HttpService, private modalService: ModalService) {}
+    constructor(private actions$: Actions, private httpService: HttpService, private authService: AuthService, private modalService: ModalService, private storageService: StorageService) {}
 }

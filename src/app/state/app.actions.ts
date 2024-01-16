@@ -100,8 +100,7 @@ export const loginRequest = createAction(
 )
 
 export const loginRequestSuccess = createAction(
-    '[Post] Login request success',
-    props<{accessToken: string}>()
+    '[Post] Login request success'
 )
 
 export const loginRequestFailure = createAction(

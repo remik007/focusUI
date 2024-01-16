@@ -45,10 +45,7 @@ export const initialState: IAppState = {
         shortDescription: '',
         description: '',
         imageUrl: ''
-    },
-    isAdmin: false,
-    isLoggedIn: false,
-    accessToken: ""
+    }
 }
 
 const _reducer = createReducer(
@@ -69,16 +66,6 @@ const _reducer = createReducer(
             tripsCategories: state.subPages.push(...action.subPages)
         };
     }),
-
-    on(Actions.loginRequestSuccess, (state, action) => {
-        
-        return {
-            ...state,
-            accessToken: action.accessToken,
-            isLoggedIn: true,
-            isAdmin: true
-        };
-    })
 );
 
 

@@ -15,8 +15,8 @@ export class Trip {
     public tripCategory!: TripCategory;
     public from!: Date;
     public to!: Date;
-    public isEnabled!: Boolean;
-    public isDeleted!: Boolean;
+    public isEnabled!: boolean;
+    public isDeleted!: boolean;
     public imageUrls!: string[];
     //public reservations!: Reservation[];
 }

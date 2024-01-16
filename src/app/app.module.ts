@@ -21,12 +21,14 @@ import { ItemComponent } from './components/item/item.component';
 import { ModalModule } from './components/_modal';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { JwtInterceptor } from './services/jwt.interceptor';
-import { AdminHomeComponent } from './components/_admin/home/adminhome.component';
+import { AdminLoginComponent } from './components/_admin/adminlogin/adminlogin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminHomeComponent } from './components/_admin/adminhome/adminhome.component';
 
 @NgModule({
   declarations: [
     AdminHomeComponent,
+    AdminLoginComponent,
     AppComponent,
     HomeComponent,
     HeaderComponent,

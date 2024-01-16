@@ -3,27 +3,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Login } from 'src/app/models/login.model';
-import { selectAccessToken } from 'src/app/state/app.selectors';
 import { IAppState } from 'src/app/state/app.state';
-import * as Actions from '../../../state/app.actions';
 import { environment } from "src/environment/environment";
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
-  selector: 'app-adminhome',
-  templateUrl: './adminhome.component.html',
-  styleUrls: ['./adminhome.component.css']
+  selector: 'app-adminlogin',
+  templateUrl: './adminlogin.component.html',
+  styleUrls: ['./adminlogin.component.css']
 })
-export class AdminHomeComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
   source!: string;
   loading: Boolean = false;
   submitted: Boolean = false;
   form!: FormGroup;
-  accessToken$: Observable<String>;
   
-  constructor(private store: Store<IAppState>, private formBuilder: FormBuilder){
+  constructor(private store: Store<IAppState>, private formBuilder: FormBuilder, private authService: AuthService){
     this.source = "";
-    this.accessToken$ = this.store.pipe(select(selectAccessToken));
   }
 
   ngOnInit() {
@@ -45,11 +42,10 @@ export class AdminHomeComponent implements OnInit {
 
       this.loading = true;
       let loginDetails: Login = {login: this.f['username'].value, password: this.f['password'].value};
-      this.store.dispatch(Actions.loginRequest({loginDetails: loginDetails}));
-      this.accessToken$.subscribe(accessToken => {
-        console.log(accessToken);
+      this.authService.login(loginDetails).subscribe(userObj => {
+        console.log(userObj);
         this.loading = false;
-      })
+      });
   }
   
 }

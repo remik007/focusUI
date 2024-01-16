@@ -8,4 +8,3 @@ export const selectSubPages = createSelector(selectTripsFeature, state => state.
 export const selectCurrentSubPageDetails = createSelector(selectTripsFeature, state => state.currentSubPage);
 export const selectTripDetails = createSelector(selectTripsFeature, state => state.currentTrip);
 export const selectCurrentTripCategory = createSelector(selectTripsFeature, state => state.currentTripCategory);
-export const selectAccessToken = createSelector(selectTripsFeature, state => state.accessToken);

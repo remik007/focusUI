@@ -47,9 +47,4 @@ export class HttpService{
         return of(test);
     }
 
-    login(loginDetails: Login): Observable<HttpResponse<Object>>{
-        //return this.http.get(environment.loginUrl, {responseType: 'text' as 'json', observe: 'response'});
-        let test = new HttpResponse<Object>({status: 200, body: "{\"token\":\"testToken\"}"});
-        return of(test);
-    }
 }
