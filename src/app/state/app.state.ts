@@ -10,4 +10,7 @@ export interface IAppState{
     currentTrip: Trip;
     subPages: Array<SubPage>;
     currentSubPage: SubPage;
+    isLoggedIn: Boolean;
+    isAdmin: Boolean;
+    accessToken: String;
 }

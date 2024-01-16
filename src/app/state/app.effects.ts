@@ -239,5 +239,41 @@ export class AppEffects {
         {dispatch: false}
     );
 
+    loginRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.loginRequest),
+            exhaustMap((action) => {
+                return this.httpService
+                .login(action.loginDetails)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                return AppActions.loginRequestSuccess({accessToken: jsonObj["token"]});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Login failed.");
+                    return AppActions.loginRequestFailure({error: "Login failed."});
+                }))
+            })
+        )
+    })
+
+    loginRequestFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.loginRequestFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
+
     constructor(private actions$: Actions, private httpService: HttpService, private modalService: ModalService) {}
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HomeComponent } from './components/home/home.component';
 import { ModalService } from './components/_modal';
 
 @Component({
@@ -11,7 +10,7 @@ export class AppComponent {
   title = 'focusUI';
 
   constructor(private modalService: ModalService){
-
+    
   }
 
   closeModal(id: string) {

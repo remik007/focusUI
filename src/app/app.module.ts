@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppEffects } from './state/app.effects';
 import { AppReducer } from './state/app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -19,9 +19,14 @@ import {NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
 import { CategoryComponent } from './components/category/category.component';
 import { ItemComponent } from './components/item/item.component';
 import { ModalModule } from './components/_modal';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { JwtInterceptor } from './services/jwt.interceptor';
+import { AdminHomeComponent } from './components/_admin/home/adminhome.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
+    AdminHomeComponent,
     AppComponent,
     HomeComponent,
     HeaderComponent,
@@ -32,6 +37,9 @@ import { ModalModule } from './components/_modal';
     ItemComponent
   ],
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    EditorModule,
     ModalModule,
     BrowserModule,
     AppRoutingModule,
@@ -47,7 +55,13 @@ import { ModalModule } from './components/_modal';
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

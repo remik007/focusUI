@@ -3,6 +3,7 @@ import { TripCategory } from "../models/tripcategory.model";
 import { Trip } from "../models/trip.model";
 import { SubPage } from "../models/subpage.model";
 import { Contact } from "../models/contact.model";
+import { Login } from "../models/login.model";
 
 export const getTripCategoriesRequest = createAction(
     '[Get] Get trip categories request'
@@ -90,3 +91,20 @@ export const getSubPagesRequestFailure = createAction(
     '[Get] Get sub pages request failure',
     props<{error: string}>()
 );
+
+//SIGNING IN
+
+export const loginRequest = createAction(
+    '[Post] Login request',
+    props<{loginDetails: Login}>()
+)
+
+export const loginRequestSuccess = createAction(
+    '[Post] Login request success',
+    props<{accessToken: string}>()
+)
+
+export const loginRequestFailure = createAction(
+    '[Post] Login request failure',
+    props<{error: string}>()
+)

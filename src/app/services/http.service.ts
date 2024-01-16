@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { environment } from "src/environment/environment";
 import { SubPage } from "../models/subpage.model";
+import { Login } from "../models/login.model";
 
 @Injectable({
     providedIn: 'root'
@@ -43,6 +44,12 @@ export class HttpService{
     getContactDetails(): Observable<HttpResponse<Object>>{
         //return this.http.get(environment.getContactDetailsUrl, {responseType: 'text' as 'json', observe: 'response'});
         let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        return of(test);
+    }
+
+    login(loginDetails: Login): Observable<HttpResponse<Object>>{
+        //return this.http.get(environment.loginUrl, {responseType: 'text' as 'json', observe: 'response'});
+        let test = new HttpResponse<Object>({status: 200, body: "{\"token\":\"testToken\"}"});
         return of(test);
     }
 }

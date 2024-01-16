@@ -3,7 +3,7 @@ import { IAppState } from '../../state/app.state';
 import { Store, select } from '@ngrx/store';
 import { TripCategory } from '../../models/tripcategory.model';
 import { Observable } from 'rxjs';
-import { selectSubPages, selectTripCategories } from '../../state/app.selectors';
+import { selectAccessToken, selectSubPages, selectTripCategories } from '../../state/app.selectors';
 import * as Actions from '../../state/app.actions';
 import { SubPage } from 'src/app/models/subpage.model';
 
@@ -19,10 +19,12 @@ export class HeaderComponent {
   subPages$: Observable<Array<SubPage>>;
   tripCategories: TripCategory[]  = [];
   subPages: SubPage[] = [];
+  accessToken$: Observable<String>;
 
   constructor(private store: Store<IAppState>){
     this.categories$ = this.store.pipe(select(selectTripCategories));
     this.subPages$ = this.store.pipe(select(selectSubPages));
+    this.accessToken$ = this.store.pipe(select(selectAccessToken));
   }
 
   ngOnInit(): void{
