@@ -37,4 +37,15 @@ export class StorageService {
 
     return false;
   }
+
+  public isAdmin(): boolean {
+    const user = localStorage.getItem(USER_KEY);
+    if (user) {
+      let jsonObj = JSON.parse(user);
+      let obj: User = Object.assign(User, jsonObj);
+      return obj.isAdmin;
+    }
+
+    return false;
+  }
 }

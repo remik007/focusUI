@@ -12,9 +12,9 @@ export class HttpService{
     constructor(private http: HttpClient){}
 
     getTripCategories(): Observable<HttpResponse<Object>>{
-        //return this.http.get(environment.getTripCategoriesUrl, {responseType: 'text' as 'json', observe: 'response'});
-        let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
-        return of(test);
+        return this.http.get(environment.getTripCategoriesUrl, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        //return of(test);
     }
 
     getSubPages(): Observable<HttpResponse<Object>>{
@@ -35,10 +35,12 @@ export class HttpService{
         return of(test);
     }
 
+
+
     getTripCategory(categoryName: string): Observable<HttpResponse<Object>>{
-        //return this.http.get(environment.getTripsUrl+"/"+categoryName, {responseType: 'text' as 'json', observe: 'response'});
-        let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
-        return of(test);
+        return this.http.get(environment.getTripCategoryUrl+"/"+categoryName, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        //return of(test);
     }
 
     getContactDetails(): Observable<HttpResponse<Object>>{

@@ -9,6 +9,10 @@ import { SubPage } from 'src/app/models/subpage.model';
 import { StorageService } from 'src/app/services/storage.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Login } from 'src/app/models/login.model';
+import { User } from 'src/app/models/user.model';
+import { ModalService } from '../_modal/modal.service';
 
 @Component({
   selector: 'app-header',
@@ -23,14 +27,23 @@ export class HeaderComponent {
   tripCategories: TripCategory[]  = [];
   subPages: SubPage[] = [];
   _storageService: StorageService;
+  loading: Boolean = false;
+  submitted: Boolean = false;
+  form!: FormGroup;
+  loginFailed: boolean = false;
 
-  constructor(private store: Store<IAppState>, private storageService: StorageService, private authService: AuthService, private router: Router){
+  constructor(private store: Store<IAppState>, private formBuilder: FormBuilder, private storageService: StorageService, private authService: AuthService, private router: Router, private modalService: ModalService){
     this.categories$ = this.store.pipe(select(selectTripCategories));
     this.subPages$ = this.store.pipe(select(selectSubPages));
     this._storageService = storageService;
   }
 
   ngOnInit(): void{
+    this.form = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
     this.store.dispatch(Actions.getTripCategoriesRequest());
     this.categories$.subscribe(categories => {
       this.tripCategories = categories;
@@ -41,15 +54,48 @@ export class HeaderComponent {
     })
   }
 
+  get f() { return this.form.controls; }
+
+  onSubmit() {
+      this.submitted = true;
+      this.loginFailed = false;
+      // stop here if form is invalid
+      if (this.form.invalid) {
+          return;
+      }
+
+      this.loading = true;
+      let loginDetails: Login = {login: this.f['username'].value, password: this.f['password'].value};
+      this.authService.login(loginDetails).subscribe(
+        {
+        next: data => {
+          this.loading = false;
+          var user: User = JSON.parse(data.body!.toString());
+          this.storageService.saveUser(user);
+          this.closeModal("login-modal");
+          this.f['password'].setValue("");
+        },
+        error: err => {
+          this.loading = false;
+          this.loginFailed = true;
+        }
+      });
+  }
+
   toggleNavbarCollapsing() {
     this.navbarCollapsed = !this.navbarCollapsed;
   }
 
   logout(){
-    this.authService.logout();
+    this.storageService.clean();
+    window.location.reload();
   }
 
-  login(){
-    this.router.navigate(['login']);
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
+  openModel(id: string) {
+    this.modalService.open(id);
   }
 }

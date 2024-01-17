@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
           var user: User = Object.assign(User, jsonObj);
           this.storageService.saveUser(user);
           this.router.navigate(['']);
+          this.f['password'].setValue("");
         },
         error: err => {
           this.loading = false;

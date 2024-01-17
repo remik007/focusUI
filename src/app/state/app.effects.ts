@@ -141,15 +141,15 @@ export class AppEffects {
                         try{
                             if(httpResponse.body){
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
-                                let obj: Trip[] = Object.assign(new Array<Trip>(), jsonObj);
-                                return AppActions.getTripCategoryRequestSuccess({trips: obj});
+                                let obj: TripCategory = Object.assign(new Array<TripCategory>(), jsonObj);
+                                return AppActions.getTripCategoryRequestSuccess({tripCategory: obj});
                             }
                         } catch (error){
                             console.log(error);
                         }
                     }
-                    console.log("Get trips request failed.");
-                    return AppActions.getTripCategoryRequestFailure({error: "Get trips request failed."});
+                    console.log("Get trip category request failed.");
+                    return AppActions.getTripCategoryRequestFailure({error: "Get trip category request failed."});
                 }))
             })
         )

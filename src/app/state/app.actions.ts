@@ -27,7 +27,7 @@ export const getTripCategoryRequest = createAction(
 
 export const getTripCategoryRequestSuccess = createAction(
     '[Get] Get trips request success',
-    props<{trips: Trip[]}>()
+    props<{tripCategory: TripCategory}>()
 );
 
 export const getTripCategoryRequestFailure = createAction(

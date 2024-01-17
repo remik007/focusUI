@@ -59,6 +59,14 @@ const _reducer = createReducer(
         };
     }),
 
+    on(Actions.getTripCategoryRequestSuccess, (state, action) => {
+        
+        return {
+            ...state,
+            currentTripCategory: action.tripCategory
+        };
+    }),
+
     on(Actions.getSubPagesRequestSuccess, (state, action) => {
         
         return {

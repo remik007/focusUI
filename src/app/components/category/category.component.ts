@@ -18,18 +18,21 @@ export class CategoryComponent {
   categoryName!: string;
 
   constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute){
-    this.activatedRoute.params.subscribe(
-      (params: Params) => {
-        this.categoryName = params['url'];
-      }
-    )
+
     this.category$ = this.store.pipe(select(selectCurrentTripCategory));
   }
 
   ngOnInit(): void{
-    this.store.dispatch(Actions.getTripCategoryRequest({categoryName: this.categoryName}));
+    this.activatedRoute.paramMap.subscribe(params => {
+      if(params){
+        this.categoryName = params.get("tripcategory")!;
+        this.store.dispatch(Actions.getTripCategoryRequest({categoryName: this.categoryName}));
+      }
+    });
+
     this.category$.subscribe(category => {
       this.currentCategory = category;
+      console.log("current category: " + JSON.stringify(category));
     })
   }
 }

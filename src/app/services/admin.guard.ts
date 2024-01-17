@@ -4,16 +4,16 @@ import { StorageService } from './storage.service';
 import { Observable } from 'rxjs';
 import { ModalService } from '../components/_modal';
 @Injectable()
-export class AuthGuard {
+export class AdminGuard {
   constructor(public storageService: StorageService, public router: Router, private modalService: ModalService) {}
   
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if(this.storageService.isLoggedIn()){
+      if(this.storageService.isAdmin()){
         return true;
       }else{
-        this.modalService.open("login-modal");
+        this.router.navigate([''])
         return false;
       }
   }

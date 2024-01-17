@@ -9,18 +9,18 @@ import { AuthService } from "./auth.service";
 import { EventBusService } from "./eventbus.service";
 import { EventData } from "../_shared/event.class";
 import { Tokens } from "../models/tokens.model";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor 
 {
     private isRefreshing = false;
 
-    constructor(private store: Store<IAppState>, private storageService: StorageService, private authService: AuthService, private eventBusService: EventBusService){}
+    constructor(private store: Store<IAppState>, private storageService: StorageService, private authService: AuthService, private eventBusService: EventBusService, private router: Router){}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
     {
       let user: User = this.storageService.getUser();
-      console.log(JSON.stringify(user));
       if (user.accessToken !== undefined && user.accessToken !== null && user.accessToken !== "")
       request = request.clone({
         setHeaders: {
@@ -35,9 +35,10 @@ export class JwtInterceptor implements HttpInterceptor
             !request.url.includes('admin/login') &&
             error.status === 401
           ) {
+            console.log("testasd1");
             return this.handle401Error(request, next, user.accessToken, user.refreshToken);
           }
-  
+          
           return throwError(() => error);
         })
       );
@@ -45,14 +46,17 @@ export class JwtInterceptor implements HttpInterceptor
 
     private handle401Error(request: HttpRequest<any>, next: HttpHandler, accessToken: string, refreshToken: string) {
       if (!this.isRefreshing) {
+        console.log("testasd");
         this.isRefreshing = true;
   
         if (this.storageService.isLoggedIn()) {
           let tokens: Tokens = {accessToken: accessToken, refreshToken: refreshToken};
           return this.authService.refreshToken(tokens).pipe(
-            switchMap(() => {
+            switchMap((newTokens) => {
               this.isRefreshing = false;
-  
+              var user: User = JSON.parse(newTokens.body!.toString());
+              this.storageService.clean();
+              this.storageService.saveUser(user);
               return next.handle(request);
             }),
             catchError((error) => {
@@ -67,6 +71,7 @@ export class JwtInterceptor implements HttpInterceptor
           );
         }
       }
+      this.router.navigate(['']);
       return next.handle(request);
     }
  }
