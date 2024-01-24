@@ -4,14 +4,18 @@ import { environment } from "src/environment/environment";
 declare let tinymce: any;
 
 @Component({
-  selector: 'app-additem',
-  templateUrl: './additem.component.html',
-  styleUrls: ['./additem.component.css']
+  selector: 'app-addtrip',
+  templateUrl: './addtrip.component.html',
+  styleUrls: ['./addtrip.component.css']
 })
-export class AddItemComponent {
+export class AddTripComponent {
   source!: string;
   tinymceInit!: any;
   tinymceKey: string = environment.tinymceKey;
+  fieldname: string = "Mój nowy text field";
+  false: boolean = false;
+  true: boolean = true;
+  dropdownData: Array<{id: number, name: string}> = [{id: 1, name: "test1"}, {id: 2, name: "test2"}];
 
   constructor(){
     this.source = "";
@@ -45,7 +49,8 @@ export class AddItemComponent {
     }
   }
 
-
-  
+  saveAnswer(fieldname: string, answer: string){
+    console.log(fieldname + " answer: " + answer);
+  }
   
 }

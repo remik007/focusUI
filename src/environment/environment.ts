@@ -4,5 +4,6 @@ export const environment = {
     getTripCategoriesUrl: "https://localhost:7013/api/categories",
     getTripCategoryUrl:"https://localhost:7013/api/admin/categories/GetCategoryByName",
     loginUrl: 'https://localhost:7013/api/account/login',
-    refreshTokenUrl: "https://localhost:7013/api/account/refresh"
+    refreshTokenUrl: "https://localhost:7013/api/account/refresh",
+    textBoxCharactersLimit: 255
 }

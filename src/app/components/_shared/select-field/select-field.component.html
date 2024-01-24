@@ -1,0 +1,22 @@
+<div class="col-12 fieldarea">
+    <div class="fieldname">
+        <span attr.aria-label="{{fieldName}}">{{fieldName}}</span>
+        <span [ngClass]="isMandatory? 'required-field': ''"></span>
+    </div>
+    <div class="input-field">
+        <select class="form-select" ngModel #selectRef="ngModel"  [(ngModel)]="answer" (change)="answerQuestion(answer)">
+            <option value="-1" selected>Wybierz...</option>
+            <option *ngFor="let option of data;" [value]="option.id" >
+                {{option.name}}
+            </option>
+        </select>
+    </div>
+</div>
+<div class="col-12 validation">
+    <div *ngIf="isMandatory && answer == -1 && (selectRef.touched || selectRef.dirty)" style="text-align: left;">
+        <div class="invalid" >
+            To pole jest wymagane
+        </div> 
+    </div> 
+</div>
+

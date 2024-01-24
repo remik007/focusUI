@@ -24,11 +24,19 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './services/auth.guard';
-import { AddItemComponent } from './components/_admin/addItem/additem.component';
+import { AddTripComponent } from './components/_admin/addTrip/addTrip.component';
+import { CheckboxSelectorComponent } from './components/_shared/checkbox-selector/checkbox-selector.component';
+import { DateSelectorComponent } from './components/_shared/date-selector/date-selector.component';
+import { EmailFieldComponent } from './components/_shared/email-field/email-field.component';
+import { NumberTextFieldComponent } from './components/_shared/number-text-field/number-text-field.component';
+import { TextFieldComponent } from './components/_shared/text-field/text-field.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AdminGuard } from './services/admin.guard';
+import { SelectFieldComponent } from './components/_shared/select-field/select-field.component';
 
 @NgModule({
   declarations: [
-    AddItemComponent,
+    AddTripComponent,
     LoginComponent,
     AppComponent,
     HomeComponent,
@@ -37,7 +45,13 @@ import { AddItemComponent } from './components/_admin/addItem/additem.component'
     SubPageComponent,
     ContactComponent,
     CategoryComponent,
-    ItemComponent
+    ItemComponent,
+    CheckboxSelectorComponent,
+    DateSelectorComponent,
+    EmailFieldComponent,
+    NumberTextFieldComponent,
+    TextFieldComponent,
+    SelectFieldComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -56,10 +70,12 @@ import { AddItemComponent } from './components/_admin/addItem/additem.component'
       }
     }),
     EffectsModule.forRoot([AppEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    MatAutocompleteModule
   ],
   providers: [
     AuthGuard,
+    AdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

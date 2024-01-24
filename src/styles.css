@@ -1,2 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+.fieldarea{
+  display:flex;
+  padding-left: 20px;
+  padding-right: 20px;
+  }
+  
+.fieldname{
+  width:20%;
+  margin: auto;
+  }
+  
+.validation{
+  height: 30px;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left;
+}
+
+.invalid{
+  color:#c30101;
+}
+
+.input-field{
+  text-align: left;
+  width: 100%;
+}
+
+input {
+  color: #141414;
+  background: none;
+  padding: 3px 6px;
+  margin: 8px 0px;
+  width: auto;
+  text-align: left;
+}
+.required-field:after{
+  content: "*";
+  color: red;
+}
+
+@media screen and (max-width: 768px) {
+  input {
+    width: 100%;
+  }
+  .fieldarea{
+    display:block;
+  }
+  .fieldname{
+    width:100%;
+  }
+}
+

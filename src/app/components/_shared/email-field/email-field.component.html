@@ -1,0 +1,25 @@
+<div class="col-12 fieldarea">
+    <div class="fieldname">
+        <span attr.aria-label="{{fieldName}}">{{fieldName}}</span>
+        <span [ngClass]="isMandatory? 'required-field': ''"></span>
+    </div>
+    <div class="input-field">
+        <input type="text" class="email form-control" maxlength=250 #emailref="ngModel" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$" [(ngModel)]="answer" (keyup)="answerQuestion(answer)" (keydown.enter)="answerQuestion(answer)" (focusout)="answerQuestion(answer)" [placeholder]="" tabindex="0">
+    </div>
+    
+</div>
+<div class="col-12 validation">    
+    <div class="invalid" [hidden]="!emailref.errors?.pattern">
+        Wpisano niepoprawny adres email
+    </div> 
+    <div *ngIf="isMandatory && (this.answer === undefined || this.answer === null || this.answer.length == 0) && (emailref.touched || emailref.dirty)">
+        <div class="invalid" >
+            To pole jest wymagane
+        </div> 
+    </div> 
+    <div *ngIf="this.answer.length > charactersLimit && (emailref.touched || emailref.dirty)">
+        <div class="invalid" >
+            Przekroczono limit znaków o {{currentChars-charactersLimit}}
+        </div> 
+    </div> 
+</div>

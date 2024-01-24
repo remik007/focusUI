@@ -1,0 +1,27 @@
+<div class="col-12 fieldarea">
+    <div class="fieldname">
+        <span attr.aria-label="{{fieldName}}">{{fieldName}}</span>
+        <span [ngClass]="isMandatory? 'required-field': ''"></span>
+    </div>
+    <div class="input-field">
+        <input type="text" class="form-control number-text" pattern="[0-9]*" ngModel #numberRef="ngModel"  [(ngModel)]="answer" (keyup)="answerQuestion(answer)" (keydown.enter)="answerQuestion(answer)" (focusout)="answerQuestion(answer)" tabindex="0">
+    </div>
+</div>
+<div class="col-12 validation">
+    <div *ngIf="numberRef.errors &&(numberRef.touched || numberRef.dirty)">
+        <div class="invalid" [hidden]="!numberRef.errors.pattern">
+            Wpisano niepoprawną wartość
+        </div> 
+    </div> 
+    <div *ngIf="isMandatory && (this.answer === undefined || this.answer === null || this.answer.length == 0) && (numberRef.touched || numberRef.dirty)">
+        <div class="invalid">
+            To pole jest wymagane
+        </div> 
+    </div> 
+    <div *ngIf="this.answer.length > charactersLimit && (numberRef.touched || numberRef.dirty)">
+        <div class="invalid" >
+            Przekroczono limit znaków o {{currentChars-charactersLimit}}
+        </div> 
+    </div> 
+</div>
+

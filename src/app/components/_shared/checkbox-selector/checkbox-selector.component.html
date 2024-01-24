@@ -1,0 +1,16 @@
+<div class="col-12 fieldarea">
+    <div class="fieldname">
+        <span attr.aria-label="{{fieldName}}">{{fieldName}}</span>
+        <span [ngClass]="isMandatory? 'required-field': ''"></span>
+    </div>
+    <div class="input-field">
+        <input  type="checkbox" [(ngModel)]="this.checkboxValue" (click)="answerQuestion(this.checkboxValue);" [value]="0" id="flexCheckDefault" #checkbox="ngModel">
+    </div>
+</div>
+<div class="col-12 validation">
+    <div *ngIf="this.isMandatory && this.checkboxValue === false && (checkbox.touched || checkbox.dirty)">
+        <div class="invalid">
+            To pole jest wymagane
+        </div> 
+    </div> 
+</div>

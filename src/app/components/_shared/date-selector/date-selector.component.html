@@ -1,0 +1,26 @@
+<div class="col-12 fieldarea">
+    <div class="fieldname">
+        <span attr.aria-label="{{fieldName}}">{{fieldName}}</span>
+        <span [ngClass]="isMandatory? 'required-field': ''"></span>
+    </div>
+    <div class="input-field">
+        <input type="date" class="form-control date-selector"  min="1900-01-01" #datebox="ngModel" [(ngModel)]="answer" (change)="answerQuestion(answer);">
+    </div>
+</div>
+<div class="col-12 validation">
+    <div *ngIf="isMandatory && (this.answer === undefined || this.answer === null || this.answer.length == 0) && (datebox.touched || datebox.dirty)">
+        <div class="invalid" >
+            To pole jest wymagane
+        </div> 
+    </div> 
+    <div *ngIf="this.isValidAnswer(datebox.value) && (datebox.touched || datebox.dirty)">
+        <div class="invalid" >
+            Wpisano niepoprawną datę
+        </div> 
+    </div> 
+    <div *ngIf="this.answer.length > charactersLimit && (datebox.touched || datebox.dirty)">
+        <div class="invalid" >
+            Przekroczono limit znaków o {{currentChars-charactersLimit}}
+        </div> 
+    </div>
+</div>

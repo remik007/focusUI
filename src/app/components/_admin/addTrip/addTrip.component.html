@@ -1,0 +1,10 @@
+<p>Add trip</p>
+
+<app-text-field [fieldName]="fieldname" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-text-field>
+<app-number-text-field fieldName="pole numeryczne" [isMandatory]="false" (answered)="saveAnswer(fieldname, $event.answer)"></app-number-text-field>
+<app-email-field fieldName="pole email" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-email-field> 
+<app-date-selector fieldName="data wyjazdu" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-date-selector>
+<app-checkbox-selector fieldName="nowy checkbox" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-checkbox-selector>
+<app-select-field [data]="dropdownData" fieldName="nowy checkbox" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-select-field>
+
+<editor [apiKey]="tinymceKey" [init]="tinymceInit"></editor>

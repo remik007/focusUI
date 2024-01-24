@@ -7,15 +7,15 @@ import { ItemComponent } from './components/item/item.component';
 import { SubPageComponent } from './components/subpage/subpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './services/auth.guard';
-import { AddItemComponent } from './components/_admin/addItem/additem.component';
+import { AddTripComponent } from './components/_admin/addTrip/addTrip.component';
 import { AdminGuard } from './services/admin.guard';
 
 
 const routes: Routes = [
   
   {path: '', component: HomeComponent},
-  {path: 'admin/additem', component: AddItemComponent,  canActivate: [AdminGuard]},
-  {path: 'trip/:id/addreservation', component: AddItemComponent,  canActivate: [AuthGuard]},
+  {path: 'admin/add/trip', component: AddTripComponent},//,  canActivate: [AdminGuard]},
+  {path: 'trip/:id/addreservation', component: AddTripComponent,  canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'kontakt', component: ContactComponent},
   {path: ':subpage', component: SubPageComponent},
