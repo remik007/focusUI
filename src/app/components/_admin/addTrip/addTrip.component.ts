@@ -12,6 +12,7 @@ export class AddTripComponent {
   source!: string;
   tinymceInit!: any;
   tinymceKey: string = environment.tinymceKey;
+  tinymceContent: any;
   fieldname: string = "Mój nowy text field";
   false: boolean = false;
   true: boolean = true;
@@ -21,7 +22,7 @@ export class AddTripComponent {
     this.source = "";
     this.tinymceInit = {
       plugins: 'image',
-      toolbar: 'image',
+      toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
       image_advtab: true,
       file_picker_callback: function(cb: any, value: any, meta: any) {
         var input = document.createElement('input');
@@ -43,13 +44,13 @@ export class AddTripComponent {
           };
           reader.readAsDataURL(file);
         };
-
         input.click();
       }
     }
   }
 
   saveAnswer(fieldname: string, answer: string){
+    console.log("tinymce: "+ this.tinymceContent);
     console.log(fieldname + " answer: " + answer);
   }
   

@@ -2,7 +2,7 @@
     background-color: aquamarine;
     white-space: initial;
     min-height: 100px;
-    position: absolute; 
+    /*position: absolute;*/ 
     bottom: 0; 
     width: 100%;
 }

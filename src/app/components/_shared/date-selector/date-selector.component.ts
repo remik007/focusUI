@@ -37,7 +37,6 @@ export class DateSelectorComponent implements OnInit {
   }
 
   isValidAnswer(answer: string): boolean{
-    console.log("validation " + answer);
     return this.validationService.isDateBiggerThanCurrent(answer);
   }
 }

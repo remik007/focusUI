@@ -7,4 +7,4 @@
 <app-checkbox-selector fieldName="nowy checkbox" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-checkbox-selector>
 <app-select-field [data]="dropdownData" fieldName="nowy checkbox" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-select-field>
 
-<editor [apiKey]="tinymceKey" [init]="tinymceInit"></editor>
+<editor [apiKey]="tinymceKey" [init]="tinymceInit" [(ngModel)]="tinymceContent"></editor>
