@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         },
         error: err => {
           this.loading = false;
-          this.openModel("login-failed-modal");
+          this.openModal("login-failed-modal");
         }
       });
   }
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
     this.modalService.close(id);
   }
 
-  openModel(id: string) {
+  openModal(id: string) {
     this.modalService.open(id);
   }
 }

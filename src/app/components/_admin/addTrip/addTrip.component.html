@@ -1,10 +1,30 @@
-<p>Add trip</p>
-
-<app-text-field [fieldName]="fieldname" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-text-field>
-<app-number-text-field fieldName="pole numeryczne" [isMandatory]="false" (answered)="saveAnswer(fieldname, $event.answer)"></app-number-text-field>
-<app-email-field fieldName="pole email" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-email-field> 
-<app-date-selector fieldName="data wyjazdu" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-date-selector>
-<app-checkbox-selector fieldName="nowy checkbox" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-checkbox-selector>
-<app-select-field [data]="dropdownData" fieldName="nowy checkbox" [isMandatory]="true" (answered)="saveAnswer(fieldname, $event.answer)"></app-select-field>
-
+<app-text-field fieldName="Krótka nazwa" [isMandatory]="true" (answered)="saveAnswer('shortName', $event.answer)"></app-text-field>
+<app-text-field fieldName="Krótki opis" [isMandatory]="false" (answered)="saveAnswer('shortDescription', $event.answer)"></app-text-field>
+<app-text-field fieldName="Zdjęcie TODO FILE UPLOAD" [isMandatory]="false" (answered)="saveAnswer('imageUrl', $event.answer)"></app-text-field>
+<app-select-field [data]="transportTypes" fieldName="Rodzaj transportu" [isMandatory]="true" (answered)="saveAnswer('transportTypeId', $event.answer)"></app-select-field>
+<app-select-field [data]="tripCategories" fieldName="Kategoria" [isMandatory]="true" (answered)="saveAnswer('tripCategoryId', $event.answer)"></app-select-field>
+<app-number-text-field fieldName="Aktualna cena" [isMandatory]="true" (answered)="saveAnswer('prize', $event.answer)"></app-number-text-field>
+<app-number-text-field fieldName="Stara cena" [isMandatory]="false" (answered)="saveAnswer('oldPrize', $event.answer)"></app-number-text-field>
+<app-number-text-field fieldName="Liczba miejsc" [isMandatory]="true" (answered)="saveAnswer('availableSeats', $event.answer)"></app-number-text-field>
+<app-date-selector fieldName="Data wyjazdu" [isMandatory]="true" (answered)="saveAnswer('from', $event.answer)"></app-date-selector>
+<app-date-selector fieldName="Data powrotu" [isMandatory]="true" (answered)="saveAnswer('to', $event.answer)"></app-date-selector>
+<app-checkbox-selector fieldName="Dostępne" [isMandatory]="true" (answered)="saveAnswer('isEnabled', $event.answer)"></app-checkbox-selector>
+<br>
+<p style="text-align: center">OPIS WYCIECZKI</p>
 <editor [apiKey]="tinymceKey" [init]="tinymceInit" [(ngModel)]="tinymceContent"></editor>
+
+<br>
+<p style="text-align: center">
+    <button [disabled]="loading" class="btn btn-success" (click)="submit()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Dodaj
+    </button>
+</p>
+
+<jw-modal id="addtrip-failed-modal" url="text">
+    <div>
+        <label style="color: red; margin-bottom: 10px;" aria-label="Dodawanie wycieczki nie powiodło się. Spróbuj ponownie." class="input-label">Dodawanie wycieczki nie powiodło się. Spróbuj ponownie.</label>
+        <br/>
+        <button class="btn btn-secondary title-font dropbtn" (click)="this.modalService.close('addtrip-failed-modal');" tabindex="0">Close</button>
+    </div>
+</jw-modal>

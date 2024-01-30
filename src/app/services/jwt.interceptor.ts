@@ -35,7 +35,6 @@ export class JwtInterceptor implements HttpInterceptor
             !request.url.includes('admin/login') &&
             error.status === 401
           ) {
-            console.log("testasd1");
             return this.handle401Error(request, next, user.accessToken, user.refreshToken);
           }
           
@@ -46,7 +45,6 @@ export class JwtInterceptor implements HttpInterceptor
 
     private handle401Error(request: HttpRequest<any>, next: HttpHandler, accessToken: string, refreshToken: string) {
       if (!this.isRefreshing) {
-        console.log("testasd");
         this.isRefreshing = true;
   
         if (this.storageService.isLoggedIn()) {
@@ -57,6 +55,11 @@ export class JwtInterceptor implements HttpInterceptor
               var user: User = JSON.parse(newTokens.body!.toString());
               this.storageService.clean();
               this.storageService.saveUser(user);
+              request = request.clone({
+                setHeaders: {
+                  Authorization: `Bearer ${user.accessToken}`
+                }
+              });
               return next.handle(request);
             }),
             catchError((error) => {

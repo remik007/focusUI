@@ -8,6 +8,7 @@ import { SubPage } from "../models/subpage.model";
 
 export const initialState: IAppState = {
     tripCategories: new Array<TripCategory>(),
+    transportTypes: new Array<TransportType>(),
     contact: {
         name: '',
         addressLine1: '',
@@ -31,11 +32,13 @@ export const initialState: IAppState = {
         currentAvailableSeats: 0,
         transportType: new TransportType(),
         tripCategory: new TripCategory(),
+        transportTypeId: '',
+        tripCategoryId: '',
         from: new Date(),
         to: new Date(),
         isEnabled: false,
         isDeleted: false,
-        imageUrls: new Array<string>()
+        imageUrl: ''
     },
     subPages: new Array<SubPage>(),
     currentSubPage: {
@@ -52,10 +55,16 @@ const _reducer = createReducer(
     initialState,
 
     on(Actions.getTripCategoriesSuccess, (state, action) => {
-        
+        state.tripCategories.push(...action.tripCategories);
         return {
-            ...state,
-            tripsCategories: state.tripCategories.push(...action.tripCategories)
+            ...state
+        };
+    }),
+
+    on(Actions.getTransportTypesSuccess, (state, action) => {
+        state.transportTypes.push(...action.transportTypes);
+        return {
+            ...state
         };
     }),
 
@@ -68,10 +77,9 @@ const _reducer = createReducer(
     }),
 
     on(Actions.getSubPagesRequestSuccess, (state, action) => {
-        
+        state.subPages.push(...action.subPages);
         return {
-            ...state,
-            tripsCategories: state.subPages.push(...action.subPages)
+            ...state
         };
     }),
 );

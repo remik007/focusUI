@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IDropdown } from 'src/app/models/dropdown.interface';
 import { environment } from 'src/environment/environment';
 
 @Component({
@@ -10,7 +11,7 @@ export class SelectFieldComponent implements OnInit {
 
   answer: number = -1;
 
-  @Input() data!: Array<{id: number, name: string}>;
+  @Input() data!: Array<IDropdown>;
   @Input() question!: string;
   @Input() isMandatory!: boolean;
   @Input() fieldName!: string;

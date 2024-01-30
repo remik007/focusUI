@@ -1,5 +1,16 @@
 import { Component } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { TripCategory } from 'src/app/models/tripcategory.model';
+import { selectTransportTypes, selectTripCategories } from 'src/app/state/app.selectors';
+import { IAppState } from 'src/app/state/app.state';
 import { environment } from "src/environment/environment";
+import * as Actions from '../../../state/app.actions';
+import { TransportType } from 'src/app/models/transporttype.model';
+import { Trip } from 'src/app/models/trip.model';
+import { ModalService } from '../../_modal/modal.service';
+import { AdminService } from 'src/app/services/admin.service';
+import { Router } from '@angular/router';
 
 declare let tinymce: any;
 
@@ -9,17 +20,26 @@ declare let tinymce: any;
   styleUrls: ['./addtrip.component.css']
 })
 export class AddTripComponent {
-  source!: string;
+
   tinymceInit!: any;
   tinymceKey: string = environment.tinymceKey;
   tinymceContent: any;
-  fieldname: string = "Mój nowy text field";
+
+  
+  categories$: Observable<Array<TripCategory>>;
+  tripCategories: TripCategory[]  = [];
+  transports$: Observable<Array<TransportType>>;
+  transportTypes: TransportType[]  = [];
+
+  trip: Trip = new Trip();
+
+  loading: Boolean = false;
   false: boolean = false;
   true: boolean = true;
-  dropdownData: Array<{id: number, name: string}> = [{id: 1, name: "test1"}, {id: 2, name: "test2"}];
 
-  constructor(){
-    this.source = "";
+  constructor(private store: Store<IAppState>, public modalService: ModalService, private adminService: AdminService, private router: Router){
+    this.categories$ = this.store.pipe(select(selectTripCategories));
+    this.transports$ = this.store.pipe(select(selectTransportTypes));
     this.tinymceInit = {
       plugins: 'image',
       toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
@@ -49,9 +69,46 @@ export class AddTripComponent {
     }
   }
 
-  saveAnswer(fieldname: string, answer: string){
-    console.log("tinymce: "+ this.tinymceContent);
-    console.log(fieldname + " answer: " + answer);
+  ngOnInit(): void{
+
+    this.store.dispatch(Actions.getTripCategoriesRequest());
+    this.categories$.subscribe(categories => {
+      this.tripCategories = categories;
+    })
+    this.store.dispatch(Actions.getTransportTypesRequest());
+    this.transports$.subscribe(transports => {
+      this.transportTypes = transports;
+    })
   }
+  
+  saveAnswer(field: string, answer: string){
+    (this.trip as any)[field] = answer;
+    console.log(answer);
+    console.log(field);
+    console.log(this.trip);
+    //console.log("tinymce: "+ this.tinymceContent);
+    //console.log(fieldname + " answer: " + answer);
+  }
+
+  submit(): void{
+    // stop here if form is invalid
+    //TODO: add form validation
+    console.log(this.trip.toString());
+    this.loading = true;
+    this.trip.description = this.tinymceContent;
+    this.adminService.addTrip(this.trip).subscribe(
+      {
+      next: data => {
+        console.log(data.body);
+        this.loading = false;
+        this.router.navigate(['/admin/trips']);
+      },
+      error: err => {
+        this.loading = false;
+        console.error("error: " + err);
+        this.modalService.open("addtrip-failed-modal");
+      }
+    });
+}
   
 }

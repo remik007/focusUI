@@ -11,12 +11,14 @@ export class Trip {
     public oldPrize!: string;
     public availableSeats!: number;
     public currentAvailableSeats!: number;
+    public transportTypeId!: string;
     public transportType!: TransportType;
+    public tripCategoryId!: string;
     public tripCategory!: TripCategory;
     public from!: Date;
     public to!: Date;
     public isEnabled!: boolean;
     public isDeleted!: boolean;
-    public imageUrls!: string[];
+    public imageUrl!: string;
     //public reservations!: Reservation[];
 }

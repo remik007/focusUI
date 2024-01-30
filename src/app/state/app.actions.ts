@@ -5,6 +5,7 @@ import { SubPage } from "../models/subpage.model";
 import { Contact } from "../models/contact.model";
 import { Login } from "../models/login.model";
 import { User } from "../models/user.model";
+import { TransportType } from "../models/transporttype.model";
 
 export const getTripCategoriesRequest = createAction(
     '[Get] Get trip categories request'
@@ -17,6 +18,20 @@ export const getTripCategoriesSuccess = createAction(
 
 export const getTripCategoriesFailure = createAction(
     '[Get] Get trip categories request failure',
+    props<{error: string}>()
+);
+
+export const getTransportTypesRequest = createAction(
+    '[Get] Get transport types request'
+);
+
+export const getTransportTypesSuccess = createAction(
+    '[Get] Get transport types request success',
+    props<{transportTypes: TransportType[]}>()
+);
+
+export const getTransportTypesFailure = createAction(
+    '[Get] Get transport types request failure',
     props<{error: string}>()
 );
 

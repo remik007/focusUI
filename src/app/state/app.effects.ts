@@ -12,6 +12,7 @@ import { Trip } from "../models/trip.model";
 import { AuthService } from "../services/auth.service";
 import { User } from "../models/user.model";
 import { StorageService } from "../services/storage.service";
+import { TransportType } from "../models/transporttype.model";
 
 @Injectable()
 export class AppEffects {
@@ -45,6 +46,43 @@ export class AppEffects {
     getTripCategoriesFailure$ = createEffect(() =>
     this.actions$.pipe(
             ofType(AppActions.getTripCategoriesFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
+
+    getTransportTypesRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getTransportTypesRequest),
+            exhaustMap((/*parameter*/) => {
+                return this.httpService
+                .getTransportTypes()
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: TransportType[] = Object.assign(new Array<TransportType>(), jsonObj);
+                                return AppActions.getTransportTypesSuccess({transportTypes: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get transport types request failed.");
+                    return AppActions.getTransportTypesFailure({error: "Get transport types request failed."});
+                }))
+            })
+        )
+    })
+
+    getTransportTypesFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getTransportTypesFailure),
             tap(({error}) => {
                 console.log(error);
                 this.modalService.open('bad-request-modal');

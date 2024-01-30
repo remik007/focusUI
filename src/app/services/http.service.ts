@@ -17,6 +17,12 @@ export class HttpService{
         //return of(test);
     }
 
+    getTransportTypes(): Observable<HttpResponse<Object>>{
+        return this.http.get(environment.getTransportTypesUrl, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        //return of(test);
+    }
+
     getSubPages(): Observable<HttpResponse<Object>>{
         //return this.http.get(environment.getSubPagesUrl, {responseType: 'text' as 'json', observe: 'response'});
         let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
