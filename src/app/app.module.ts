@@ -33,6 +33,8 @@ import { TextFieldComponent } from './components/_shared/text-field/text-field.c
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AdminGuard } from './services/admin.guard';
 import { SelectFieldComponent } from './components/_shared/select-field/select-field.component';
+import { FileUploadFieldComponent } from './components/_shared/file-upload-field/file-upload-field.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -51,9 +53,11 @@ import { SelectFieldComponent } from './components/_shared/select-field/select-f
     EmailFieldComponent,
     NumberTextFieldComponent,
     TextFieldComponent,
-    SelectFieldComponent
+    SelectFieldComponent,
+    FileUploadFieldComponent
   ],
   imports: [
+    MatIconModule,
     ReactiveFormsModule,
     FormsModule,
     EditorModule,

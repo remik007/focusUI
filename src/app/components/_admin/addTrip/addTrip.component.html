@@ -1,6 +1,6 @@
 <app-text-field fieldName="Krótka nazwa" [isMandatory]="true" (answered)="saveAnswer('shortName', $event.answer)"></app-text-field>
 <app-text-field fieldName="Krótki opis" [isMandatory]="false" (answered)="saveAnswer('shortDescription', $event.answer)"></app-text-field>
-<app-text-field fieldName="Zdjęcie TODO FILE UPLOAD" [isMandatory]="false" (answered)="saveAnswer('imageUrl', $event.answer)"></app-text-field>
+<app-file-upload-field fieldName="Zdjęcie" [isMandatory]="true" (answered)="saveFile($event.imageName, $event.imageContent)"></app-file-upload-field>
 <app-select-field [data]="transportTypes" fieldName="Rodzaj transportu" [isMandatory]="true" (answered)="saveAnswer('transportTypeId', $event.answer)"></app-select-field>
 <app-select-field [data]="tripCategories" fieldName="Kategoria" [isMandatory]="true" (answered)="saveAnswer('tripCategoryId', $event.answer)"></app-select-field>
 <app-number-text-field fieldName="Aktualna cena" [isMandatory]="true" (answered)="saveAnswer('prize', $event.answer)"></app-number-text-field>
@@ -9,6 +9,7 @@
 <app-date-selector fieldName="Data wyjazdu" [isMandatory]="true" (answered)="saveAnswer('from', $event.answer)"></app-date-selector>
 <app-date-selector fieldName="Data powrotu" [isMandatory]="true" (answered)="saveAnswer('to', $event.answer)"></app-date-selector>
 <app-checkbox-selector fieldName="Dostępne" [isMandatory]="true" (answered)="saveAnswer('isEnabled', $event.answer)"></app-checkbox-selector>
+
 <br>
 <p style="text-align: center">OPIS WYCIECZKI</p>
 <editor [apiKey]="tinymceKey" [init]="tinymceInit" [(ngModel)]="tinymceContent"></editor>

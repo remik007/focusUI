@@ -7,5 +7,7 @@ export const environment = {
     getTransportTypesUrl: "https://localhost:7013/api/transporttypes",
     loginUrl: 'https://localhost:7013/api/account/login',
     refreshTokenUrl: "https://localhost:7013/api/account/refresh",
-    textBoxCharactersLimit: 255
+    textBoxCharactersLimit: 255,
+    allowedFileExtensions: ".jpg,.png,.jpeg",
+    maxFileSizeBytes: "5242880" //5MB
 }

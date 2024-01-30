@@ -1,0 +1,50 @@
+<div class="col-12 fieldarea">
+    <div class="fieldname">
+        <span attr.aria-label="{{fieldName}}">{{fieldName}}</span>
+        <span [ngClass]="isMandatory? 'required-field': ''"></span>
+    </div>
+    <input type="file"
+               class="file-input"
+               accept="{{allowedFileExtensions}}"
+               (input)="handleFileInput($event)"
+               #fileUploadModel="ngModel" 
+               [(ngModel)]="htmlInput" 
+               #fileUpload>
+
+    <div class="input-field">
+        <div style="display: inline-block;">
+            <button mat-mini-fab color="primary" class="upload-button"
+            (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="this.fileContent !== undefined && this.fileContent !== null && this.fileContent !== ''" style="display: inline-block">
+            <button mat-mini-fab color="primary" class="remove-button"
+            (click)="removeFile(fileUpload)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <span>{{fileName}}</span>
+        </div>
+        <br/>
+        <div class="file-upload-limitations">Możesz zamieścić maksymalnie 1 plik o maksymalnej wadze {{maxFileSizeMBytes+"MB"}}. Dozwolne rozszerzenia plików {{this.allowedFileExtensionsArray.join(', ')}}</div>
+    </div>
+</div>
+<div class="col-12 validation">    
+
+    <div *ngIf="(fileUploadModel.touched || fileUploadModel.dirty) && isMandatory && (fileContent === undefined || fileContent === null || fileContent === '') " style="text-align: left;">
+        <div class="invalid" >
+            To pole jest wymagane
+        </div> 
+    </div>
+    <div *ngIf="this.IsFileSizeExceeded" style="text-align: left;">
+        <div class="invalid" >
+            Plik przekroczył maksymalnie dozwolone {{maxFileSizeMBytes}}MB
+        </div> 
+    </div>
+    <div *ngIf="this.IsInvalidFileExtension" style="text-align: left;">
+        <div class="invalid" >
+            Nieprawidłowe rozszerzenie pliku
+        </div> 
+    </div>
+</div>
+

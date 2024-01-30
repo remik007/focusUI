@@ -38,7 +38,8 @@ export const initialState: IAppState = {
         to: new Date(),
         isEnabled: false,
         isDeleted: false,
-        imageUrl: ''
+        imageContent: '',
+        imageName: ''
     },
     subPages: new Array<SubPage>(),
     currentSubPage: {

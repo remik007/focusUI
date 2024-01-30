@@ -82,12 +82,15 @@ export class AddTripComponent {
   }
   
   saveAnswer(field: string, answer: string){
-    (this.trip as any)[field] = answer;
     console.log(answer);
-    console.log(field);
-    console.log(this.trip);
-    //console.log("tinymce: "+ this.tinymceContent);
-    //console.log(fieldname + " answer: " + answer);
+    (this.trip as any)[field] = answer;
+  }
+
+  saveFile(imageName: string, imageContent: string){
+    console.log(imageName);
+    console.log(imageContent);
+    (this.trip as any)[imageName] = imageName;
+    (this.trip as any)[imageContent] = imageContent;
   }
 
   submit(): void{
@@ -99,9 +102,9 @@ export class AddTripComponent {
     this.adminService.addTrip(this.trip).subscribe(
       {
       next: data => {
-        console.log(data.body);
+        let id = data.body;
         this.loading = false;
-        this.router.navigate(['/admin/trips']);
+        this.router.navigate(['admin/trips/'+id]);
       },
       error: err => {
         this.loading = false;
