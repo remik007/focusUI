@@ -1,16 +1,16 @@
 
-<div>
+<div id="container">
     <app-header></app-header>
-    <div>
+    <div id="content-wrap">
         <router-outlet/>
     </div>
     <app-footer></app-footer>
-
-    <jw-modal id="bad-request-modal" url="text">
-        <div>
-            <label style="margin-bottom: 50px;" aria-label="Przepraszamy, nieoczekiwany błąd strony. Spróbuj ponownie." class="input-label">Przepraszamy, nieoczekiwany błąd strony. Spróbuj ponownie.</label>
-            <br/>
-            <button class="btn-primary title-font dropbtn" (click)="closeModal('bad-request-modal');" tabindex="0">Close</button>
-        </div>
-    </jw-modal>
 </div>
+
+<jw-modal id="bad-request-modal" url="text">
+    <div>
+        <label style="margin-bottom: 50px;" aria-label="Przepraszamy, nieoczekiwany błąd strony. Spróbuj ponownie." class="input-label">Przepraszamy, nieoczekiwany błąd strony. Spróbuj ponownie.</label>
+        <br/>
+        <button class="btn-primary title-font dropbtn" (click)="closeModal('bad-request-modal');" tabindex="0">Close</button>
+    </div>
+</jw-modal>

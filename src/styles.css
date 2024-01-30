@@ -1,6 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
+#container{
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap{
+  padding-bottom: 105px;
+}
+
+.footer{
+  background-color: aquamarine;
+  white-space: initial;
+  height: 100px;
+  position: absolute; 
+  bottom: 0; 
+  width: 100%;
+}
+
 .fieldarea{
   display:flex;
   padding-left: 20px;
