@@ -83,6 +83,20 @@ const _reducer = createReducer(
             ...state
         };
     }),
+
+    on(Actions.getTripAdminRequestSuccess, (state, action) => {
+        return {
+            ...state,
+            currentTrip: action.trip
+        };
+    }),
+
+    on(Actions.getTripRequestSuccess, (state, action) => {
+        return {
+            ...state,
+            currentTrip: action.trip
+        };
+    }),
 );
 
 

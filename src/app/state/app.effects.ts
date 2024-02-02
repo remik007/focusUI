@@ -13,6 +13,7 @@ import { AuthService } from "../services/auth.service";
 import { User } from "../models/user.model";
 import { StorageService } from "../services/storage.service";
 import { TransportType } from "../models/transporttype.model";
+import { AdminService } from "../services/admin.service";
 
 @Injectable()
 export class AppEffects {
@@ -242,6 +243,42 @@ export class AppEffects {
         {dispatch: false}
     );
 
+    getTripAdminRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getTripRequest),
+            exhaustMap((action) => {
+                return this.adminService
+                .getTrip(action.tripId)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Trip = Object.assign(Trip, jsonObj);
+                                return AppActions.getTripAdminRequestSuccess({trip: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get trip admin request failed.");
+                    return AppActions.getTripAdminRequestFailure({error: "Get trip admin request failed."});
+                }))
+            })
+        )
+    })
+
+    getTripAdminFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getTripAdminRequestFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
     
     getSubPageRequest$ = createEffect(() => {
         
@@ -331,5 +368,5 @@ export class AppEffects {
         {dispatch: false}
     );
 
-    constructor(private actions$: Actions, private httpService: HttpService, private authService: AuthService, private modalService: ModalService, private storageService: StorageService) {}
+    constructor(private actions$: Actions, private httpService: HttpService, private authService: AuthService, private modalService: ModalService, private storageService: StorageService, private adminService: AdminService) {}
 }

@@ -65,6 +65,21 @@ export const getTripRequestFailure = createAction(
     props<{error: string}>()
 );
 
+export const getTripAdminRequest = createAction(
+    '[Get] Get trip admin request',
+    props<{tripId: number}>()
+);
+
+export const getTripAdminRequestSuccess = createAction(
+    '[Get] Get trip admin request success',
+    props<{trip: Trip}>()
+);
+
+export const getTripAdminRequestFailure = createAction(
+    '[Get] Get trip admin request failure',
+    props<{error: string}>()
+);
+
 export const getContactDetailsRequest = createAction(
     '[Get] Get contact details request'
 );

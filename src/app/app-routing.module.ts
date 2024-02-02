@@ -15,12 +15,13 @@ const routes: Routes = [
   
   {path: '', component: HomeComponent},
   {path: 'admin/add/trip', component: AddTripComponent},//,  canActivate: [AdminGuard]},
+  {path: 'admin/edit/trip/:id', component: AddTripComponent},//,  canActivate: [AdminGuard]},
   {path: 'trip/:id/addreservation', component: AddTripComponent,  canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'kontakt', component: ContactComponent},
   {path: ':subpage', component: SubPageComponent},
   {path: 'wyjazdy/:tripcategory', component: CategoryComponent},
-  {path: 'wyjazdy/:tripcategory/:tripid', component: ItemComponent},
+  {path: 'wyjazdy/:tripcategory/:id', component: ItemComponent},
   {path: '*', component: HomeComponent}
 ];
 

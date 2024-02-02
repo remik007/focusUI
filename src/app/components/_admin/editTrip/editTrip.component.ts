@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { TripCategory } from 'src/app/models/tripcategory.model';
-import { selectTransportTypes, selectTripCategories, selectTripDetails } from 'src/app/state/app.selectors';
+import { selectTransportTypes, selectTripCategories } from 'src/app/state/app.selectors';
 import { IAppState } from 'src/app/state/app.state';
 import { environment } from "src/environment/environment";
 import * as Actions from '../../../state/app.actions';
@@ -10,36 +10,35 @@ import { TransportType } from 'src/app/models/transporttype.model';
 import { Trip } from 'src/app/models/trip.model';
 import { ModalService } from '../../_modal/modal.service';
 import { AdminService } from 'src/app/services/admin.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 declare let tinymce: any;
 
 @Component({
-  selector: 'app-addtrip',
-  templateUrl: './addtrip.component.html',
-  styleUrls: ['./addtrip.component.css']
+  selector: 'app-edittrip',
+  templateUrl: './edittrip.component.html',
+  styleUrls: ['./edittrip.component.css']
 })
-export class AddTripComponent {
+export class EditTripComponent {
 
   tinymceInit!: any;
   tinymceKey: string = environment.tinymceKey;
   tinymceContent: any;
+
   
   categories$: Observable<Array<TripCategory>>;
   tripCategories: TripCategory[]  = [];
   transports$: Observable<Array<TransportType>>;
   transportTypes: TransportType[]  = [];
-  trip$: Observable<Trip>;
+
   trip: Trip = new Trip();
-  tripId: number = -1;
 
   loading: Boolean = false;
   false: boolean = false;
   true: boolean = true;
 
-  constructor(private store: Store<IAppState>, public modalService: ModalService, private adminService: AdminService, private router: Router, private route: ActivatedRoute){
+  constructor(private store: Store<IAppState>, public modalService: ModalService, private adminService: AdminService, private router: Router){
     this.categories$ = this.store.pipe(select(selectTripCategories));
-    this.trip$ = this.store.pipe(select(selectTripDetails));
     this.transports$ = this.store.pipe(select(selectTransportTypes));
     this.tinymceInit = {
       plugins: 'image',
@@ -80,19 +79,6 @@ export class AddTripComponent {
     this.transports$.subscribe(transports => {
       this.transportTypes = transports;
     })
-    
-
-    this.route.params.subscribe(params => {
-      let stringId = params['id'];
-      if(stringId !== undefined && stringId !== null && stringId !== ""){
-        this.tripId = parseInt(stringId);
-        this.store.dispatch(Actions.getTripAdminRequest({tripId: this.tripId}));
-          this.trip$.subscribe(tripAdmin => {
-            this.trip = tripAdmin;
-          });
-      }
-    });
-
   }
   
   saveAnswer(field: string, answer: string){
@@ -110,43 +96,22 @@ export class AddTripComponent {
   submit(): void{
     // stop here if form is invalid
     //TODO: add form validation
-    if(this.tripId !== -1){
-      
-      this.loading = true;
-      this.trip.description = this.tinymceContent;
-      this.adminService.updateTrip(this.trip).subscribe(
-        {
-        next: data => {
-          let id = data.body;
-          this.loading = false;
-          this.router.navigate(['admin/trips/'+id]);
-        },
-        error: err => {
-          this.loading = false;
-          console.error("error: " + err);
-          this.modalService.open("addtrip-failed-modal");
-        }
-      });
-    }
-    else{
-
-      this.loading = true;
-      this.trip.description = this.tinymceContent;
-      this.adminService.addTrip(this.trip).subscribe(
-        {
-        next: data => {
-          let id = data.body;
-          this.loading = false;
-          this.router.navigate(['admin/trips/'+id]);
-        },
-        error: err => {
-          this.loading = false;
-          console.error("error: " + err);
-          this.modalService.open("addtrip-failed-modal");
-        }
-      });
-    }
-    
+    console.log(this.trip.toString());
+    this.loading = true;
+    this.trip.description = this.tinymceContent;
+    this.adminService.addTrip(this.trip).subscribe(
+      {
+      next: data => {
+        let id = data.body;
+        this.loading = false;
+        this.router.navigate(['admin/trips/'+id]);
+      },
+      error: err => {
+        this.loading = false;
+        console.error("error: " + err);
+        this.modalService.open("addtrip-failed-modal");
+      }
+    });
 }
   
 }
