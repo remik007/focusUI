@@ -37,6 +37,9 @@ export class JwtInterceptor implements HttpInterceptor
           ) {
             return this.handle401Error(request, next, user.accessToken, user.refreshToken);
           }
+          else if (error.status === 404 || error.status === 0){
+            this.handle404Error();
+          }
           
           return throwError(() => error);
         })
@@ -76,5 +79,9 @@ export class JwtInterceptor implements HttpInterceptor
       }
       this.router.navigate(['']);
       return next.handle(request);
+    }
+
+    private handle404Error(){
+      this.router.navigate(['']);
     }
  }

@@ -24,6 +24,7 @@ export const initialState: IAppState = {
         id: -1,
         name: '',
         shortName: '',
+        country: '',
         shortDescription: '',
         description: '',
         prize: '',

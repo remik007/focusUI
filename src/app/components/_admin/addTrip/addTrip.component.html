@@ -1,5 +1,6 @@
 <app-text-field fieldName="Krótka nazwa" [value]="this.trip.shortName" [isMandatory]="true" (answered)="saveAnswer('shortName', $event.answer)"></app-text-field>
 <app-text-field fieldName="Krótki opis" [value]="this.trip.shortDescription" [isMandatory]="false" (answered)="saveAnswer('shortDescription', $event.answer)"></app-text-field>
+<app-text-field fieldName="Kraj" [value]="this.trip.country" [isMandatory]="false" (answered)="saveAnswer('shortDescription', $event.answer)"></app-text-field>
 <app-file-upload-field fieldName="Zdjęcie" [isMandatory]="true" [valueFileName]="this.trip.imageName" [valueFileContent]="this.trip.imageContent" (answered)="saveFile($event.imageName, $event.imageContent)"></app-file-upload-field>
 <app-select-field [data]="transportTypes" fieldName="Rodzaj transportu" [isMandatory]="true" [value]="this.trip.transportTypeId.toString()" (answered)="saveAnswer('transportTypeId', $event.answer)"></app-select-field>
 <app-select-field [data]="tripCategories" fieldName="Kategoria" [isMandatory]="true" [value]="this.trip.tripCategoryId.toString()" (answered)="saveAnswer('tripCategoryId', $event.answer)"></app-select-field>

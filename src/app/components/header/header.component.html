@@ -37,15 +37,6 @@
                 <a class="nav-link" href="/kontakt">Kontakt</a>
               </li>
             </ul>
-            <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="..."
-                aria-label="Szukaj"
-              />
-              <button class="btn btn-outline-success" type="submit">Szukaj</button>
-            </form>
             <button *ngIf="!this._storageService.isLoggedIn()" class="btn btn-success btn-login" (click)="openModel('login-modal');">Zaloguj</button>
             <button *ngIf="this._storageService.isLoggedIn()" class="btn btn-secondary btn-logout" (click)="logout();">Wyloguj</button>
           </div>
