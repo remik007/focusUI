@@ -1,1 +1,48 @@
-<p>home works!</p>
+
+<div class="home-section">
+
+
+<p-carousel [value]="highlightedTrips" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+  <ng-template let-trip pTemplate="item">
+      <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 carousel-trip">
+          <div class="mb-3 ">
+            <div class="w-6 shadow-2 img-carousel" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png'); ">
+
+            </div>
+          </div>
+          <div>
+              <h4 class="mb-1">
+                <span *ngIf="trip.transportType.name == 'Autokar'"><i class="bi bi-bus-front"></i></span>
+                <span *ngIf="trip.transportType.name == 'Dojazd własny'"><i class="bi bi-car-front"></i></span>
+                <span *ngIf="trip.transportType.name == 'Samolot'"><i class="bi bi-airplane-front"></i></span>
+                {{ trip.country }}, 
+                {{ trip.shortName }}</h4>
+              <h6 class="mt-0 mb-3">{{ "Od: " + validationService.formatDate(trip.from) +" Do: " + validationService.formatDate(trip.to)}}</h6>
+          </div>
+      </div>
+  </ng-template>
+</p-carousel>
+<div class="row home-section text-section">
+  <div class="col-3 text-section-item">
+    <img class="text-section-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png">
+  </div>
+  <div class="col-9 text-section-item">
+    <h4>Rozpocznij podróz z nami</h4>
+    <h4>Popularne kierunki podróży oraz wspaniała obsługa klienta</h4>
+    <p>Od ponad dwudziestu lat zajmujemy się organizacją wyjazdów na terenie całej Europy. Oprócz oferty typowo wczasowej w okresenie letnim, oferujemy Państwu wyjazdy objazdowe, tematyczne, pielgrzymki oraz szkolenia, a w okresie zimowym wyjazdy w góry na narty i snowboard.</p>
+  </div>
+
+</div>
+
+<div class="row home-section text-section">
+  
+  <div class="col-9 text-section-item">
+    <h4>Ponad 20 lat doświadczenia</h4>
+    <p>Posiadamy Zezwolenie Organizatora Turystyki, Pośredników Turystycznych o wpisie do rejestru pod nr 442 oraz wymagane zabezpieczenie finansowe na wypadek niewypłacalnosci w formie gwarancji bankowej na kwotę 42 000 euro.</p>
+  </div>
+  <div class="col-3 text-section-item">
+    <img class="text-section-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png">
+  </div>
+</div>
+
+</div>

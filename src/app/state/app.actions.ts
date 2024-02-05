@@ -8,6 +8,20 @@ import { User } from "../models/user.model";
 import { TransportType } from "../models/transporttype.model";
 import { Header } from "../models/header.model";
 
+export const getHighlightedTripsRequest = createAction(
+    '[Get] Get highlighted trips categories request'
+);
+
+export const getHighlightedTripsSuccess = createAction(
+    '[Get] Get highlighted trips request success',
+    props<{highlightedTrips: Trip[]}>()
+);
+
+export const getHighlightedTripsFailure = createAction(
+    '[Get] Get highlighted trips request failure',
+    props<{error: string}>()
+);
+
 export const getHeaderDataRequest = createAction(
     '[Get] Get header data categories request'
 );

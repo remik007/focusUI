@@ -35,6 +35,8 @@ import { AdminGuard } from './services/admin.guard';
 import { SelectFieldComponent } from './components/_shared/select-field/select-field.component';
 import { FileUploadFieldComponent } from './components/_shared/file-upload-field/file-upload-field.component';
 import { MatIconModule } from '@angular/material/icon';
+import { CarouselModule } from 'primeng/carousel';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { MatIconModule } from '@angular/material/icon';
     FileUploadFieldComponent
   ],
   imports: [
+    ButtonModule,
+    CarouselModule,
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,

@@ -21,6 +21,7 @@ export class Trip {
     public to!: Date;
     public isEnabled!: boolean;
     public isDeleted!: boolean;
+    public isHighlighted!: boolean;
     public imageContent!: string;
     public imageName!: string;
     //public reservations!: [];

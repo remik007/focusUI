@@ -243,6 +243,43 @@ export class AppEffects {
         {dispatch: false}
     );
 
+    getHighlightedTripsRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getHighlightedTripsRequest),
+            exhaustMap((action) => {
+                return this.httpService
+                .getHighlightedTrips()
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Array<Trip> = Object.assign(new Array<Trip>(), jsonObj);
+                                return AppActions.getHighlightedTripsSuccess({highlightedTrips: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get highlighted trips request failed.");
+                    return AppActions.getHighlightedTripsFailure({error: "Get highlighted trips request failed."});
+                }))
+            })
+        )
+    })
+
+    getHighlightedTripFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getTripRequestFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
+
 
     getTripRequest$ = createEffect(() => {
         

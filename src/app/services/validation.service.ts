@@ -33,6 +33,15 @@ export class ValidationService {
     }
   }
 
+  formatDate(date: Date): string{
+    
+    let dateString = date.toString();
+    let year = dateString.substring(0,4);
+    let month = dateString.substring(5,7);
+    let day = dateString.substring(8,10);
+    return year+"-"+month+"-"+day;
+  }
+
   isDateBiggerThanCurrent(stringDate: string): boolean{
     
     var isValid = false;

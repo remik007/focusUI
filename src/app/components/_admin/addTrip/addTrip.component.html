@@ -10,6 +10,7 @@
 <app-date-selector fieldName="Data wyjazdu" [isMandatory]="true" [value]="this.trip.from" (answered)="saveAnswer('from', $event.answer)"></app-date-selector>
 <app-date-selector fieldName="Data powrotu" [isMandatory]="true" [value]="this.trip.to" (answered)="saveAnswer('to', $event.answer)"></app-date-selector>
 <app-checkbox-selector fieldName="Dostępne" [isMandatory]="true" [value]="this.trip.isEnabled" (answered)="saveAnswer('isEnabled', $event.answer)"></app-checkbox-selector>
+<app-checkbox-selector fieldName="Wyróżnione" [isMandatory]="false" [value]="this.trip.isHighlighted" (answered)="saveAnswer('isHighlighted', $event.answer)"></app-checkbox-selector>
 
 <br>
 <p style="text-align: center">OPIS WYCIECZKI</p>

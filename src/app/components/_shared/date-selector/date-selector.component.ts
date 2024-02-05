@@ -26,12 +26,7 @@ export class DateSelectorComponent implements OnChanges {
 
    ngOnChanges(): void {
     if(this.value !== undefined && this.value !== null){
-      console.log(this.value);
-      let dateString = this.value.toString();
-      let year = dateString.substring(0,4);
-      let month = dateString.substring(5,7);
-      let day = dateString.substring(8,10);
-      let dateStringFormatted = year+"-"+month+"-"+day;
+      let dateStringFormatted = this.validationService.formatDate(this.value);
       this.answer = dateStringFormatted;
     }
   }

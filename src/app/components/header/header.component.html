@@ -50,7 +50,7 @@
             <div class="col">
               <label for="selectCountryRef" class="form-label form-label-search">Dokąd?</label>
               <select class="form-select" ngModel #selectCountryRef="ngModel"  [(ngModel)]="country">
-                <option value="">Gdziekolwiek...</option>
+                <option value="">Dowolnie...</option>
                 <option *ngFor="let country of countries;" [value]="country" >
                     {{country}}
                 </option>
@@ -67,16 +67,16 @@
             <div class="col">
               <label for="selectDepartureCityRef" class="form-label form-label-search">Skąd?</label>
               <select class="form-select" ngModel #selectDepartureCityRef="ngModel"  [(ngModel)]="departureCity">
-                <option value="">Skądkolwiek...</option>
+                <option value="">Dowolnie...</option>
                 <option *ngFor="let departureCity of departureCities;" [value]="departureCity" >
                     {{departureCity}}
                 </option>
               </select>
             </div>
             <div class="col">
-              <label for="selectTransportTypeRef" class="form-label form-label-search">Typ transportu</label>
+              <label for="selectTransportTypeRef" class="form-label form-label-search">Transportu</label>
               <select class="form-select" ngModel #selectTransportTypeRef="ngModel"  [(ngModel)]="transportType">
-                <option value="">Czymkolwiek...</option>
+                <option value="">Dowolnie...</option>
                 <option *ngFor="let transportType of transportTypes;" [value]="transportType.name" >
                     {{transportType.name}}
                 </option>

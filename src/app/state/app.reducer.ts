@@ -40,6 +40,7 @@ export const initialState: IAppState = {
         to: new Date(),
         isEnabled: false,
         isDeleted: false,
+        isHighlighted: false,
         imageContent: '',
         imageName: ''
     },
@@ -53,7 +54,8 @@ export const initialState: IAppState = {
         imageUrl: ''
     },
     countries: new Array<string>(),
-    departureCities: new Array<string>()
+    departureCities: new Array<string>(),
+    highlightedTrips: new Array<Trip>()
 }
 
 const _reducer = createReducer(
@@ -118,6 +120,13 @@ const _reducer = createReducer(
         return {
             ...state,
             currentTrip: action.trip
+        };
+    }),
+
+    on(Actions.getHighlightedTripsSuccess, (state, action) => {
+        return {
+            ...state,
+            highlightedTrips: action.highlightedTrips
         };
     }),
 );

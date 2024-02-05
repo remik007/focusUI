@@ -8,6 +8,7 @@ export const environment = {
     loginUrl: 'https://localhost:7013/api/account/login',
     refreshTokenUrl: "https://localhost:7013/api/account/refresh",
     getHeaderDataUrl: "https://localhost:7013/api/trips/header",
+    getHighlightedTripsUrl: "https://localhost:7013/api/trips/highlighted",
     textBoxCharactersLimit: 255,
     allowedFileExtensions: ".jpg,.png,.jpeg",
     maxFileSizeBytes: "5242880" //5MB
