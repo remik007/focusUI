@@ -6,6 +6,21 @@ import { Contact } from "../models/contact.model";
 import { Login } from "../models/login.model";
 import { User } from "../models/user.model";
 import { TransportType } from "../models/transporttype.model";
+import { Header } from "../models/header.model";
+
+export const getHeaderDataRequest = createAction(
+    '[Get] Get header data categories request'
+);
+
+export const getHeaderDataSuccess = createAction(
+    '[Get] Get header data request success',
+    props<{header: Header}>()
+);
+
+export const getHeaderDataFailure = createAction(
+    '[Get] Get header data request failure',
+    props<{error: string}>()
+);
 
 export const getTripCategoriesRequest = createAction(
     '[Get] Get trip categories request'

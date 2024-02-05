@@ -25,6 +25,7 @@ export const initialState: IAppState = {
         name: '',
         shortName: '',
         country: '',
+        departureCity: '',
         shortDescription: '',
         description: '',
         prize: '',
@@ -50,13 +51,32 @@ export const initialState: IAppState = {
         shortDescription: '',
         description: '',
         imageUrl: ''
-    }
+    },
+    countries: new Array<string>(),
+    departureCities: new Array<string>()
 }
 
 const _reducer = createReducer(
     initialState,
 
+    on(Actions.getHeaderDataSuccess, (state, action) => {
+        state.tripCategories = [];
+        state.transportTypes = [];
+        state.subPages = [];
+        state.countries = [];
+        state.departureCities = [];
+        state.transportTypes.push(...action.header.transportTypes);
+        state.tripCategories.push(...action.header.tripCategories);
+        state.countries.push(...action.header.countries);
+        state.departureCities.push(...action.header.departureCities);
+        state.subPages.push(...action.header.subPages);
+        return {
+            ...state
+        };
+    }),
+
     on(Actions.getTripCategoriesSuccess, (state, action) => {
+        state.tripCategories = [];
         state.tripCategories.push(...action.tripCategories);
         return {
             ...state
@@ -64,6 +84,7 @@ const _reducer = createReducer(
     }),
 
     on(Actions.getTransportTypesSuccess, (state, action) => {
+        state.transportTypes = [];
         state.transportTypes.push(...action.transportTypes);
         return {
             ...state
@@ -79,6 +100,7 @@ const _reducer = createReducer(
     }),
 
     on(Actions.getSubPagesRequestSuccess, (state, action) => {
+        state.subPages = [];
         state.subPages.push(...action.subPages);
         return {
             ...state

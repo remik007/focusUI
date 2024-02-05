@@ -3,6 +3,8 @@ import { IAppState } from "./app.state";
 
 export const selectTripsFeature = createFeatureSelector<IAppState>('AppReducer');
 export const selectTripCategories = createSelector(selectTripsFeature, state => state.tripCategories);
+export const selectCountries = createSelector(selectTripsFeature, state => state.countries);
+export const selectDepartureCities = createSelector(selectTripsFeature, state => state.departureCities);
 export const selectTransportTypes = createSelector(selectTripsFeature, state => state.transportTypes);
 export const selectContactDetails = createSelector(selectTripsFeature, state => state.contact);
 export const selectSubPages = createSelector(selectTripsFeature, state => state.subPages);

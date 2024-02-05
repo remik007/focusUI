@@ -1,11 +1,49 @@
 .logo{
+    padding-top: 40px;
     height: 200px;
     width: 100%;
-    background-color: aquamarine;
+    background-color: #ecd0d1;
+}
+
+.form-select{
+    margin-top: 8px;
+}
+
+.menu{
+    margin: auto;
+    max-width:1200px;
 }
 
 .btn-logout{
     margin-left:40px;
+}
+
+.search-bar{
+    margin: auto;
+    max-width: 1200px;
+
+}
+
+.search-bar-container{
+    background-color: white;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.search-btn-container{
+    align-self: end;
+    margin-bottom: 10px;
+}
+
+.btn-search{
+    background-color: rgb(149, 51, 51);
+    color: white;
+    font-weight: bold;
+    width: 100%;
+}
+
+.form-label-search{
+    font-size: 12px;
 }
 
 @media (max-width: 993px){

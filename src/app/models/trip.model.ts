@@ -6,6 +6,7 @@ export class Trip {
     public name!: string;
     public shortName!: string;
     public country!: string;
+    public departureCity!: string;
     public description!: string;
     public shortDescription!: string;
     public prize!: string;

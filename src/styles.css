@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 #container{
   position: relative;
@@ -8,16 +8,10 @@
 
 #content-wrap{
   padding-bottom: 105px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.footer{
-  background-color: aquamarine;
-  white-space: initial;
-  height: 100px;
-  position: absolute; 
-  bottom: 0; 
-  width: 100%;
-}
 
 .fieldarea{
   display:flex;

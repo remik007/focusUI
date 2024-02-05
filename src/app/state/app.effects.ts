@@ -14,6 +14,7 @@ import { User } from "../models/user.model";
 import { StorageService } from "../services/storage.service";
 import { TransportType } from "../models/transporttype.model";
 import { AdminService } from "../services/admin.service";
+import { Header } from "../models/header.model";
 
 @Injectable()
 export class AppEffects {
@@ -47,6 +48,43 @@ export class AppEffects {
     getTripCategoriesFailure$ = createEffect(() =>
     this.actions$.pipe(
             ofType(AppActions.getTripCategoriesFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
+
+    getHeaderDataRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getHeaderDataRequest),
+            exhaustMap((/*parameter*/) => {
+                return this.httpService
+                .getHeaderData()
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Header = Object.assign(new Header(), jsonObj);
+                                return AppActions.getHeaderDataSuccess({header: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get header data request failed.");
+                    return AppActions.getHeaderDataFailure({error: "Get header data request failed."});
+                }))
+            })
+        )
+    })
+
+    getHeaderDataFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getHeaderDataFailure),
             tap(({error}) => {
                 console.log(error);
                 this.modalService.open('bad-request-modal');
@@ -151,7 +189,7 @@ export class AppEffects {
                         }
                     }
                     console.log("Get contact details request failed.");
-                    return AppActions.getTripCategoriesFailure({error: "Get contact details request failed."});
+                    return AppActions.getContactDetailsRequestFailure({error: "Get contact details request failed."});
                 }))
             })
         )

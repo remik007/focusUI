@@ -12,4 +12,6 @@ export interface IAppState{
     currentTrip: Trip;
     subPages: Array<SubPage>;
     currentSubPage: SubPage;
+    countries: Array<string>;
+    departureCities: Array<string>;
 }
