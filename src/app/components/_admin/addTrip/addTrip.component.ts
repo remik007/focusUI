@@ -11,6 +11,7 @@ import { Trip } from 'src/app/models/trip.model';
 import { ModalService } from '../../_modal/modal.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ValidationService } from 'src/app/services/validation.service';
 
 declare let tinymce: any;
 
@@ -30,14 +31,14 @@ export class AddTripComponent {
   transports$: Observable<Array<TransportType>>;
   transportTypes: TransportType[]  = [];
   trip$: Observable<Trip>;
-  trip: Trip = new Trip();
+  trip!: Trip;
   tripId: number = -1;
 
   loading: Boolean = false;
   false: boolean = false;
   true: boolean = true;
 
-  constructor(private store: Store<IAppState>, public modalService: ModalService, private adminService: AdminService, private router: Router, private route: ActivatedRoute){
+  constructor(private store: Store<IAppState>, public modalService: ModalService, private adminService: AdminService, private router: Router, private route: ActivatedRoute, private validationService: ValidationService){
     this.categories$ = this.store.pipe(select(selectTripCategories));
     this.trip$ = this.store.pipe(select(selectTripDetails));
     this.transports$ = this.store.pipe(select(selectTransportTypes));
@@ -87,14 +88,27 @@ export class AddTripComponent {
       if(stringId !== undefined && stringId !== null && stringId !== ""){
         this.tripId = parseInt(stringId);
         this.store.dispatch(Actions.getTripAdminRequest({tripId: this.tripId}));
-          this.trip$.subscribe(tripAdmin => {
-            this.trip = tripAdmin;
-          });
+          
       }
+
+      this.trip$.subscribe(tripAdmin => {
+        this.trip = tripAdmin;
+        console.log(tripAdmin);
+        this.tinymceContent = this.trip.description;
+      });
     });
 
   }
   
+  
+  getStringDate(date: Date) : string{
+    if(date !== undefined && date !== null){
+      console.log(date);
+      return date.toString();
+    }
+    return "";
+}
+
   saveAnswer(field: string, answer: string){
     console.log(answer);
     (this.trip as any)[field] = answer;

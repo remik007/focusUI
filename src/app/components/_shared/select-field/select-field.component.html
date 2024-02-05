@@ -5,7 +5,7 @@
     </div>
     <div class="input-field">
         <select class="form-select" ngModel #selectRef="ngModel"  [(ngModel)]="answer" (change)="answerQuestion(answer)">
-            <option value="-1" selected>Wybierz...</option>
+            <option value="-1">Wybierz...</option>
             <option *ngFor="let option of data;" [value]="option.id" >
                 {{option.name}}
             </option>

@@ -2,7 +2,7 @@ import { TransportType } from "./transporttype.model";
 import { TripCategory } from "./tripcategory.model";
 
 export class Trip {
-    public id!: string;
+    public id!: number;
     public name!: string;
     public shortName!: string;
     public description!: string;
@@ -11,9 +11,9 @@ export class Trip {
     public oldPrize!: string;
     public availableSeats!: number;
     public currentAvailableSeats!: number;
-    public transportTypeId!: string;
+    public transportTypeId!: number;
     public transportType!: TransportType;
-    public tripCategoryId!: string;
+    public tripCategoryId!: number;
     public tripCategory!: TripCategory;
     public from!: Date;
     public to!: Date;
@@ -21,5 +21,5 @@ export class Trip {
     public isDeleted!: boolean;
     public imageContent!: string;
     public imageName!: string;
-    //public reservations!: Reservation[];
+    //public reservations!: [];
 }

@@ -3,7 +3,7 @@
         <span attr.aria-label="{{fieldName}}">{{fieldName}}</span>
         <span [ngClass]="isMandatory? 'required-field': ''"></span>
     </div>
-    <input type="text" class="form-control text"  #textbox="ngModel" [(ngModel)]="this.answer" (keyup)="answerQuestion(this.answer)" (keydown.enter)="answerQuestion(this.answer)" (focusout)="answerQuestion(this.answer)" [placeholder]="" tabindex="0">
+    <input type="text" class="form-control text"  #textbox="ngModel" [(ngModel)]="this.answer" [value]="this.value" (keyup)="answerQuestion(this.answer)" (keydown.enter)="answerQuestion(this.answer)" (focusout)="answerQuestion(this.answer)" [placeholder]="" tabindex="0">
 </div>
 <div class="col-12 validation">    
     <div *ngIf="isMandatory && (this.answer === undefined || this.answer === null || this.answer.length == 0) && (textbox.touched || textbox.dirty)">

@@ -4,7 +4,7 @@
         <span [ngClass]="isMandatory? 'required-field': ''"></span>
     </div>
     <div class="input-field">
-        <input type="text" class="email form-control" maxlength=250 #emailref="ngModel" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$" [(ngModel)]="answer" (keyup)="answerQuestion(answer)" (keydown.enter)="answerQuestion(answer)" (focusout)="answerQuestion(answer)" [placeholder]="" tabindex="0">
+        <input type="text" class="email form-control" [value]="this.value" maxlength=250 #emailref="ngModel" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}$" [(ngModel)]="answer" (keyup)="answerQuestion(answer)" (keydown.enter)="answerQuestion(answer)" (focusout)="answerQuestion(answer)" [placeholder]="" tabindex="0">
     </div>
     
 </div>

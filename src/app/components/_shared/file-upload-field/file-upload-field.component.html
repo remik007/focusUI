@@ -18,7 +18,7 @@
                 <mat-icon>attach_file</mat-icon>
             </button>
         </div>
-        <div *ngIf="this.fileContent !== undefined && this.fileContent !== null && this.fileContent !== ''" style="display: inline-block">
+        <div *ngIf="this.fileName !== undefined && this.fileName !== null && this.fileName !== ''" style="display: inline-block">
             <button mat-mini-fab color="primary" class="remove-button"
             (click)="removeFile(fileUpload)">
                 <mat-icon>delete</mat-icon>

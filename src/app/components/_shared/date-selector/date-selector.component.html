@@ -8,7 +8,7 @@
     </div>
 </div>
 <div class="col-12 validation">
-    <div *ngIf="isMandatory && (this.answer === undefined || this.answer === null || this.answer.length == 0) && (datebox.touched || datebox.dirty)">
+    <div *ngIf="isMandatory && (this.answer === undefined || this.answer === null) && (datebox.touched || datebox.dirty)">
         <div class="invalid" >
             To pole jest wymagane
         </div> 
@@ -18,9 +18,4 @@
             Wpisano niepoprawną datę
         </div> 
     </div> 
-    <div *ngIf="this.answer.length > charactersLimit && (datebox.touched || datebox.dirty)">
-        <div class="invalid" >
-            Przekroczono limit znaków o {{currentChars-charactersLimit}}
-        </div> 
-    </div>
 </div>

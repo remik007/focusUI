@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { environment } from 'src/environment/environment';
 
 @Component({
@@ -6,7 +6,7 @@ import { environment } from 'src/environment/environment';
   templateUrl: './number-text-field.component.html',
   styleUrls: ['./number-text-field.component.css']
 })
-export class NumberTextFieldComponent implements OnInit {
+export class NumberTextFieldComponent implements OnChanges {
 
   answer: string = "";
 
@@ -16,6 +16,7 @@ export class NumberTextFieldComponent implements OnInit {
   @Input() question!: string;
   @Input() isMandatory!: boolean;
   @Input() fieldName!: string;
+  @Input() value!: string;
 
   @Output() 
   answered = new EventEmitter<any>();
@@ -23,7 +24,10 @@ export class NumberTextFieldComponent implements OnInit {
   constructor() {
    }
 
-  ngOnInit(): void {
+   ngOnChanges(): void {
+    if(this.value !== undefined && this.value !== null && this.value !== "-1"){
+      this.answer = this.value.toString();
+    }
   }
 
   answerQuestion(answer: string){

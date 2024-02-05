@@ -22,6 +22,8 @@ export class FileUploadFieldComponent implements OnInit {
 
   @Input() isMandatory!: boolean;
   @Input() fieldName!: string;
+  @Input() valueFileName!: string;
+  @Input() valueFileContent!: string;
 
   @Output() 
   answered = new EventEmitter<any>();
@@ -30,6 +32,10 @@ export class FileUploadFieldComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.valueFileName !== undefined && this.valueFileName !== null && this.valueFileName !== ""){
+      this.fieldName = this.valueFileName;
+      this.fileContent = this.valueFileContent
+    }
   }
 
   handleFileInput(event: Event) {

@@ -246,7 +246,7 @@ export class AppEffects {
     getTripAdminRequest$ = createEffect(() => {
         
         return this.actions$.pipe(
-            ofType(AppActions.getTripRequest),
+            ofType(AppActions.getTripAdminRequest),
             exhaustMap((action) => {
                 return this.adminService
                 .getTrip(action.tripId)
@@ -255,7 +255,7 @@ export class AppEffects {
                         try{
                             if(httpResponse.body){
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
-                                let obj: Trip = Object.assign(Trip, jsonObj);
+                                let obj: Trip = Object.assign(jsonObj, Trip);
                                 return AppActions.getTripAdminRequestSuccess({trip: obj});
                             }
                         } catch (error){

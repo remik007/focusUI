@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter, OnChanges } from '@angular/core';
 import { environment } from 'src/environment/environment';
 
 
@@ -7,13 +7,14 @@ import { environment } from 'src/environment/environment';
   templateUrl: './text-field.component.html',
   styleUrls: ['./text-field.component.css']
 })
-export class TextFieldComponent implements OnInit {
+export class TextFieldComponent implements OnChanges {
   charactersLimit = Number(environment.textBoxCharactersLimit);
   currentChars = 0;
 
   answer: string = "";
   @Input() isMandatory!: boolean;
   @Input() fieldName!: string;
+  @Input() value!: string;
 
   @Output() 
   answered = new EventEmitter<any>();
@@ -21,11 +22,13 @@ export class TextFieldComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    if(this.value !== undefined && this.value !== null && this.value !== ""){
+      this.answer = this.value;
+    }
   }
 
   answerQuestion(answer: string){
-    this.answer = answer;
     this.currentChars = answer.length;
     this.answered.emit({answer});
     

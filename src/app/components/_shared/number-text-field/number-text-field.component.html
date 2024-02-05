@@ -4,7 +4,7 @@
         <span [ngClass]="isMandatory? 'required-field': ''"></span>
     </div>
     <div class="input-field">
-        <input type="text" class="form-control number-text" pattern="[0-9]*" ngModel #numberRef="ngModel"  [(ngModel)]="answer" (keyup)="answerQuestion(answer)" (keydown.enter)="answerQuestion(answer)" (focusout)="answerQuestion(answer)" tabindex="0">
+        <input type="text" class="form-control number-text" pattern="[0-9]*" [value]="this.value" ngModel #numberRef="ngModel"  [(ngModel)]="answer" (keyup)="answerQuestion(answer)" (keydown.enter)="answerQuestion(answer)" (focusout)="answerQuestion(answer)" tabindex="0">
     </div>
 </div>
 <div class="col-12 validation">

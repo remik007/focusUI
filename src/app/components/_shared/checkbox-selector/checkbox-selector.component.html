@@ -4,7 +4,7 @@
         <span [ngClass]="isMandatory? 'required-field': ''"></span>
     </div>
     <div class="input-field">
-        <input  type="checkbox" [(ngModel)]="this.checkboxValue" (click)="answerQuestion(this.checkboxValue);" [value]="0" id="flexCheckDefault" #checkbox="ngModel">
+        <input  type="checkbox" [(ngModel)]="this.checkboxValue" (click)="answerQuestion(this.checkboxValue);" [checked]="this.value" id="flexCheckDefault" #checkbox="ngModel">
     </div>
 </div>
 <div class="col-12 validation">
