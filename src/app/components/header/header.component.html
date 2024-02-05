@@ -37,8 +37,8 @@
                 <a class="nav-link" href="/kontakt">Kontakt</a>
               </li>
             </ul>
-            <button *ngIf="!this._storageService.isLoggedIn()" class="btn btn-success btn-login" (click)="openModel('login-modal');">Zaloguj</button>
-            <button *ngIf="this._storageService.isLoggedIn()" class="btn btn-secondary btn-logout" (click)="logout();">Wyloguj</button>
+            <button *ngIf="!this._storageService.isLoggedIn()" class="btn btn-dark btn-login" (click)="openModel('login-modal');"><i class="bi bi-door-open"></i> zaloguj</button>
+            <button *ngIf="this._storageService.isLoggedIn()" class="btn btn-light btn-logout" (click)="logout();"><i class="bi bi-door-closed"></i> Wyloguj</button>
           </div>
         </div>
       </nav>
@@ -113,11 +113,11 @@
               <div>Błędny login lub hasło.</div>
             </div>
             <div>
-                <button [disabled]="loading" class="btn btn-primary">
+                <button [disabled]="loading" class="btn btn-dark">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-                    Login
+                    Zaloguj
                 </button>
-                <button class="btn btn-secondary title-font dropbtn" style="margin-left: 10px;" (click)="closeModal('login-modal');" tabindex="0">Close</button>
+                <button class="btn btn-light title-font dropbtn" style="margin-left: 10px;" (click)="closeModal('login-modal');" tabindex="0">Zamknij</button>
             </div>
         </form>
     </div>
