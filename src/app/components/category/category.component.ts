@@ -5,7 +5,8 @@ import { TripCategory } from 'src/app/models/tripcategory.model';
 import { selectCurrentTripCategory } from 'src/app/state/app.selectors';
 import { IAppState } from 'src/app/state/app.state';
 import * as Actions from '../../state/app.actions';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ValidationService } from 'src/app/services/validation.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,9 @@ export class CategoryComponent {
   currentCategory: TripCategory  = new TripCategory();
   categoryName!: string;
 
-  constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute){
+
+
+  constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute, public validationService: ValidationService, private router: Router){
 
     this.category$ = this.store.pipe(select(selectCurrentTripCategory));
   }
@@ -34,5 +37,9 @@ export class CategoryComponent {
       this.currentCategory = category;
       console.log("current category: " + JSON.stringify(category));
     })
+  }
+
+  goToTrip(id: number){
+    this.router.navigate(["trips/"+id])
   }
 }

@@ -1,0 +1,53 @@
+.section{
+    padding-top:40px;
+}
+
+.trip-section{
+    border-style: solid;
+    border-color:#dfe7ef;
+}
+
+.trip-section-item{
+    padding-top:20px;
+}
+
+.trip-section-item-image{
+    padding:0;
+}
+
+.trip-section-item-title{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.trip-section-item-property{
+    font-size: 18px;
+}
+
+.trip-section-item-oldPrize{
+    font-size: 16px;
+}
+
+.trip-section-item-prize{
+    font-size: 24px;
+}
+
+.trip-section-image{
+    max-width: -webkit-fill-available;
+    min-width: 100%;
+    min-height: 100%
+}
+
+.btn-more-section{
+    padding-top:20px;
+}
+
+.btn-more{
+    width:120px;
+}
+
+@media (max-width: 993px){
+    .trip-section-item{
+        font-size: 12px;
+    }
+}

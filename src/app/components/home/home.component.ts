@@ -7,6 +7,7 @@ import { environment } from "src/environment/environment";
 import * as Actions from '../../state/app.actions';
 import { selectHighlightedTrips } from 'src/app/state/app.selectors';
 import { ValidationService } from 'src/app/services/validation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,7 @@ export class HomeComponent{
     }
 ]
 
-  constructor(private store: Store<IAppState>, public validationService: ValidationService){
+  constructor(private store: Store<IAppState>, public validationService: ValidationService, private router: Router){
     this.highlightedTrips$ = this.store.pipe(select(selectHighlightedTrips));
   }
 
@@ -36,5 +37,8 @@ export class HomeComponent{
     });
   }
   
+  goToTrip(id: number){
+    this.router.navigate(["trips/"+id])
+  }
   
 }

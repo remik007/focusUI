@@ -218,7 +218,8 @@ export class AppEffects {
                         try{
                             if(httpResponse.body){
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
-                                let obj: TripCategory = Object.assign(new Array<TripCategory>(), jsonObj);
+                                console.log(jsonObj);
+                                let obj: TripCategory = Object.assign(jsonObj, TripCategory);
                                 return AppActions.getTripCategoryRequestSuccess({tripCategory: obj});
                             }
                         } catch (error){

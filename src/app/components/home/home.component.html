@@ -1,13 +1,11 @@
 
 <div class="home-section">
-
-
-<p-carousel [value]="highlightedTrips" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+<p-carousel [value]="highlightedTrips" [numVisible]="3" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
   <ng-template let-trip pTemplate="item">
       <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 carousel-trip">
           <div class="mb-3 ">
-            <div class="w-6 shadow-2 img-carousel" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png'); ">
-
+            <div class="w-6 shadow-2">
+              <img class="text-section-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png">
             </div>
           </div>
           <div>
@@ -18,6 +16,7 @@
                 {{ trip.country }}, 
                 {{ trip.shortName }}</h4>
               <h6 class="mt-0 mb-3">{{ "Od: " + validationService.formatDate(trip.from) +" Do: " + validationService.formatDate(trip.to)}}</h6>
+              <button class="btn btn-secondary title-font dropbtn" tabindex="0" (click)="goToTrip(trip.id)">więcej...</button>
           </div>
       </div>
   </ng-template>

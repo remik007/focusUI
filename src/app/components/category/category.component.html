@@ -1,1 +1,25 @@
-<p>kategoria</p>
+<div class="container">
+    <div *ngFor="let trip of currentCategory.trips;" class="section">
+        <div class="row trip-section">
+            <div class="col-3 trip-section-item-image">
+                <img class="trip-section-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png">
+            </div>
+            <div class="col-1 trip-section-item-image">
+            </div>
+            <div class="col-4 trip-section-item">
+                <p class="trip-section-item-title" style="font-weight: bold;">{{trip.country}}, {{trip.shortName}}</p>
+                <span class="trip-section-item-property">Wyjazd: {{validationService.formatDate(trip.from)}}</span><br>
+                <span class="trip-section-item-property">Powrót: {{validationService.formatDate(trip.to)}}</span><br>
+                <span class="trip-section-item-property">Transport: {{trip.transportType.name}}</span><br>
+                <span class="trip-section-item-property">Liczba miejsc: {{trip.availableSeats}}</span>
+            </div>
+            <div class="col-1 trip-section-item-image">
+            </div>
+            <div class="col-3 trip-section-item" style="text-align: center; align-self: center;">
+                <span class="trip-section-item-oldPrize"><span *ngIf="trip.oldPrize !== undefined && trip.oldPrize !== null && trip.oldPrize !== ''" style="text-decoration: line-through; color:darkred;">{{trip.oldPrize + "zł"}}</span></span><br>
+                <span class="trip-section-item-prize">{{trip.prize + "zł/os."}} </span><br>
+                <div class="btn-more-section"><button class="btn btn-secondary btn-more" tabindex="0" (click)="goToTrip(trip.id)">więcej...</button></div>
+            </div>
+        </div>
+    </div>
+</div>
