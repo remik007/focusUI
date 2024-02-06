@@ -32,7 +32,7 @@ export class JwtInterceptor implements HttpInterceptor
         catchError((error) => {
           if (
             error instanceof HttpErrorResponse &&
-            !request.url.includes('admin/login') &&
+            !request.url.includes('account/login') &&
             error.status === 401
           ) {
             return this.handle401Error(request, next, user.accessToken, user.refreshToken);

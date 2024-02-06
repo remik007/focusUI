@@ -1,3 +1,4 @@
+<div class="main">
 <div class="card">
     <h4 class="card-header">Logowanie</h4>
     <div class="card-body">
@@ -25,10 +26,19 @@
         </form>
     </div>
 </div>
+</div>
 <jw-modal id="login-failed-modal" url="text">
-    <div>
-        <label style="color: red; margin-bottom: 10px;" aria-label="Błędny login lub hasło." class="input-label">Błędny login lub hasło.</label>
-        <br/>
-        <button class="btn btn-secondary title-font dropbtn" (click)="closeModal('login-failed-modal');" tabindex="0">Close</button>
+    <div class="card">
+        <h4 class="card-header">Error</h4>
+        <div class="card-body">
+            <div class="mb-3">
+                <label style="color: red; margin-bottom: 10px;" aria-label="Błędny login lub hasło." class="input-label">Błędny login lub hasło.</label>
+            </div>
+            <div>
+                <button class="btn btn-light title-font dropbtn" (click)="closeModal('login-failed-modal');" tabindex="0">Zamknij</button>
+            </div>
+        </div>
     </div>
 </jw-modal>
+
+  

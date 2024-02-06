@@ -8,9 +8,15 @@
 </div>
 
 <jw-modal id="bad-request-modal" url="text">
-    <div>
-        <label style="margin-bottom: 50px;" aria-label="Przepraszamy, nieoczekiwany błąd strony. Spróbuj ponownie." class="input-label">Przepraszamy, nieoczekiwany błąd strony. Spróbuj ponownie.</label>
-        <br/>
-        <button class="btn-primary title-font dropbtn" (click)="closeModal('bad-request-modal');" tabindex="0">Close</button>
+    <div class="card">
+        <h4 class="card-header">Error</h4>
+        <div class="card-body">
+            <div class="mb-3">
+                <label style="margin-bottom: 50px;" aria-label="Przepraszamy, nieoczekiwany błąd strony. Spróbuj ponownie." class="input-label">Przepraszamy, nieoczekiwany błąd strony. Spróbuj ponownie.</label>
+            </div>
+            <div>
+                <button class="btn-light title-font dropbtn" (click)="closeModal('bad-request-modal');" tabindex="0">Zamknij</button>
+            </div>
+        </div>
     </div>
 </jw-modal>

@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginDetails).subscribe(
         {
         next: data => {
-          console.log(data.body);
           this.loading = false;
           let jsonObj = JSON.parse(data.body!.toString());
           var user: User = Object.assign(User, jsonObj);
