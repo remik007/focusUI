@@ -123,4 +123,19 @@ export class HeaderComponent {
   openModel(id: string) {
     this.modalService.open(id);
   }
+  
+  search(){
+    this.router.navigate(
+      ["wyjazdy/Szukaj"],
+      {
+        queryParams: { 
+          country: this.country,
+          from: this.from,
+          to: this.to,
+          departureCity: this.departureCity,
+          transportType: this.transportType
+          }
+    });
+
+  }
 }

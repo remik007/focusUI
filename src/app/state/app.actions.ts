@@ -7,6 +7,7 @@ import { Login } from "../models/login.model";
 import { User } from "../models/user.model";
 import { TransportType } from "../models/transporttype.model";
 import { Header } from "../models/header.model";
+import { Search } from "../models/search.model";
 
 export const getHighlightedTripsRequest = createAction(
     '[Get] Get highlighted trips categories request'
@@ -66,7 +67,7 @@ export const getTransportTypesFailure = createAction(
 
 export const getTripCategoryRequest = createAction(
     '[Get] Get trip category request',
-    props<{categoryName: string}>()
+    props<{search: Search}>()
 );
 
 export const getTripCategoryRequestSuccess = createAction(

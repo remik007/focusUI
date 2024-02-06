@@ -212,7 +212,7 @@ export class AppEffects {
             ofType(AppActions.getTripCategoryRequest),
             exhaustMap((action) => {
                 return this.httpService
-                .getTripCategory(action.categoryName)
+                .getTripCategory(action.search)
                 .pipe(map((httpResponse) =>{
                     if(httpResponse.status == 200){
                         try{

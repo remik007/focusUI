@@ -10,6 +10,8 @@ export const environment = {
     refreshTokenUrl: "https://localhost:7013/api/account/refresh",
     getHeaderDataUrl: "https://localhost:7013/api/trips/header",
     getHighlightedTripsUrl: "https://localhost:7013/api/trips/highlighted",
+    getSearchUrl: "https://localhost:7013/api/categories/search",
+    getSearchAdminUrl: "https://localhost:7013/api/admin/categories/search",
     textBoxCharactersLimit: 255,
     allowedFileExtensions: ".jpg,.png,.jpeg",
     maxFileSizeBytes: "5242880" //5MB
