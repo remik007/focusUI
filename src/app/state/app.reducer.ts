@@ -13,6 +13,8 @@ export const initialState: IAppState = {
         name: '',
         addressLine1: '',
         addressLine2: '',
+        city: '',
+        zipCode: '',
         phoneNumber: '',
         email: '',
         facebook: '',
@@ -28,6 +30,9 @@ export const initialState: IAppState = {
         departureCity: '',
         shortDescription: '',
         description: '',
+        hotel: '',
+        hotelStars: '',
+        meals: '',
         prize: '',
         oldPrize: '',
         availableSeats: -1,
@@ -73,7 +78,8 @@ const _reducer = createReducer(
         state.departureCities.push(...action.header.departureCities);
         state.subPages.push(...action.header.subPages);
         return {
-            ...state
+            ...state,
+            contact: action.header.contactDetails
         };
     }),
 

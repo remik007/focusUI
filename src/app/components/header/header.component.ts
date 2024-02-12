@@ -60,7 +60,7 @@ export class HeaderComponent {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-
+    //this.store.dispatch(Actions.getContactDetailsRequest());
     this.store.dispatch(Actions.getHeaderDataRequest());
     this.categories$.subscribe(categories => {
       this.tripCategories = categories;

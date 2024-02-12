@@ -1,5 +1,51 @@
-<footer class="footer">
-    <div class="footer-content">
-        <p>footer works!</p>
-    </div>
-</footer>
+<div class="footer">
+<div class="container footer-container">
+    <footer class="py-4">
+      <div class="row">
+        <div class="col-6 col-md-2 mb-3">
+            <h5>Wyjazdy</h5>
+            <ul class="nav flex-column">
+              <div *ngFor="let tripCategory of tripCategories">
+                <li class="nav-item mb-2"><a class="nav-link p-0 text-muted" href="/wyjazdy/{{tripCategory.name}}">{{tripCategory.name}}</a></li>
+              </div>
+            </ul>
+        </div>
+  
+        <div class="col-6 col-md-2 mb-3">
+            <h5>Inne</h5>
+            <ul class="nav flex-column">
+              <div *ngFor="let subPage of subPages">
+                <li class="nav-item mb-2"><a class="nav-link p-0 text-muted" href="/wyjazdy/{{subPage.name}}">{{subPage.name}}</a></li>
+              </div>
+            </ul>
+        </div>
+  
+        <div class="col-6 col-md-2 mb-3">
+            <h5>Kontakt</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">{{contactDetails.name}}</li>
+              <li class="nav-item mb-2">{{contactDetails.addressLine1}}</li>
+              <li *ngIf="contactDetails.addressLine2" class="nav-item mb-2">{{contactDetails.addressLine2}}</li>
+              <li class="nav-item mb-2">{{contactDetails.zipCode}}, {{contactDetails.city}}</li>
+              <li class="nav-item mb-2 footer-email" (click)="this.openEmail()">{{contactDetails.email}}</li>
+              <li class="nav-item mb-2">Telefon: {{contactDetails.phoneNumber}}</li>
+            </ul>
+        </div>
+  
+        <div class="col-md-5 offset-md-1 mb-3" style="text-align: right;">
+            <a class="navbar-brand" href="#" >
+                <img class="text-section-image" src="../../../assets/images/focus-nobg.png" style="width: auto; max-height: 190px;">
+              </a>
+        </div>
+      </div>
+  
+      <div class="d-flex flex-column flex-sm-row justify-content-between pt-2 my-4 border-top">
+        <p>Copyrights © {{this.currentYear}} Biuro Focus Leszno</p>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-dark" href="https://instagram.com/biurofocus"><i class="bi bi-instagram h2"></i></a></li>
+          <li class="ms-3"><a class="link-dark px-2" href="https://facebook.com/biurofocus"><i class="bi bi-facebook h2"></i></a></li>         
+        </ul>
+      </div>
+    </footer>
+  </div>
+</div>

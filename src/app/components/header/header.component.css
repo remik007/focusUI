@@ -3,7 +3,11 @@
     padding-bottom: 40px;
     height: auto;
     width: 100%;
-    background-color: #ecd0d1;
+    background-color: #8bc19d;
+    
+    background-image: url('../../../assets/images/search-bar-background.png');
+    background-repeat: repeat-x;
+    background-size: contain;
 }
 
 .form-select{
@@ -22,7 +26,6 @@
 .search-bar{
     margin: auto;
     max-width: 1200px;
-
 }
 
 .search-bar-container{
@@ -37,7 +40,7 @@
 }
 
 .btn-search{
-    background-color: rgb(149, 51, 51);
+    background-color: #4a845d;
     color: white;
     font-weight: bold;
     width: 100%;

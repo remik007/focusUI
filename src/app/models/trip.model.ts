@@ -9,6 +9,9 @@ export class Trip {
     public departureCity!: string;
     public description!: string;
     public shortDescription!: string;
+    public hotel!: string;
+    public hotelStars!: string;
+    public meals!: string;
     public prize!: string;
     public oldPrize!: string;
     public availableSeats!: number;

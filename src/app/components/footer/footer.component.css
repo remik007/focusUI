@@ -1,13 +1,25 @@
 .footer{
-    background-color: #ecd0d1;
-    white-space: initial;
-    height: 100px;
-    position: absolute; 
-    bottom: 0; 
+    background-color: #8bc19d;
     width: 100%;
   }
 
-  .footer-content{
+  .footer a:hover{
+    text-decoration: underline;
+  }
+
+.footer-email{
+  cursor: pointer;
+}
+
+.footer-email:hover{
+  text-decoration: underline;
+}
+
+  .footer-container{
     margin: auto;
     max-width: 1200px;
-  }
+}
+
+.row{
+  margin-right: 0;
+}
