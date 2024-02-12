@@ -14,13 +14,14 @@
                 <span class="trip-section-item-title" style="font-weight: bold;">{{trip.country}}, {{trip.shortName}}</span><br>
                 <span class="trip-section-item-property">Wyjazd: {{validationService.formatDate(trip.from)}}</span><br>
                 <span class="trip-section-item-property">Powrót: {{validationService.formatDate(trip.to)}}</span><br>
+                <span class="trip-section-item-property">Miejsce wyjazdu: {{trip.departureCity}}</span><br>
                 <span class="trip-section-item-property">Transport: {{trip.transportType.name}}</span><br>
                 <span class="trip-section-item-property">Hotel: 
-                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 0"></span>
-                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 1"></span>
-                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 2"></span>
-                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 3"></span>
-                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 4"></span>
+                    <span class="fa fa-star" [class.checked]="this.validationService.convertToInt(trip.hotelStars) > 0"></span>
+                    <span class="fa fa-star" [class.checked]="this.validationService.convertToInt(trip.hotelStars) > 1"></span>
+                    <span class="fa fa-star" [class.checked]="this.validationService.convertToInt(trip.hotelStars) > 2"></span>
+                    <span class="fa fa-star" [class.checked]="this.validationService.convertToInt(trip.hotelStars) > 3"></span>
+                    <span class="fa fa-star" [class.checked]="this.validationService.convertToInt(trip.hotelStars) > 4"></span>
                     {{trip.hotel}} </span>
                     <br>
                 <span class="trip-section-item-property">Wyżywienie: {{trip.meals}}</span><br>

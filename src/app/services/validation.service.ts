@@ -78,4 +78,12 @@ export class ValidationService {
     return question.map(x => x.name).includes(answer.name)!;
   }
 
+  convertToInt(textNumber: string){
+    var number = parseInt(textNumber);
+    if(isNaN(number)){
+      return 0;
+    }
+    return number;
+  }
+
 }

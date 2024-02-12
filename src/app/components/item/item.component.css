@@ -1,0 +1,137 @@
+.section{
+    padding-top:40px;
+}
+
+.checked {
+    color: orange;
+  }
+
+.main{
+    padding-bottom: 40px;
+}
+.trip-section{
+    border-style: solid;
+    border-color:#dfe7ef;
+}
+
+.trip-section-item{
+    padding:10px;
+}
+
+.trip-section-item-image{
+    padding:0;
+}
+
+.trip-section-item-title{
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.trip-section-item-property{
+    font-size: 18px;
+}
+
+.trip-section-item-oldPrize{
+    font-size: 16px;
+}
+
+.trip-section-item-prize{
+    font-size: 24px;
+}
+
+.trip-section-image{
+    max-width: -webkit-fill-available;
+    min-width: 100%;
+    min-height: 100%
+}
+
+.btn-more-section{
+    padding-top:20px;
+}
+
+.btn-more{
+    width:120px;
+}
+
+.image-horizontal{
+    display:none;
+}
+
+.image-horizontal img{
+    max-height: 200px;
+}
+
+.trip-section-prize{
+    text-align: center;
+    background-color: rgba(177, 177, 177, 0.5);
+    border-radius: 10px;
+    margin-top: 50px;
+    padding: 20px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+@media (max-width: 993px){
+    .trip-section-item{
+        font-size: 12px;
+    }
+
+    .trip-section-item-title{
+        font-size: 16px;
+    }
+
+    .trip-section-item-property{
+        font-size:10px;
+    }
+
+    .trip-section-item-oldPrize{
+        font-size: 16px;
+    }
+    
+    .trip-section-item-prize{
+        font-size: 20px;
+    }
+    
+    .btn-more-section{
+        padding-top:10px;
+        
+    }
+
+    .btn-more{
+        width:80px;
+        font-size: 12px;
+    }
+
+    .trip-section-prize{
+        padding: 10px;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
+@media (max-width: 500px){
+    .image-horizontal{
+        display:block;
+    }
+    .image-vertical{
+        display:none;
+    }
+
+    .trip-section-item-description{
+        width:100%;
+    }
+
+    .trip-section-item-image{
+        width:100%;
+    }
+
+    
+    .trip-section-prize{
+        border-radius: 0px;
+        padding: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 20px;
+    }
+}

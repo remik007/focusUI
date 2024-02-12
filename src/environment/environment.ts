@@ -9,6 +9,7 @@ export const environment = {
     loginUrl: 'https://localhost:7013/api/account/login',
     refreshTokenUrl: "https://localhost:7013/api/account/refresh",
     getHeaderDataUrl: "https://localhost:7013/api/trips/header",
+    getTripUrl: "https://localhost:7013/api/trips",
     getHighlightedTripsUrl: "https://localhost:7013/api/trips/highlighted",
     getSearchUrl: "https://localhost:7013/api/categories/search",
     getSearchAdminUrl: "https://localhost:7013/api/admin/categories/search",

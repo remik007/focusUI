@@ -58,14 +58,8 @@ export class CategoryComponent {
   }
 
   goToTrip(id: number){
-    this.router.navigate(["trips/"+id])
+    this.router.navigate([this.router.url+"/"+id])
   }
 
-  convertToInt(textNumber: string){
-    var number = parseInt(textNumber);
-    if(isNaN(number)){
-      return 0;
-    }
-    return number;
-  }
+
 }

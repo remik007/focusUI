@@ -48,9 +48,9 @@ export class HttpService{
     }
 
     getTrip(id: number): Observable<HttpResponse<Object>>{
-        //return this.http.get(environment.getTripUrl+"/"+id, {responseType: 'text' as 'json', observe: 'response'});
-        let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
-        return of(test);
+        return this.http.get(environment.getTripUrl+"/"+id, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        //return of(test);
     }
 
 

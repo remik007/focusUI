@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/state/app.state';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ValidationService } from 'src/app/services/validation.service';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +18,10 @@ export class ItemComponent {
   trip: Trip  = new Trip();
   tripId!: number;
 
-  constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute){
+  constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute, public validationService: ValidationService){
     this.activatedRoute.params.subscribe(
       (params: Params) => {
-        this.tripId = Number(params['url']);
+        this.tripId = Number(params['id']);
       }
     )
     this.trip$ = this.store.pipe(select(selectTripDetails));

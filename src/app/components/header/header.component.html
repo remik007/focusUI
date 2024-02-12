@@ -74,7 +74,7 @@
               </select>
             </div>
             <div class="col">
-              <label for="selectTransportTypeRef" class="form-label form-label-search">Transportu</label>
+              <label for="selectTransportTypeRef" class="form-label form-label-search">Transport</label>
               <select class="form-select" ngModel #selectTransportTypeRef="ngModel"  [(ngModel)]="transportType">
                 <option value="">Dowolnie...</option>
                 <option *ngFor="let transportType of transportTypes;" [value]="transportType.name" >

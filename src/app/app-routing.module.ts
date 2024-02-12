@@ -14,9 +14,9 @@ import { AdminGuard } from './services/admin.guard';
 const routes: Routes = [
   
   {path: '', component: HomeComponent},
-  {path: 'admin/add/trip', component: AddTripComponent},//,  canActivate: [AdminGuard]},
-  {path: 'admin/edit/trip/:id', component: AddTripComponent},//,  canActivate: [AdminGuard]},
-  {path: 'trip/:id/addreservation', component: AddTripComponent,  canActivate: [AuthGuard]},
+  {path: 'admin/dodaj/wyjazd', component: AddTripComponent},//,  canActivate: [AdminGuard]},
+  {path: 'admin/edytuj/wyjazd/:id', component: AddTripComponent},//,  canActivate: [AdminGuard]},
+  //{path: 'wyjazd/:id/addreservation', component: AddTripComponent,  canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'kontakt', component: ContactComponent},
   {path: ':subpage', component: SubPageComponent},

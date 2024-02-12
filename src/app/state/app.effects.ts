@@ -294,7 +294,7 @@ export class AppEffects {
                         try{
                             if(httpResponse.body){
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
-                                let obj: Trip = Object.assign(Trip, jsonObj);
+                                let obj: Trip = Object.assign(jsonObj, Trip);
                                 return AppActions.getTripRequestSuccess({trip: obj});
                             }
                         } catch (error){
