@@ -15,7 +15,8 @@
 }
 
 .trip-section-item{
-    padding-top:20px;
+    padding-top:10px;
+    padding-bottom:10px; 
 }
 
 .trip-section-item-image{
@@ -25,6 +26,7 @@
 .trip-section-item-title{
     font-size: 24px;
     font-weight: bold;
+    padding-bottom: 5px;
 }
 
 .trip-section-item-property{
@@ -55,6 +57,32 @@
 
 @media (max-width: 993px){
     .trip-section-item{
+        font-size: 12px;
+    }
+
+    .trip-section-item-title{
+        font-size: 16px;
+    }
+
+    .trip-section-item-property{
+        font-size:10px;
+    }
+
+    .trip-section-item-oldPrize{
+        font-size: 10px;
+    }
+    
+    .trip-section-item-prize{
+        font-size: 16px;
+    }
+    
+    .btn-more-section{
+        padding-top:10px;
+        
+    }
+
+    .btn-more{
+        width:80px;
         font-size: 12px;
     }
 }
