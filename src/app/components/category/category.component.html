@@ -1,10 +1,16 @@
 <div class="container main">
     <div *ngFor="let trip of currentCategory.trips;" class="section">
-        <div class="row trip-section">
-            <div class="col-3 trip-section-item-image">
+        <div class="trip-section">
+
+        
+        <div class="row trip-section-item-image image-horizontal">
+            <img class="trip-section-image" src="../../../assets/images/trip.png">
+        </div>
+        <div class="row">
+            <div class="col-3 trip-section-item-image image-vertical">
                 <img class="trip-section-image" src="../../../assets/images/trip.png">
             </div>
-            <div class="col-5 trip-section-item">
+            <div class="col-5 trip-section-item trip-section-item-description">
                 <span class="trip-section-item-title" style="font-weight: bold;">{{trip.country}}, {{trip.shortName}}</span><br>
                 <span class="trip-section-item-property">Wyjazd: {{validationService.formatDate(trip.from)}}</span><br>
                 <span class="trip-section-item-property">Powrót: {{validationService.formatDate(trip.to)}}</span><br>
@@ -27,5 +33,6 @@
                 <div class="btn-more-section"><button class="btn btn-secondary btn-more" tabindex="0" (click)="goToTrip(trip.id)">więcej...</button></div>
             </div>
         </div>
+    </div>
     </div>
 </div>

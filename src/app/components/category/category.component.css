@@ -15,8 +15,7 @@
 }
 
 .trip-section-item{
-    padding-top:10px;
-    padding-bottom:10px; 
+    padding:10px;
 }
 
 .trip-section-item-image{
@@ -55,6 +54,14 @@
     width:120px;
 }
 
+.image-horizontal{
+    display:none;
+}
+
+.image-horizontal img{
+    max-height: 200px;
+}
+
 @media (max-width: 993px){
     .trip-section-item{
         font-size: 12px;
@@ -84,5 +91,18 @@
     .btn-more{
         width:80px;
         font-size: 12px;
+    }
+}
+
+@media (max-width: 500px){
+    .image-horizontal{
+        display:block;
+    }
+    .image-vertical{
+        display:none;
+    }
+
+    .trip-section-item-description{
+        width:60%;
     }
 }

@@ -23,3 +23,13 @@
 .row{
   margin-right: 0;
 }
+
+.footer-image{
+  text-align: right;
+}
+
+@media (max-width: 767px){
+  .footer-image{
+    text-align: center;
+  }
+}
