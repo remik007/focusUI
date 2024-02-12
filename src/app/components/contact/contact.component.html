@@ -1,1 +1,21 @@
-<p>kontakt</p>
+<div class="container main">
+    <div class="row home-section text-section ">
+        <div class="col-3  px-2">
+            <ul class="nav flex-column contact-details">
+                <li class="nav-item mb-2 fw-bold">{{contactDetails.name}}</li>
+                <li class="nav-item mb-2">{{contactDetails.addressLine1}}</li>
+                <li *ngIf="contactDetails.addressLine2" class="nav-item mb-2">{{contactDetails.addressLine2}}</li>
+                <li class="nav-item mb-2">{{contactDetails.zipCode}} {{contactDetails.city}}</li>
+                <li class="nav-item mb-2 footer-email" (click)="this.openEmail()">{{contactDetails.email}}</li>
+                <li class="nav-item mb-2">{{contactDetails.phoneNumber}}</li>
+            </ul>
+        </div>
+        <div class="col-9">
+            <div class="google-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d9859.764052701392!2d16.597737!3d51.843773!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470598419c874039%3A0x8400b62b4cd9d12b!2sKuba%C5%84ska%2024%2C%2064-100%20Leszno%2C%20Poland!5e0!3m2!1sen!2sus!4v1707779447721!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        
+    </div>
+
+</div>

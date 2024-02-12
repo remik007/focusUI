@@ -1,0 +1,29 @@
+.footer-email{
+    cursor: pointer;
+  }
+  
+  .footer-email:hover{
+    text-decoration: underline;
+  }
+
+  .contact-details{
+    padding-top: 20px;
+  }
+
+  .text-section{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .google-map {
+    padding-bottom: 50%;
+    position: relative;
+}
+
+.google-map iframe {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+}

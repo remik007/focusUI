@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as Actions from '../../state/app.actions';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Contact } from 'src/app/models/contact.model';
@@ -20,9 +19,12 @@ export class ContactComponent {
   }
 
   ngOnInit(): void{
-    this.store.dispatch(Actions.getContactDetailsRequest());
     this.contact$.subscribe(contact => {
       this.contactDetails = contact;
     })
+  }
+
+  public openEmail(): void {
+    window.open(`mailto:${this.contactDetails.email};?subject=Zapytanie ze strony`,'_self');
   }
 }

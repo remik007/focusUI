@@ -3,7 +3,6 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Trip } from 'src/app/models/trip.model';
 import { IAppState } from 'src/app/state/app.state';
-import { environment } from "src/environment/environment";
 import * as Actions from '../../state/app.actions';
 import { selectHighlightedTrips } from 'src/app/state/app.selectors';
 import { ValidationService } from 'src/app/services/validation.service';
