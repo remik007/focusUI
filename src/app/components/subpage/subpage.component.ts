@@ -20,7 +20,7 @@ export class SubPageComponent {
   constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute){
     this.activatedRoute.params.subscribe(
       (params: Params) => {
-        this.subPageName = params['url'];
+        this.subPageName = params['subpage'];
       }
     )
     this.subPage$ = this.store.pipe(select(selectCurrentSubPageDetails));

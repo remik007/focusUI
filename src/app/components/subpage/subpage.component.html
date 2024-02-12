@@ -1,1 +1,17 @@
-<p>sub page</p>
+<div class="container main">
+    <div class="row home-section text-section border-top">
+        <div class="col-3 text-section-item">
+          <img class="text-section-image" src="../../../assets/images/travel.png">
+        </div>
+        <div class="col-9 text-section-item">
+          <h4>{{currentsubPage.name}}</h4>
+          <h4>{{currentsubPage.shortName}}</h4>
+          <p>{{currentsubPage.shortDescription}}</p>
+        </div>
+      
+    </div>
+
+    <div class="tinyMceContent border-top">
+        {{currentsubPage.description}}
+    </div>
+</div>

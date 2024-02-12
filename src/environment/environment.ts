@@ -13,6 +13,8 @@ export const environment = {
     getHighlightedTripsUrl: "https://localhost:7013/api/trips/highlighted",
     getSearchUrl: "https://localhost:7013/api/categories/search",
     getSearchAdminUrl: "https://localhost:7013/api/admin/categories/search",
+    getSubPageUrl:"https://localhost:7013/api/subpages",
+    getSubPagesUrl:"https://localhost:7013/api/subpages",
     textBoxCharactersLimit: 255,
     allowedFileExtensions: ".jpg,.png,.jpeg",
     maxFileSizeBytes: "5242880" //5MB

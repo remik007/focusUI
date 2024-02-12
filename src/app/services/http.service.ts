@@ -36,15 +36,15 @@ export class HttpService{
     }
 
     getSubPages(): Observable<HttpResponse<Object>>{
-        //return this.http.get(environment.getSubPagesUrl, {responseType: 'text' as 'json', observe: 'response'});
-        let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
-        return of(test);
+        return this.http.get(environment.getSubPagesUrl, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        //return of(test);
     }
 
     getSubPage(subPageName: string): Observable<HttpResponse<Object>>{
-        //return this.http.get(environment.getSubPageUrl+"/"+subPageName, {responseType: 'text' as 'json', observe: 'response'});
-        let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
-        return of(test);
+        return this.http.get(environment.getSubPageUrl+"/"+subPageName, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        //return of(test);
     }
 
     getTrip(id: number): Observable<HttpResponse<Object>>{
