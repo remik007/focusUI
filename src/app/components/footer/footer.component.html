@@ -26,9 +26,9 @@
               <li class="nav-item mb-2">{{contactDetails.name}}</li>
               <li class="nav-item mb-2">{{contactDetails.addressLine1}}</li>
               <li *ngIf="contactDetails.addressLine2" class="nav-item mb-2">{{contactDetails.addressLine2}}</li>
-              <li class="nav-item mb-2">{{contactDetails.zipCode}}, {{contactDetails.city}}</li>
+              <li class="nav-item mb-2">{{contactDetails.zipCode}} {{contactDetails.city}}</li>
               <li class="nav-item mb-2 footer-email" (click)="this.openEmail()">{{contactDetails.email}}</li>
-              <li class="nav-item mb-2">Telefon: {{contactDetails.phoneNumber}}</li>
+              <li class="nav-item mb-2">{{contactDetails.phoneNumber}}</li>
             </ul>
         </div>
   

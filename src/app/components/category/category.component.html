@@ -2,7 +2,7 @@
     <div *ngFor="let trip of currentCategory.trips;" class="section">
         <div class="row trip-section">
             <div class="col-3 trip-section-item-image">
-                <img class="trip-section-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/1200px-Flag_of_Portugal.svg.png">
+                <img class="trip-section-image" src="../../../assets/images/trip.png">
             </div>
             <div class="col-1 trip-section-item-image">
             </div>
@@ -11,7 +11,14 @@
                 <span class="trip-section-item-property">Wyjazd: {{validationService.formatDate(trip.from)}}</span><br>
                 <span class="trip-section-item-property">Powrót: {{validationService.formatDate(trip.to)}}</span><br>
                 <span class="trip-section-item-property">Transport: {{trip.transportType.name}}</span><br>
-                <span class="trip-section-item-property">Liczba miejsc: {{trip.availableSeats}}</span>
+                <span class="trip-section-item-property">Hotel: {{trip.hotel}} </span>
+                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 0"></span>
+                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 1"></span>
+                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 2"></span>
+                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 3"></span>
+                    <span class="fa fa-star" [class.checked]="this.convertToInt(trip.hotelStars) > 4"></span>
+                    <br>
+                <span class="trip-section-item-property">Wyżywienie: {{trip.meals}}</span><br>
             </div>
             <div class="col-1 trip-section-item-image">
             </div>

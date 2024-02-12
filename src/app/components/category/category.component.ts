@@ -18,7 +18,6 @@ import { StorageService } from 'src/app/services/storage.service';
 export class CategoryComponent {
   category$: Observable<TripCategory>;
   currentCategory: TripCategory  = new TripCategory();
-
   search: Search = new Search();
 
   constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute, public validationService: ValidationService, private router: Router, private storageService: StorageService){
@@ -60,5 +59,13 @@ export class CategoryComponent {
 
   goToTrip(id: number){
     this.router.navigate(["trips/"+id])
+  }
+
+  convertToInt(textNumber: string){
+    var number = parseInt(textNumber);
+    if(isNaN(number)){
+      return 0;
+    }
+    return number;
   }
 }
