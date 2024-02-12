@@ -1,0 +1,16 @@
+.subpage-header{
+    text-align: center;
+}
+
+.home-section{
+    padding-top:80px;
+}
+
+.text-section-item{
+    padding:20px;
+}
+
+.text-section-image{
+    max-width: -webkit-fill-available;
+    
+}
