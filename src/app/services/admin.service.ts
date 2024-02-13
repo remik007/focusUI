@@ -5,6 +5,7 @@ import { environment } from "src/environment/environment";
 import { Trip } from "../models/trip.model";
 import { SubPage } from "../models/subpage.model";
 import { TripCategory } from "../models/tripcategory.model";
+import { Contact } from "../models/contact.model";
 
 @Injectable({
     providedIn: 'root'
@@ -50,6 +51,12 @@ export class AdminService{
 
     updateCategory(category: TripCategory): Observable<HttpResponse<Object>>{
         return this.http.put(environment.categoryAdminUrl, category, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});
+        //return of(test);
+    }
+
+    updateContactDetails(contact: Contact): Observable<HttpResponse<Object>>{
+        return this.http.put(environment.contactAdminUrl, contact, {responseType: 'text' as 'json', observe: 'response'});
         //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});
         //return of(test);
     }

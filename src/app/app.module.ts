@@ -40,9 +40,11 @@ import { ButtonModule } from 'primeng/button';
 import { AddSubPageComponent } from './components/_admin/addSubPage/addSubPage.component';
 import { SanitizeHtmlPipe } from './services/sanitizehtml.pipe';
 import { AddCategoryComponent } from './components/_admin/addCategory/addCategory.component';
+import { EditContactComponent } from './components/_admin/editContact/editContact.component';
 
 @NgModule({
   declarations: [
+    EditContactComponent,
     AddSubPageComponent,
     AddTripComponent,
     LoginComponent,

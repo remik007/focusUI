@@ -1,0 +1,31 @@
+<app-text-field fieldName="Nazwa" [value]="this.contactDetails.name" [isMandatory]="true" (answered)="saveAnswer('name', $event.answer)"></app-text-field>
+<app-text-field fieldName="Adres" [value]="this.contactDetails.addressLine1" [isMandatory]="false" (answered)="saveAnswer('addressLine1', $event.answer)"></app-text-field>
+<app-text-field fieldName="Adres" [value]="this.contactDetails.addressLine2" [isMandatory]="false" (answered)="saveAnswer('addressLine2', $event.answer)"></app-text-field>
+<app-text-field fieldName="Miasto" [value]="this.contactDetails.city" [isMandatory]="false" (answered)="saveAnswer('city', $event.answer)"></app-text-field>
+<app-text-field fieldName="Kod pocztowy" [value]="this.contactDetails.zipCode" [isMandatory]="false" (answered)="saveAnswer('zipCode', $event.answer)"></app-text-field>
+<app-text-field fieldName="Email" [value]="this.contactDetails.email" [isMandatory]="false" (answered)="saveAnswer('email', $event.answer)"></app-text-field>
+<app-text-field fieldName="Nr telefonu" [value]="this.contactDetails.phoneNumber" [isMandatory]="false" (answered)="saveAnswer('phoneNumber', $event.answer)"></app-text-field>
+<app-text-field fieldName="Facebook" [value]="this.contactDetails.facebook" [isMandatory]="false" (answered)="saveAnswer('facebook', $event.answer)"></app-text-field>
+<app-text-field fieldName="Instagram" [value]="this.contactDetails.instagram" [isMandatory]="false" (answered)="saveAnswer('instagram', $event.answer)"></app-text-field>
+
+<br>
+<p style="text-align: center">
+    <button [disabled]="loading" class="btn btn-success" (click)="submit()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Zapisz
+    </button>
+</p>
+
+<jw-modal id="addtrip-failed-modal" url="text">
+    <div class="card">
+        <h4 class="card-header">Error</h4>
+        <div class="card-body">
+            <div class="mb-3">
+                <label style="color: red; margin-bottom: 10px;" aria-label="Zapisywanie wycieczki nie powiodło się. Spróbuj ponownie." class="input-label">Zapisywanie nie powiodło się. Spróbuj ponownie.</label>
+            </div>
+            <div>
+                <button class="btn btn-light title-font dropbtn" (click)="this.modalService.close('addtrip-failed-modal');" tabindex="0">Zamknij</button>
+            </div>
+        </div>
+    </div>
+</jw-modal>

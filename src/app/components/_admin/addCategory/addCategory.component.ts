@@ -23,9 +23,6 @@ declare let tinymce: any;
 })
 export class AddCategoryComponent {
 
-  tinymceInit!: any;
-  tinymceKey: string = environment.tinymceKey;
-  tinymceContent: any;
 
   category$: Observable<TripCategory>;
   category!: TripCategory;
@@ -37,33 +34,6 @@ export class AddCategoryComponent {
 
   constructor(private store: Store<IAppState>, public modalService: ModalService, private adminService: AdminService, private router: Router, private route: ActivatedRoute, private validationService: ValidationService){
     this.category$ = this.store.pipe(select(selectCurrentTripCategory));
-    this.tinymceInit = {
-      plugins: 'image',
-      toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
-      image_advtab: true,
-      file_picker_callback: function(cb: any, value: any, meta: any) {
-        var input = document.createElement('input');
-        input.setAttribute('type', 'file');
-        input.setAttribute('accept', 'image/*');
-
-        input.onchange = function () {
-          let file: any;
-          if(input.files)
-            file = input.files[0];
-          var reader = new FileReader();
-          reader.onload = function () {
-            var id = 'blobid' + (new Date()).getTime();
-            var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-            var base64 = (reader.result as string).split(',')[1];
-            var blobInfo = blobCache.create(id, file, base64);
-            blobCache.add(blobInfo);
-            cb(blobInfo.blobUri(), { title: file.name });
-          };
-          reader.readAsDataURL(file);
-        };
-        input.click();
-      }
-    }
   }
 
   ngOnInit(): void{

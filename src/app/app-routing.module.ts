@@ -11,6 +11,7 @@ import { AddTripComponent } from './components/_admin/addTrip/addTrip.component'
 import { AdminGuard } from './services/admin.guard';
 import { AddSubPageComponent } from './components/_admin/addSubPage/addSubPage.component';
 import { AddCategoryComponent } from './components/_admin/addCategory/addCategory.component';
+import { EditContactComponent } from './components/_admin/editContact/editContact.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'admin/edytuj/podstrona/:subpage', component: AddSubPageComponent},//,  canActivate: [AdminGuard]},
   {path: 'admin/dodaj/kategoria', component: AddCategoryComponent},//,  canActivate: [AdminGuard]},
   {path: 'admin/edytuj/kategoria/:category', component: AddCategoryComponent},//,  canActivate: [AdminGuard]},
+  {path: 'admin/edytuj/kontakt', component: EditContactComponent},//,  canActivate: [AdminGuard]},
   //{path: 'wyjazd/:id/addreservation', component: AddTripComponent,  canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'kontakt', component: ContactComponent},
