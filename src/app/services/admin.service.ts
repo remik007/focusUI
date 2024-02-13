@@ -60,4 +60,22 @@ export class AdminService{
         //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});
         //return of(test);
     }
+
+    deleteCategory(categoryName: string): Observable<HttpResponse<Object>>{
+        return this.http.delete(environment.deleteCategoryAdminUrl + categoryName, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});
+        //return of(test);
+    }
+
+    deleteSubpage(subpageName: string): Observable<HttpResponse<Object>>{
+        return this.http.delete(environment.deleteSubPageAdminUrl + subpageName, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});
+        //return of(test);
+    }
+
+    deleteTrip(tripId: number): Observable<HttpResponse<Object>>{
+        return this.http.delete(environment.deleteTripAdminUrl + tripId, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});
+        //return of(test);
+    }
 }

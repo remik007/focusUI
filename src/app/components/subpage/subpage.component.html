@@ -1,4 +1,15 @@
 <div class="container main">
+  <div *ngIf="this.storageService.isAdmin()" class="row pt-4">
+    <div class="col btn btn-success">
+      <a class="dropdown-item" href="/admin/dodaj/podstrona">Nowa podstrona</a>
+    </div>
+    <div class="col btn btn-secondary">
+        <a class="dropdown-item" attr.href="/admin/edytuj/podstrona/{{this.subPageName}}">Edytuj podstronę</a>
+    </div>
+    <div class="col btn btn-danger">
+        <a class="dropdown-item" (click)="openModal('delete-subpage-modal')">Usuń podstronę</a>
+    </div>  
+  </div>
     <div class="row home-section text-section">
         <div class="col-3 text-section-item">
           <img class="text-section-image" src="../../../assets/images/travel.jpg">
@@ -18,3 +29,20 @@
         
     </div>
 </div>
+<jw-modal id="delete-subpage-modal" url="text">
+  <div class="card">
+      <h4 class="card-header">Usuń podstronę</h4>
+      <div class="card-body">
+          <div class="mb-3">
+              <label style="margin-bottom: 10px;" aria-label="Czy na pewno chcesz usunąć podstronę?" class="input-label">Czy na pewno chcesz usunąć podstronę?</label>
+          </div>
+          <div>
+            <button [disabled]="loading" class="btn btn-danger" (click)="deleteSubpage();">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+              Usuń
+          </button>
+              <button class="btn btn-light title-font dropbtn" (click)="closeModal('delete-subpage-modal');" tabindex="0">Zamknij</button>
+          </div>
+      </div>
+  </div>
+</jw-modal>

@@ -1,4 +1,19 @@
+
 <div class="container main">
+    <div *ngIf="this.storageService.isAdmin()" class="row pt-4">
+        <div class="col btn btn-success">
+            <a class="dropdown-item" href="/admin/dodaj/wyjazd">Nowy wyjazd</a>
+          </div>
+        <div class="col btn btn-success">
+          <a class="dropdown-item" href="/admin/dodaj/kategoria">Nowa kategoria</a>
+        </div>
+        <div class="col btn btn-secondary">
+            <a class="dropdown-item" attr.href="/admin/edytuj/kategoria/{{this.search.category}}">Edytuj kategorię</a>
+        </div>
+        <div class="col btn btn-danger">
+            <a class="dropdown-item" (click)="openModal('delete-category-modal')">Usuń kategorię</a>
+        </div>  
+    </div>
     <div *ngFor="let trip of currentCategory.trips;" class="section">
         <div class="trip-section">
 
@@ -37,3 +52,21 @@
     </div>
     </div>
 </div>
+
+<jw-modal id="delete-category-modal" url="text">
+    <div class="card">
+        <h4 class="card-header">Usuń kategorię</h4>
+        <div class="card-body">
+            <div class="mb-3">
+                <label style="margin-bottom: 10px;" aria-label="Czy na pewno chcesz usunąć kategorie? Wszystkie przypisane wycieczki rownież zostaną usunięte." class="input-label">Czy na pewno chcesz usunąć kategorie? Wszystkie przypisane wycieczki rownież zostaną usunięte.</label>
+            </div>
+            <div>
+                <button [disabled]="loading" class="btn btn-danger" (click)="deleteCategory();">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                    Usuń
+                </button>
+                <button class="btn btn-light title-font dropbtn" (click)="closeModal('delete-category-modal');" tabindex="0">Zamknij</button>
+            </div>
+        </div>
+    </div>
+</jw-modal>

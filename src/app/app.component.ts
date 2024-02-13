@@ -5,6 +5,7 @@ import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
 import { User } from './models/user.model';
 import { EventBusService } from './services/eventbus.service';
+import { AdminService } from './services/admin.service';
 
 @Component({
   selector: 'app-root',

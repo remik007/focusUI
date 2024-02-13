@@ -9,6 +9,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ValidationService } from 'src/app/services/validation.service';
 import { Search } from 'src/app/models/search.model';
 import { StorageService } from 'src/app/services/storage.service';
+import { AdminService } from 'src/app/services/admin.service';
+import { ModalService } from '../_modal';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +21,9 @@ export class CategoryComponent {
   category$: Observable<TripCategory>;
   currentCategory: TripCategory  = new TripCategory();
   search: Search = new Search();
+  loading: boolean = false;
 
-  constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute, public validationService: ValidationService, private router: Router, private storageService: StorageService){
+  constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute, public validationService: ValidationService, private router: Router, public storageService: StorageService, private serviceModal: ModalService, private adminService: AdminService){
 
     this.category$ = this.store.pipe(select(selectCurrentTripCategory));
   }
@@ -50,8 +53,6 @@ export class CategoryComponent {
       }
     });
 
-
-
     this.category$.subscribe(category => {
       this.currentCategory = category;
     })
@@ -61,5 +62,32 @@ export class CategoryComponent {
     this.router.navigate([this.router.url+"/"+id])
   }
 
+  openModal(name: string){
+    this.serviceModal.open(name);
+  }
+
+  closeModal(name: string){
+    this.serviceModal.close(name);
+  }
+
+  deleteCategory(){
+    this.loading = true;
+    this.adminService.deleteCategory(this.search.category).subscribe(
+      {
+      next: data => {
+        let id = data.body;
+        this.loading = false;
+        this.router.navigate([""])
+        .then(() => {
+          window.location.reload();
+        });
+      },
+      error: err => {
+        this.loading = false;
+        console.error("error: " + err);
+        this.serviceModal.open("addtrip-failed-modal");
+      }
+    });
+  }
 
 }

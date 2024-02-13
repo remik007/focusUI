@@ -18,6 +18,9 @@ export const environment = {
     subpageAdminUrl: "https://localhost:7013/api/admin/subpages/",
     categoryAdminUrl: "https://localhost:7013/api/admin/categories/",
     contactAdminUrl: "https://localhost:7013/api/admin/contacts",
+    deleteSubPageAdminUrl: "https://localhost:7013/api/admin/subpages/",
+    deleteCategoryAdminUrl: "https://localhost:7013/api/admin/categories/",
+    deleteTripAdminUrl: "https://localhost:7013/api/admin/trips/",
     textBoxCharactersLimit: 255,
     allowedFileExtensions: ".jpg,.png,.jpeg",
     maxFileSizeBytes: "5242880" //5MB

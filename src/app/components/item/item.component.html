@@ -1,4 +1,15 @@
 <div class="container main">
+    <div *ngIf="this.storageService.isAdmin()" class="row pt-4">
+        <div class="col btn btn-success">
+          <a class="dropdown-item" href="/admin/dodaj/wyjazd">Nowy wyjazd</a>
+        </div>
+        <div class="col btn btn-secondary">
+            <a class="dropdown-item" attr.href="/admin/edytuj/wyjazd/{{this.tripId}}">Edytuj wyjazd</a>
+        </div>
+        <div class="col btn btn-danger">
+            <a class="dropdown-item" (click)="openModal('delete-trip-modal')">Usuń wyjazd</a>
+        </div>  
+      </div>
     <div  class="section">
         <div class="trip-section row">
             <div class="col-8 trip-section-item-image">
@@ -34,3 +45,21 @@
         
     </div>
 </div>
+
+<jw-modal id="delete-trip-modal" url="text">
+    <div class="card">
+        <h4 class="card-header">Usuń wyjazd</h4>
+        <div class="card-body">
+            <div class="mb-3">
+                <label style="margin-bottom: 10px;" aria-label="Czy na pewno chcesz usunąć wyjazd?" class="input-label">Czy na pewno chcesz usunąć wyjazd?</label>
+            </div>
+            <div>
+                <button [disabled]="loading" class="btn btn-danger" (click)="deleteTrip();">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                    Usuń
+                </button>
+                <button class="btn btn-light title-font dropbtn" (click)="closeModal('delete-trip-modal');" tabindex="0">Zamknij</button>
+            </div>
+        </div>
+    </div>
+</jw-modal>

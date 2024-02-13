@@ -26,13 +26,22 @@
                   <div *ngFor="let tripCategory of tripCategories">
                     <li><a class="dropdown-item" href="/wyjazdy/{{tripCategory.name}}">{{tripCategory.name}}</a></li>
                   </div>
+                  <div *ngIf="this._storageService.isAdmin()">
+                    <div class="dropdown-divider"></div>
+                    <li class="btn btn-success p-1 mx-2">
+                      <a class="dropdown-item" href="/admin/dodaj/kategoria">Dodaj</a>
+                    </li>
+                  </div>
                 </ul>
               </li>
-                <li class="nav-item" *ngFor="let subPage of subPages">
-                  <a class="nav-link" href="/{{subPage.shortName}}">{{subPage.shortName}}</a>
-                </li>
+              <li class="nav-item" *ngFor="let subPage of subPages">
+                <a class="nav-link" href="/{{subPage.shortName}}">{{subPage.shortName}}</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="/kontakt">Kontakt</a>
+              </li>
+              <li *ngIf="this._storageService.isAdmin()" class="nav-item btn btn-success p-0">
+                <a class="nav-link" href="/admin/dodaj/podstrona">Dodaj</a>
               </li>
             </ul>
             <button *ngIf="!this._storageService.isLoggedIn()" class="btn btn-dark btn-login" (click)="openModel('login-modal');"><i class="bi bi-door-open"></i> zaloguj</button>
