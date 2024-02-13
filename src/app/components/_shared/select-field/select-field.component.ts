@@ -14,8 +14,8 @@ export class SelectFieldComponent implements OnChanges {
   @Input() data!: Array<IDropdown>;
   @Input() question!: string;
   @Input() isMandatory!: boolean;
-  @Input() fieldName!: string;
-  @Input() value!: string;
+  @Input() fieldName?: string;
+  @Input() value?: string;
 
   @Output() 
   answered = new EventEmitter<any>();

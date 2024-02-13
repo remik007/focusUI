@@ -15,6 +15,8 @@ export const environment = {
     getSearchAdminUrl: "https://localhost:7013/api/admin/categories/search",
     getSubPageUrl:"https://localhost:7013/api/subpages",
     getSubPagesUrl:"https://localhost:7013/api/subpages",
+    subpageAdminUrl: "https://localhost:7013/api/admin/subpages/",
+    categoryAdminUrl: "https://localhost:7013/api/admin/categories/",
     textBoxCharactersLimit: 255,
     allowedFileExtensions: ".jpg,.png,.jpeg",
     maxFileSizeBytes: "5242880" //5MB

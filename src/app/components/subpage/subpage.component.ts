@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectCurrentSubPageDetails } from 'src/app/state/app.selectors';
 import { IAppState } from 'src/app/state/app.state';
+import { SanitizeHtmlPipe } from 'src/app/services/sanitizehtml.pipe';
 
 @Component({
   selector: 'app-home',

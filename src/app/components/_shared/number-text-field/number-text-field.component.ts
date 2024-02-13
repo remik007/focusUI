@@ -15,8 +15,8 @@ export class NumberTextFieldComponent implements OnChanges {
 
   @Input() question!: string;
   @Input() isMandatory!: boolean;
-  @Input() fieldName!: string;
-  @Input() value!: string;
+  @Input() fieldName?: string;
+  @Input() value?: string;
 
   @Output() 
   answered = new EventEmitter<any>();

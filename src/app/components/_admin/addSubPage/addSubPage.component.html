@@ -1,0 +1,29 @@
+<app-text-field fieldName="Krótka nazwa" [value]="this.subpage.shortName" [isMandatory]="true" (answered)="saveAnswer('shortName', $event.answer)"></app-text-field>
+<app-text-field fieldName="Krótki opis" [value]="this.subpage.shortDescription" [isMandatory]="false" (answered)="saveAnswer('shortDescription', $event.answer)"></app-text-field>
+<app-file-upload-field fieldName="Zdjęcie" [isMandatory]="true" [valueFileName]="this.subpage.imageName" [valueFileContent]="this.subpage.imageContent" (answered)="saveFile($event.imageName, $event.imageContent)"></app-file-upload-field>
+
+<br>
+<p style="text-align: center">TREŚĆ PODSTRONY</p>
+<editor [apiKey]="tinymceKey" [init]="tinymceInit" [(ngModel)]="tinymceContent"></editor>
+
+<br>
+<p style="text-align: center">
+    <button [disabled]="loading" class="btn btn-success" (click)="submit()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        Zapisz
+    </button>
+</p>
+
+<jw-modal id="addtrip-failed-modal" url="text">
+    <div class="card">
+        <h4 class="card-header">Error</h4>
+        <div class="card-body">
+            <div class="mb-3">
+                <label style="color: red; margin-bottom: 10px;" aria-label="Zapisywanie wycieczki nie powiodło się. Spróbuj ponownie." class="input-label">Zapisywanie nie powiodło się. Spróbuj ponownie.</label>
+            </div>
+            <div>
+                <button class="btn btn-light title-font dropbtn" (click)="this.modalService.close('addtrip-failed-modal');" tabindex="0">Zamknij</button>
+            </div>
+        </div>
+    </div>
+</jw-modal>

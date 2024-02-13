@@ -17,8 +17,8 @@ export class DateSelectorComponent implements OnChanges {
   answer!:string;
   @Input() question!: string;
   @Input() isMandatory!: boolean;
-  @Input() fieldName!: string;
-  @Input() value!: Date;
+  @Input() fieldName?: string;
+  @Input() value?: Date;
 
   @Output() answered = new EventEmitter<any>();
   constructor(private validationService: ValidationService) {

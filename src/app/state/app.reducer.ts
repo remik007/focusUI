@@ -23,7 +23,7 @@ export const initialState: IAppState = {
     },
     currentTripCategory: new TripCategory(),
     currentTrip: {
-        id: -1,
+        id: undefined,
         name: '',
         shortName: '',
         country: '',
@@ -36,9 +36,9 @@ export const initialState: IAppState = {
         prize: '',
         oldPrize: '',
         availableSeats: -1,
-        currentAvailableSeats: -1,
-        transportType: new TransportType(),
-        tripCategory: new TripCategory(),
+        currentAvailableSeats: undefined,
+        transportType: undefined,
+        tripCategory:  undefined,
         transportTypeId: -1,
         tripCategoryId: -1,
         from: new Date(),
@@ -51,12 +51,13 @@ export const initialState: IAppState = {
     },
     subPages: new Array<SubPage>(),
     currentSubPage: {
-        id: '',
+        id: undefined,
         shortName: '',
         name: '',
         shortDescription: '',
         description: '',
-        imageUrl: ''
+        imageName: '',
+        imageContent: ''
     },
     countries: new Array<string>(),
     departureCities: new Array<string>(),
@@ -96,6 +97,14 @@ const _reducer = createReducer(
         state.transportTypes.push(...action.transportTypes);
         return {
             ...state
+        };
+    }),
+    
+    on(Actions.getSubPageDetailsRequestSuccess, (state, action) => {
+        
+        return {
+            ...state,
+            currentSubPage: action.subPage
         };
     }),
 

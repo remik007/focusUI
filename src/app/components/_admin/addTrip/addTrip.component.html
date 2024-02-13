@@ -1,6 +1,6 @@
 <app-text-field fieldName="Krótka nazwa" [value]="this.trip.shortName" [isMandatory]="true" (answered)="saveAnswer('shortName', $event.answer)"></app-text-field>
 <app-text-field fieldName="Krótki opis" [value]="this.trip.shortDescription" [isMandatory]="false" (answered)="saveAnswer('shortDescription', $event.answer)"></app-text-field>
-<app-text-field fieldName="Kraj" [value]="this.trip.country" [isMandatory]="false" (answered)="saveAnswer('shortDescription', $event.answer)"></app-text-field>
+<app-text-field fieldName="Kraj" [value]="this.trip.country" [isMandatory]="false" (answered)="saveAnswer('country', $event.answer)"></app-text-field>
 <app-text-field fieldName="Wyżywienie" [value]="this.trip.meals" [isMandatory]="false" (answered)="saveAnswer('meals', $event.answer)"></app-text-field>
 <app-text-field fieldName="Hotel" [value]="this.trip.hotel" [isMandatory]="false" (answered)="saveAnswer('hotel', $event.answer)"></app-text-field>
 <app-number-text-field fieldName="Hotel liczba gwiazdek" [isMandatory]="false" [value]="this.trip.hotelStars" (answered)="saveAnswer('hotelStars', $event.answer)"></app-number-text-field>

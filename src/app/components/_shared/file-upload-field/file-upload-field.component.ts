@@ -10,8 +10,8 @@ import { environment } from 'src/environment/environment';
 export class FileUploadFieldComponent implements OnInit {
 
   htmlInput!: HTMLInputElement;
-  fileContent!: string;
-  fileName!: string;
+  fileContent?: string;
+  fileName?: string;
   IsFileSizeExceeded: boolean = false;
   IsTooManyFiles: boolean = false;
   IsInvalidFileExtension: boolean = false;
@@ -21,9 +21,9 @@ export class FileUploadFieldComponent implements OnInit {
   allowedFileExtensionsArray: string[] = environment.allowedFileExtensions.split(',');
 
   @Input() isMandatory!: boolean;
-  @Input() fieldName!: string;
-  @Input() valueFileName!: string;
-  @Input() valueFileContent!: string;
+  @Input() fieldName?: string;
+  @Input() valueFileName?: string;
+  @Input() valueFileContent?: string;
 
   @Output() 
   answered = new EventEmitter<any>();

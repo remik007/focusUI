@@ -10,8 +10,8 @@ export class CheckboxSelectorComponent implements OnChanges {
   checkboxValue: boolean = false;
 
   @Input() isMandatory!: boolean;
-  @Input() fieldName!: string;
-  @Input() value!: boolean;
+  @Input() fieldName?: string;
+  @Input() value?: boolean;
   @Output() answered = new EventEmitter<any>();
 
   constructor() {

@@ -368,7 +368,8 @@ export class AppEffects {
                         try{
                             if(httpResponse.body){
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
-                                let obj: SubPage = Object.assign(SubPage, jsonObj);
+                                let obj: SubPage = Object.assign(jsonObj, SubPage);
+                                console.log(obj);
                                 return AppActions.getSubPageDetailsRequestSuccess({subPage: obj});
                             }
                         } catch (error){

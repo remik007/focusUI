@@ -1,7 +1,7 @@
 <div class="container main">
     <div class="row home-section text-section">
         <div class="col-3 text-section-item">
-          <img class="text-section-image" src="../../../assets/images/travel.png">
+          <img class="text-section-image" src="../../../assets/images/travel.jpg">
         </div>
         <div class="col-9 text-section-item">
           <h4>{{currentsubPage.name}}</h4>
@@ -11,7 +11,10 @@
       
     </div>
 
-    <div class="tinyMceContent border-top">
-        {{currentsubPage.description}}
+    <div class="tinyMceContent border-top"  width="100%">
+      <div [innerHtml] = "currentsubPage.description | sanitizeHtml">
+
+      </div>
+        
     </div>
 </div>

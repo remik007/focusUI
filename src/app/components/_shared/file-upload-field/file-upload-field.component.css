@@ -1,6 +1,6 @@
 .upload-button{
-  background: #1FD99C;
-  border: 2px solid #1FD99C;
+  background: #4a845d;
+  border: 2px solid #4a845d;
   border-radius:0px;
   color: white;
   text-align: center;
@@ -14,13 +14,13 @@
 
 .upload-button:hover {
   background-color: white;
-  border: 2px solid #1FD99C;
-  color: #1FD99C;
+  border: 2px solid #4a845d;
+  color: #4a845d;
 }
 
 .remove-button{
-  background: #1FD99C;
-  border: 2px solid #1FD99C;
+  background: #4a845d;
+  border: 2px solid #4a845d;
   border-radius:0px;
   color: white;
   text-align: center;
@@ -36,8 +36,8 @@
 
 .remove-button:hover {
   background-color: white;
-  border: 2px solid #1FD99C;
-  color: #1FD99C;
+  border: 2px solid #4a845d;
+  color: #4a845d;
 }
 
 .file-input {

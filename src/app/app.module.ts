@@ -37,9 +37,13 @@ import { FileUploadFieldComponent } from './components/_shared/file-upload-field
 import { MatIconModule } from '@angular/material/icon';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
+import { AddSubPageComponent } from './components/_admin/addSubPage/addSubPage.component';
+import { SanitizeHtmlPipe } from './services/sanitizehtml.pipe';
+import { AddCategoryComponent } from './components/_admin/addCategory/addCategory.component';
 
 @NgModule({
   declarations: [
+    AddSubPageComponent,
     AddTripComponent,
     LoginComponent,
     AppComponent,
@@ -56,7 +60,9 @@ import { ButtonModule } from 'primeng/button';
     NumberTextFieldComponent,
     TextFieldComponent,
     SelectFieldComponent,
-    FileUploadFieldComponent
+    FileUploadFieldComponent,
+    SanitizeHtmlPipe,
+    AddCategoryComponent
   ],
   imports: [
     ButtonModule,

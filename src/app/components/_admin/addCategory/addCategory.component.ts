@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { TripCategory } from 'src/app/models/tripcategory.model';
-import { selectTransportTypes, selectTripCategories, selectTripDetails } from 'src/app/state/app.selectors';
+import { selectCurrentSubPageDetails, selectCurrentTripCategory, selectSubPages, selectTransportTypes, selectTripCategories, selectTripDetails } from 'src/app/state/app.selectors';
 import { IAppState } from 'src/app/state/app.state';
 import { environment } from "src/environment/environment";
 import * as Actions from '../../../state/app.actions';
@@ -12,36 +12,31 @@ import { ModalService } from '../../_modal/modal.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ValidationService } from 'src/app/services/validation.service';
+import { Search } from 'src/app/models/search.model';
 
 declare let tinymce: any;
 
 @Component({
-  selector: 'app-addtrip',
-  templateUrl: './addtrip.component.html',
-  styleUrls: ['./addtrip.component.css']
+  selector: 'app-addcategory',
+  templateUrl: './addcategory.component.html',
+  styleUrls: ['./addcategory.component.css']
 })
-export class AddTripComponent {
+export class AddCategoryComponent {
 
   tinymceInit!: any;
   tinymceKey: string = environment.tinymceKey;
   tinymceContent: any;
-  
-  categories$: Observable<Array<TripCategory>>;
-  tripCategories: TripCategory[]  = [];
-  transports$: Observable<Array<TransportType>>;
-  transportTypes: TransportType[]  = [];
-  trip$: Observable<Trip>;
-  trip!: Trip;
-  tripId: number = -1;
+
+  category$: Observable<TripCategory>;
+  category!: TripCategory;
+  categoryName: string = "";
 
   loading: Boolean = false;
   false: boolean = false;
   true: boolean = true;
 
   constructor(private store: Store<IAppState>, public modalService: ModalService, private adminService: AdminService, private router: Router, private route: ActivatedRoute, private validationService: ValidationService){
-    this.categories$ = this.store.pipe(select(selectTripCategories));
-    this.trip$ = this.store.pipe(select(selectTripDetails));
-    this.transports$ = this.store.pipe(select(selectTransportTypes));
+    this.category$ = this.store.pipe(select(selectCurrentTripCategory));
     this.tinymceInit = {
       plugins: 'image',
       toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
@@ -72,34 +67,20 @@ export class AddTripComponent {
   }
 
   ngOnInit(): void{
-
-    this.store.dispatch(Actions.getTripCategoriesRequest());
-    this.categories$.subscribe(categories => {
-      this.tripCategories = categories;
-    })
-    this.store.dispatch(Actions.getTransportTypesRequest());
-    this.transports$.subscribe(transports => {
-      this.transportTypes = transports;
-    })
-    
-
     this.route.params.subscribe(params => {
-      let stringId = params['id'];
+      let stringId = params['category'];
       if(stringId !== undefined && stringId !== null && stringId !== ""){
-        this.tripId = parseInt(stringId);
-        this.store.dispatch(Actions.getTripAdminRequest({tripId: this.tripId}));
-          
+        this.categoryName = stringId;
+        var search: Search = new Search();
+        search.category = this.categoryName;
+        this.store.dispatch(Actions.getTripCategoryRequest({search: search}));      
       }
-
-      this.trip$.subscribe(tripAdmin => {
-        this.trip = tripAdmin;
-        console.log(tripAdmin);
-        this.tinymceContent = this.trip.description;
+      this.category$.subscribe(category => {
+        this.category = category;
+        console.log(category);
       });
     });
-
   }
-  
   
   getStringDate(date: Date) : string{
     if(date !== undefined && date !== null){
@@ -111,29 +92,20 @@ export class AddTripComponent {
 
   saveAnswer(field: string, answer: string){
     console.log(answer);
-    (this.trip as any)[field] = answer;
-  }
-
-  saveFile(imageName: string, imageContent: string){
-    console.log(imageName);
-    console.log(imageContent);
-    (this.trip as any)[imageName] = imageName;
-    (this.trip as any)[imageContent] = imageContent;
+    (this.category as any)[field] = answer;
   }
 
   submit(): void{
     // stop here if form is invalid
     //TODO: add form validation
-    if(this.tripId !== -1){
+    if(this.categoryName !== ""){
       
       this.loading = true;
-      this.trip.description = this.tinymceContent;
-      this.adminService.updateTrip(this.trip).subscribe(
+      this.adminService.updateCategory(this.category).subscribe(
         {
         next: data => {
-          let id = data.body;
           this.loading = false;
-          this.router.navigate(["wyjazdy/"+this.trip.tripCategory?.name+"/"+this.trip.id]);
+          this.router.navigate(["wyjazdy/"+this.categoryName]);
         },
         error: err => {
           this.loading = false;
@@ -143,16 +115,13 @@ export class AddTripComponent {
       });
     }
     else{
-      console.log("ID: " + this.trip.id);
+
       this.loading = true;
-      this.trip.description = this.tinymceContent;
-      this.adminService.addTrip(this.trip).subscribe(
+      this.adminService.addCategory(this.category).subscribe(
         {
         next: data => {
-          let id = data.body;
           this.loading = false;
-          var categoryName = this.tripCategories.filter(x => x.id === this.trip.tripCategoryId).map(x => x.name);
-          this.router.navigate(["wyjazdy/"+categoryName[0]+"/"+id]);
+          this.router.navigate(["wyjazdy/" + this.category.name]);
         },
         error: err => {
           this.loading = false;
