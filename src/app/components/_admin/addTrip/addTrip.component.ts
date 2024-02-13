@@ -93,7 +93,6 @@ export class AddTripComponent {
 
       this.trip$.subscribe(tripAdmin => {
         this.trip = tripAdmin;
-        console.log(tripAdmin);
         this.tinymceContent = this.trip.description;
       });
     });
@@ -103,22 +102,19 @@ export class AddTripComponent {
   
   getStringDate(date: Date) : string{
     if(date !== undefined && date !== null){
-      console.log(date);
       return date.toString();
     }
     return "";
 }
 
   saveAnswer(field: string, answer: string){
-    console.log(answer);
     (this.trip as any)[field] = answer;
   }
 
   saveFile(imageName: string, imageContent: string){
-    console.log(imageName);
-    console.log(imageContent);
-    (this.trip as any)[imageName] = imageName;
-    (this.trip as any)[imageContent] = imageContent;
+    this.trip.imageName = imageName;
+    this.trip.imageContent = imageContent;
+    console.log(this.trip);
   }
 
   submit(): void{
@@ -128,6 +124,7 @@ export class AddTripComponent {
       
       this.loading = true;
       this.trip.description = this.tinymceContent;
+      console.log(this.trip);
       this.adminService.updateTrip(this.trip).subscribe(
         {
         next: data => {

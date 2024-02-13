@@ -5,7 +5,8 @@
       <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 carousel-trip">
           <div class="mb-3 ">
             <div class="w-6 shadow-2">
-              <img class="text-section-image" src="../../../assets/images/trip.png">
+              <img *ngIf="trip.imageContent === null || trip.imageContent ===''" class="text-section-image" src="../../../assets/images/trip.png">
+              <img *ngIf="trip.imageContent !== null && trip.imageContent !==''" class="text-section-image" [src]="trip.imageContent | sanitizeImg">
             </div>
           </div>
           <div>
@@ -16,7 +17,7 @@
                 {{ trip.country }}, 
                 {{ trip.shortName }}</h4>
               <h6 class="mt-0 mb-3">{{ "Od: " + validationService.formatDate(trip.from) +" Do: " + validationService.formatDate(trip.to)}}</h6>
-              <button class="btn btn-secondary title-font dropbtn" tabindex="0" (click)="goToTrip(trip.id)">więcej...</button>
+              <button class="btn btn-secondary title-font dropbtn" tabindex="0" (click)="goToTrip(trip.tripCategory.name, trip.id)">więcej...</button>
           </div>
       </div>
   </ng-template>

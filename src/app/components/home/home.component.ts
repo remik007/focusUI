@@ -36,8 +36,8 @@ export class HomeComponent{
     });
   }
   
-  goToTrip(id: number){
-    this.router.navigate(["trips/"+id])
+  goToTrip(categoryName: string, id: number){
+    this.router.navigate(["wyjazdy/"+categoryName+"/"+id])
   }
   
 }

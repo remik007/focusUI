@@ -41,6 +41,7 @@ import { AddSubPageComponent } from './components/_admin/addSubPage/addSubPage.c
 import { SanitizeHtmlPipe } from './services/sanitizehtml.pipe';
 import { AddCategoryComponent } from './components/_admin/addCategory/addCategory.component';
 import { EditContactComponent } from './components/_admin/editContact/editContact.component';
+import { SanitizeImgPipe } from './services/sanitizeimg.pipe';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { EditContactComponent } from './components/_admin/editContact/editContac
     SelectFieldComponent,
     FileUploadFieldComponent,
     SanitizeHtmlPipe,
+    SanitizeImgPipe,
     AddCategoryComponent
   ],
   imports: [
