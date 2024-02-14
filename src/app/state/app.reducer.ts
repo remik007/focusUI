@@ -35,7 +35,7 @@ export const initialState: IAppState = {
         meals: '',
         prize: '',
         oldPrize: '',
-        availableSeats: -1,
+        availableSeats: 0,
         currentAvailableSeats: undefined,
         transportType: undefined,
         tripCategory:  undefined,
