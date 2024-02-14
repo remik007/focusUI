@@ -32,7 +32,13 @@ export class ItemComponent {
   }
 
   ngOnInit(): void{
-    this.store.dispatch(Actions.getTripRequest({tripId: this.tripId}));
+    if(this.storageService.isAdmin()){
+      this.store.dispatch(Actions.getTripAdminRequest({tripId: this.tripId}));
+    }
+    else{
+      this.store.dispatch(Actions.getTripRequest({tripId: this.tripId}));
+    }
+    
     this.trip$.subscribe(trip => {
       this.trip = trip;
     })

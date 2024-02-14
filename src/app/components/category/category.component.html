@@ -19,8 +19,8 @@
 
         
         <div class="row trip-section-item-image image-horizontal">
-            <img *ngIf="trip.imageContent === null || trip.imageContent ===''" class="trip-section-image" src="../../../assets/images/trip.png">
-            <img *ngIf="trip.imageContent !== null && trip.imageContent !==''" class="trip-section-image" [src]="trip.imageContent | sanitizeImg">
+            <img *ngIf="trip.imageContent === undefined || trip.imageContent === null || trip.imageContent ===''" class="trip-section-image" src="../../../assets/images/trip.png">
+            <img *ngIf="trip.imageContent !== undefined && trip.imageContent !== null && trip.imageContent !==''" class="trip-section-image" [src]="trip.imageContent | sanitizeImg">
         </div>
         <div class="row">
             <div class="col-3 trip-section-item-image image-vertical">

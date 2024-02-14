@@ -5,8 +5,8 @@
       <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 carousel-trip">
           <div class="mb-3 ">
             <div class="w-6 shadow-2">
-              <img *ngIf="trip.imageContent === null || trip.imageContent ===''" class="text-section-image" src="../../../assets/images/trip.png">
-              <img *ngIf="trip.imageContent !== null && trip.imageContent !==''" class="text-section-image" [src]="trip.imageContent | sanitizeImg">
+              <img *ngIf="trip.imageContent === undefined || trip.imageContent === null || trip.imageContent ===''" class="text-section-image" src="../../../assets/images/trip.png">
+              <img *ngIf="trip.imageContent !== undefined && trip.imageContent !== null && trip.imageContent !==''" class="text-section-image" [src]="trip.imageContent | sanitizeImg">
             </div>
           </div>
           <div>
