@@ -83,7 +83,6 @@ export class AddSubPageComponent {
   
   getStringDate(date: Date) : string{
     if(date !== undefined && date !== null){
-      console.log(date);
       return date.toString();
     }
     return "";
@@ -95,10 +94,9 @@ export class AddSubPageComponent {
   }
 
   saveFile(imageName: string, imageContent: string){
-    console.log(imageName);
-    console.log(imageContent);
-    (this.subpage as any)[imageName] = imageName;
-    (this.subpage as any)[imageContent] = imageContent;
+    console.log(imageName + ": " + imageContent);
+    this.subpage.imageName = imageName;
+    this.subpage.imageContent = imageContent;
   }
 
   submit(): void{
@@ -129,7 +127,9 @@ export class AddSubPageComponent {
         {
         next: data => {
           this.loading = false;
-          this.router.navigate([this.subpage.name]);
+          this.router.navigate([this.subpage.name]).then(() => {
+            window.location.reload();
+          });
         },
         error: err => {
           this.loading = false;

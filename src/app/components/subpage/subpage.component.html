@@ -12,7 +12,7 @@
   </div>
     <div class="row home-section text-section">
         <div class="col-3 text-section-item">
-          <img *ngIf="currentsubPage.imageContent === null || currentsubPage.imageContent ===''" class="text-section-image" src="../../../assets/images/travel.png">
+          <img *ngIf="currentsubPage.imageContent === null || currentsubPage.imageContent ===''" class="text-section-image" src="../../../assets/images/travel.jpg">
           <img *ngIf="currentsubPage.imageContent !== null && currentsubPage.imageContent !==''" class="text-section-image" [src]="currentsubPage.imageContent | sanitizeImg">
         </div>
         <div class="col-9 text-section-item">

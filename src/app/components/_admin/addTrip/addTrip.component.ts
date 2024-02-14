@@ -108,13 +108,14 @@ export class AddTripComponent {
 }
 
   saveAnswer(field: string, answer: string){
+    console.log(answer);
     (this.trip as any)[field] = answer;
   }
 
   saveFile(imageName: string, imageContent: string){
+    console.log(imageName + ": " + imageContent);
     this.trip.imageName = imageName;
     this.trip.imageContent = imageContent;
-    console.log(this.trip);
   }
 
   submit(): void{

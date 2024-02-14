@@ -91,7 +91,9 @@ export class AddCategoryComponent {
         {
         next: data => {
           this.loading = false;
-          this.router.navigate(["wyjazdy/" + this.category.name]);
+          this.router.navigate(["wyjazdy/" + this.category.name]).then(() => {
+            window.location.reload();
+          });
         },
         error: err => {
           this.loading = false;
