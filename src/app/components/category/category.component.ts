@@ -68,8 +68,8 @@ export class CategoryComponent {
     })
   }
 
-  goToTrip(id: number){
-    this.router.navigate([this.router.url+"/"+id])
+  goToTripUrl(id: number) : string{
+    return this.router.url+"/"+id;
   }
 
   openModal(name: string){

@@ -44,8 +44,8 @@ export class HomeComponent{
     });
   }
   
-  goToTrip(categoryName: string, id: number){
-    this.router.navigate(["wyjazdy/"+categoryName+"/"+id])
+  goToTripUrl(categoryName: string, id: number):string{
+    return "wyjazdy/"+categoryName+"/"+id;
   }
 
   getImageContent(id: number) : string{

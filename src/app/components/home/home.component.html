@@ -18,7 +18,7 @@
                 {{ trip.country }}, 
                 {{ trip.shortName }}</h4>
               <h6 class="mt-0 mb-3">{{ "Od: " + validationService.formatDate(trip.from) +" Do: " + validationService.formatDate(trip.to)}}</h6>
-              <button class="btn btn-secondary title-font dropbtn" tabindex="0" (click)="goToTrip(trip.tripCategory.name, trip.id)">więcej...</button>
+              <a class="btn btn-secondary title-font dropbtn" tabindex="0" [href]="goToTripUrl(trip.tripCategory.name, trip.id!)">więcej...</a>
           </div>
       </div>
   </ng-template>
