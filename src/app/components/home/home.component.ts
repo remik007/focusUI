@@ -57,9 +57,5 @@ export class HomeComponent{
     }
     return "";
   }
-
-  isImageAvailable(id: number): boolean{
-    return this.images.filter(x => x.id === id).length > 0;
-  }
   
 }

@@ -9,6 +9,7 @@ export interface IAppState{
     tripCategories: Array<TripCategory>;
     transportTypes: Array<TransportType>;
     currentTripCategory: TripCategory;
+    currentTripCategoryImages: Array<Image>;
     contact: Contact;
     currentTrip: Trip;
     subPages: Array<SubPage>;

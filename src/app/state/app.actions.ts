@@ -10,6 +10,16 @@ import { Header } from "../models/header.model";
 import { Search } from "../models/search.model";
 import { Image } from "../models/image.model";
 
+export const getCategoryImagesRequest = createAction(
+    '[Get] Get category images request',
+    props<{search: Search}>()
+);
+
+export const getCategoryImagesSuccess = createAction(
+    '[Get] Get category images request success',
+    props<{images: Image[]}>()
+);
+
 export const getHighlightedImagesRequest = createAction(
     '[Get] Get highlighted images categories request'
 );
@@ -19,7 +29,7 @@ export const getHighlightedImagesSuccess = createAction(
     props<{images: Image[]}>()
 );
 
-export const getHighlightedImagesFailure = createAction(
+export const getImagesFailure = createAction(
     '[Get] Get highlighted images request failure',
     props<{error: string}>()
 );

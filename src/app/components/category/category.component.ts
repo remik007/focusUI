@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { TripCategory } from 'src/app/models/tripcategory.model';
-import { selectCurrentTripCategory } from 'src/app/state/app.selectors';
+import { selectCategoryImages, selectCurrentTripCategory } from 'src/app/state/app.selectors';
 import { IAppState } from 'src/app/state/app.state';
 import * as Actions from '../../state/app.actions';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { Search } from 'src/app/models/search.model';
 import { StorageService } from 'src/app/services/storage.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { ModalService } from '../_modal';
+import { Image } from 'src/app/models/image.model';
 
 @Component({
   selector: 'app-home',
@@ -23,12 +24,20 @@ export class CategoryComponent {
   search: Search = new Search();
   loading: boolean = false;
 
+  images$: Observable<Array<Image>>;
+  images!: Array<Image>;
+
   constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute, public validationService: ValidationService, private router: Router, public storageService: StorageService, private serviceModal: ModalService, private adminService: AdminService){
 
     this.category$ = this.store.pipe(select(selectCurrentTripCategory));
+    this.images$ = this.store.pipe(select(selectCategoryImages));
   }
 
   ngOnInit(): void{
+  
+    this.images$.subscribe(images => {
+      this.images = images;
+    });
     this.activatedRoute.paramMap.subscribe(params => {
       if(params){
         this.search.category = params.get("tripcategory")!;
@@ -50,6 +59,7 @@ export class CategoryComponent {
             }
           });
         }
+        this.store.dispatch(Actions.getCategoryImagesRequest({search: this.search}));
       }
     });
 
@@ -88,6 +98,16 @@ export class CategoryComponent {
         this.serviceModal.open("addtrip-failed-modal");
       }
     });
+  }
+
+  getImageContent(id: number | undefined) : string{
+    var image = this.images.filter(x => x.id === id);
+    if(image.length > 0){
+      if(image[0].imageContent !== undefined && image[0].imageContent !== null && image[0].imageContent !== ''){
+        return image[0].imageContent;
+      }
+    }
+    return "";
   }
 
 }

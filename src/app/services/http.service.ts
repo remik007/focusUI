@@ -82,6 +82,27 @@ export class HttpService{
         //return of(test);
     }
 
+    getTripCategoryImages(search: Search): Observable<HttpResponse<Object>>{
+        if(search.country !== undefined || search.departureCity !== undefined || search.from !== undefined || search.to !== undefined || search.transportType !== undefined){
+            let params = new HttpParams()
+                .set('country', search.country)
+                .set('departureCity', search.departureCity)
+                .set('from', search.from)
+                .set('to', search.to)
+                .set('transportType', search.transportType);
+            if(search.isAdmin){
+                return this.http.get(environment.getSearchImagesAdminUrl, {params: params, responseType: 'text' as 'json', observe: 'response'});
+            }
+            return this.http.get(environment.getSearchImagesUrl, {params: params, responseType: 'text' as 'json', observe: 'response'});
+        }
+        else if(search.isAdmin){
+            return this.http.get(environment.getTripCategoryImagesAdminUrl+"/"+search.category, {responseType: 'text' as 'json', observe: 'response'});
+        }
+        return this.http.get(environment.getTripCategoryImagesUrl+"/"+search.category, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        //return of(test);
+    }
+
     getContactDetails(): Observable<HttpResponse<Object>>{
         //return this.http.get(environment.getContactDetailsUrl, {responseType: 'text' as 'json', observe: 'response'});
         let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});

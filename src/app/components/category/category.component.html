@@ -18,14 +18,16 @@
         <div class="trip-section">
 
         
-        <div class="row trip-section-item-image image-horizontal">
-            <img *ngIf="trip.imageContent === undefined || trip.imageContent === null || trip.imageContent ===''" class="text-section-image" src="../../../assets/images/trip.png">
-              <img *ngIf="trip.imageContent !== undefined && trip.imageContent !== null && trip.imageContent !==''" class="text-section-image" [src]="trip.imageContent | sanitizeImg">
+        <div class="row trip-section-item-image image-horizontal m-0">
+            <div class="carousel-image-container">
+                <img class="carousel-image"  [src]="getImageContent(trip.id) | sanitizeImg">
+            </div>
         </div>
-        <div class="row">
-            <div class="col-3 trip-section-item-image image-vertical">
-                <img *ngIf="trip.imageContent === undefined || trip.imageContent === null || trip.imageContent ===''" class="trip-section-image" src="../../../assets/images/trip.png">
-                <img *ngIf="trip.imageContent !== undefined && trip.imageContent !== null && trip.imageContent !==''" class="trip-section-image" [src]="trip.imageContent | sanitizeImg">
+        <div class="row m-0">
+            <div class="col-3 trip-section-item-image image-vertical m-0">
+                <div class="carousel-image-container">
+                    <img *ngIf="getImageContent(trip.id) !== ''" class="carousel-image"  [src]="getImageContent(trip.id) | sanitizeImg">
+                </div>
             </div>
             <div class="col-5 trip-section-item trip-section-item-description">
                 <span class="trip-section-item-title" style="font-weight: bold;">{{trip.country}}, {{trip.shortName}}</span><br>

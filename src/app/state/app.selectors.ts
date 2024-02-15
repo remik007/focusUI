@@ -13,3 +13,4 @@ export const selectTripDetails = createSelector(selectTripsFeature, state => sta
 export const selectCurrentTripCategory = createSelector(selectTripsFeature, state => state.currentTripCategory);
 export const selectHighlightedTrips = createSelector(selectTripsFeature, state => state.highlightedTrips);
 export const selectHighlightedImages = createSelector(selectTripsFeature, state => state.highlightedImages);
+export const selectCategoryImages = createSelector(selectTripsFeature, state => state.currentTripCategoryImages);

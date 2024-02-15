@@ -301,18 +301,44 @@ export class AppEffects {
                         }
                     }
                     console.log("Get highlighted images request failed.");
-                    return AppActions.getHighlightedImagesFailure({error: "Get highlighted images request failed."});
+                    return AppActions.getImagesFailure({error: "Get highlighted images request failed."});
                 }))
             })
         )
     })
 
-    getHighlightedImagesFailure$ = createEffect(() =>
+
+    getCategoryImagesRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getCategoryImagesRequest),
+            exhaustMap((action) => {
+                return this.httpService
+                .getTripCategoryImages(action.search)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Array<Trip> = Object.assign(new Array<Trip>(), jsonObj);
+                                return AppActions.getCategoryImagesSuccess({images: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get category images request failed.");
+                    return AppActions.getImagesFailure({error: "Get category images request failed."});
+                }))
+            })
+        )
+    })
+
+    getImagesFailure$ = createEffect(() =>
     this.actions$.pipe(
-            ofType(AppActions.getHighlightedImagesFailure),
+            ofType(AppActions.getImagesFailure),
             tap(({error}) => {
-                console.log(error);
-                this.modalService.open('bad-request-modal');
+                console.log("get images failed: " + error);
             })
         ),
         {dispatch: false}
