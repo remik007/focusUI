@@ -71,7 +71,7 @@ export class AddSubPageComponent {
       let stringId = params['subpage'];
       if(stringId !== undefined && stringId !== null && stringId !== ""){
         this.subpageName = stringId;
-        this.store.dispatch(Actions.getSubPageDetailsRequest({subPageName: this.subpageName}));      
+        this.store.dispatch(Actions.getSubPageDetailsAdminRequest({subPageName: this.subpageName}));      
       }
       this.subpage$.subscribe(subpage => {
         this.subpage = subpage;

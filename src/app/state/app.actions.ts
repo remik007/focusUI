@@ -179,6 +179,21 @@ export const getContactDetailsRequestFailure = createAction(
     props<{error: string}>()
 );
 
+export const getSubPageDetailsAdminRequest = createAction(
+    '[Get] Get sub page details admin request',
+    props<{subPageName: string}>()
+);
+
+export const getSubPageDetailsAdminRequestSuccess = createAction(
+    '[Get] Get sub page details admin request success',
+    props<{subPage: SubPage}>()
+);
+
+export const getSubPageDetailsAdminRequestFailure = createAction(
+    '[Get] Get sub page details admin request failure',
+    props<{error: string}>()
+);
+
 export const getSubPageDetailsRequest = createAction(
     '[Get] Get sub page details request',
     props<{subPageName: string}>()

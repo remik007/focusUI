@@ -23,7 +23,7 @@ export const environment = {
     getSubPageUrl:"https://localhost:7013/api/subpages",
     getSubPageImageUrl:"https://localhost:7013/api/subpages/images",
     getSubPagesUrl:"https://localhost:7013/api/subpages",
-    subpageAdminUrl: "https://localhost:7013/api/admin/subpages/",
+    subpageAdminUrl: "https://localhost:7013/api/admin/subpages",
     categoryAdminUrl: "https://localhost:7013/api/admin/categories/",
     contactAdminUrl: "https://localhost:7013/api/admin/contacts",
     deleteSubPageAdminUrl: "https://localhost:7013/api/admin/subpages/",

@@ -494,7 +494,44 @@ export class AppEffects {
         ),
         {dispatch: false}
     );
-    
+        
+    getSubPageAdminRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getSubPageDetailsAdminRequest),
+            exhaustMap((action) => {
+                return this.adminService
+                .getSubPage(action.subPageName)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: SubPage = Object.assign(jsonObj, SubPage);
+                                console.log(obj);
+                                return AppActions.getSubPageDetailsAdminRequestSuccess({subPage: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get sub page request failed.");
+                    return AppActions.getSubPageDetailsAdminRequestFailure({error: "Get sub page admin request failed."});
+                }))
+            })
+        )
+    })
+
+    getSubPageAdminFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getSubPageDetailsAdminRequestFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
     getSubPageRequest$ = createEffect(() => {
         
         return this.actions$.pipe(

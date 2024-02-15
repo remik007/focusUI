@@ -184,6 +184,13 @@ const _reducer = createReducer(
             currentSubPageImage: action.image
         };
     }),
+
+    on(Actions.getSubPageDetailsAdminRequestSuccess, (state, action) => {
+        return {
+            ...state,
+            currentSubPage: action.subPage
+        };
+    }),
 );
 
 

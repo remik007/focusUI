@@ -31,6 +31,12 @@ export class AdminService{
         //return of(test);
     }
 
+    getSubPage(subPageName: string): Observable<HttpResponse<Object>>{
+        return this.http.get(environment.subpageAdminUrl+"/"+subPageName, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        //return of(test);
+    }
+
     updateTrip(trip: Trip): Observable<HttpResponse<Object>>{
         return this.http.put(environment.tripAdminUrl, trip, {responseType: 'text' as 'json', observe: 'response'});
         //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});
@@ -74,7 +80,7 @@ export class AdminService{
     }
 
     deleteSubpage(subpageName: string): Observable<HttpResponse<Object>>{
-        return this.http.delete(environment.deleteSubPageAdminUrl + subpageName, {responseType: 'text' as 'json', observe: 'response'});
+        return this.http.delete(environment.deleteSubPageAdminUrl + "/"+ subpageName, {responseType: 'text' as 'json', observe: 'response'});
         //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});
         //return of(test);
     }
