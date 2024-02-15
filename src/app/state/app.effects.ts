@@ -335,6 +335,32 @@ export class AppEffects {
         )
     })
 
+    getSubPageImageRequest$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(AppActions.getSubPageImageRequest),
+            exhaustMap((action) => {
+                return this.httpService
+                .getSubPageImage(action.name)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Image = Object.assign(Image, jsonObj);
+                                return AppActions.getSubPageImageSuccess({image: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get subpage image request failed.");
+                    return AppActions.getImagesFailure({error: "Get subpage image request failed."});
+                }))
+            })
+        )
+    })
+
+
     getTripImageRequest$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(AppActions.getTripImageRequest),

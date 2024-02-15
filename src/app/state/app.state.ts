@@ -19,4 +19,5 @@ export interface IAppState{
     highlightedTrips: Array<Trip>;
     highlightedImages: Array<Image>;
     currentTripImage: Image;
+    currentSubPageImage: Image;
 }

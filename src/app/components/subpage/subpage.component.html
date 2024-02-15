@@ -11,9 +11,10 @@
     </div>  
   </div>
     <div class="row home-section text-section">
-        <div class="col-3 text-section-item">
-          <img *ngIf="currentsubPage.imageContent === undefined || currentsubPage.imageContent === null || currentsubPage.imageContent ===''" class="text-section-image" src="../../../assets/images/travel.jpg">
-          <img *ngIf="currentsubPage.imageContent !== undefined && currentsubPage.imageContent !== null && currentsubPage.imageContent !==''" class="text-section-image" [src]="currentsubPage.imageContent | sanitizeImg">
+        <div class="col-3 text-section-item text-section-item-image p-0 m-0">
+          <div class="carousel-image-container">
+            <img *ngIf="this.image !== null &&  this.image.imageContent !== undefined && this.image.imageContent !== null && this.image.imageContent !== ''" class="carousel-image"  [src]="this.image.imageContent | sanitizeImg">
+          </div>
         </div>
         <div class="col-9 text-section-item">
           <h4>{{currentsubPage.name}}</h4>
@@ -22,7 +23,7 @@
         </div>
       
     </div>
-
+<p></p>
     <div class="tinyMceContent border-top"  width="100%">
       <div [innerHtml] = "currentsubPage.description | sanitizeHtml">
 

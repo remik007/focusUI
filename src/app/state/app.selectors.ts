@@ -15,3 +15,4 @@ export const selectHighlightedTrips = createSelector(selectTripsFeature, state =
 export const selectHighlightedImages = createSelector(selectTripsFeature, state => state.highlightedImages);
 export const selectCategoryImages = createSelector(selectTripsFeature, state => state.currentTripCategoryImages);
 export const selectCurrentTripImage = createSelector(selectTripsFeature, state => state.currentTripImage);
+export const selectCurrentSubPageImage = createSelector(selectTripsFeature, state => state.currentSubPageImage);

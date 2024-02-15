@@ -10,13 +10,23 @@ import { Header } from "../models/header.model";
 import { Search } from "../models/search.model";
 import { Image } from "../models/image.model";
 
+export const getSubPageImageRequest = createAction(
+    '[Get] Get subpage image request',
+    props<{name: string}>()
+);
+
+export const getSubPageImageSuccess = createAction(
+    '[Get] Get subpage image request success',
+    props<{image: Image}>()
+);
+
 export const getTripImageRequest = createAction(
     '[Get] Get trip image request',
     props<{id: number}>()
 );
 
 export const getTripImageSuccess = createAction(
-    '[Get] Get category images request success',
+    '[Get] Get trip image request success',
     props<{image: Image}>()
 );
 

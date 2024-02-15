@@ -65,7 +65,8 @@ export const initialState: IAppState = {
     highlightedTrips: new Array<Trip>(),
     highlightedImages: new Array<Image>(),
     currentTripCategoryImages: new Array<Image>(),
-    currentTripImage: {}
+    currentTripImage: {},
+    currentSubPageImage: {}
 }
 
 const _reducer = createReducer(
@@ -174,6 +175,13 @@ const _reducer = createReducer(
         return {
             ...state,
             currentTripImage: action.image
+        };
+    }),
+
+    on(Actions.getSubPageImageSuccess, (state, action) => {
+        return {
+            ...state,
+            currentSubPageImage: action.image
         };
     }),
 );

@@ -10,7 +10,15 @@
     padding:20px;
 }
 
-.text-section-image{
+.carousel-image-container{
+    width: 100%;
+}
+
+.carousel-image{
     max-width: -webkit-fill-available;
-    
+    width: 100%;
+}
+
+.text-section-item-image{
+    background: rgb(214, 214, 214);
 }

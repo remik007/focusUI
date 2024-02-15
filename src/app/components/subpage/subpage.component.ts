@@ -4,12 +4,13 @@ import { SubPage } from 'src/app/models/subpage.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectCurrentSubPageDetails } from 'src/app/state/app.selectors';
+import { selectCurrentSubPageDetails, selectCurrentSubPageImage } from 'src/app/state/app.selectors';
 import { IAppState } from 'src/app/state/app.state';
 import { SanitizeHtmlPipe } from 'src/app/services/sanitizehtml.pipe';
 import { ModalService } from '../_modal';
 import { AdminService } from 'src/app/services/admin.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { Image } from 'src/app/models/image.model';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,8 @@ export class SubPageComponent {
   subPage$: Observable<SubPage>;
   currentsubPage: SubPage  = new SubPage();
   subPageName!: string;
+  image$: Observable<Image>;
+  image: Image = new Image();
   loading: boolean = false;
 
   constructor(private store: Store<IAppState>, private activatedRoute: ActivatedRoute, private serviceModal: ModalService, public storageService: StorageService, private adminService: AdminService, private router: Router){
@@ -29,12 +32,18 @@ export class SubPageComponent {
       }
     )
     this.subPage$ = this.store.pipe(select(selectCurrentSubPageDetails));
+    this.image$ = this.store.pipe(select(selectCurrentSubPageImage));
   }
 
   ngOnInit(): void{
     this.store.dispatch(Actions.getSubPageDetailsRequest({subPageName: this.subPageName}));
     this.subPage$.subscribe(subPage => {
       this.currentsubPage = subPage;
+    })
+    
+    this.store.dispatch(Actions.getSubPageImageRequest({name: this.subPageName}));
+    this.image$.subscribe(image => {
+      this.image = image;
     })
   }
 
