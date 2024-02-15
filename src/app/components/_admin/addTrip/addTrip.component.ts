@@ -43,8 +43,10 @@ export class AddTripComponent {
     this.trip$ = this.store.pipe(select(selectTripDetails));
     this.transports$ = this.store.pipe(select(selectTransportTypes));
     this.tinymceInit = {
-      plugins: 'image',
-      toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image',
+      plugins: 'image advlist anchor autolink autoresize autosave charmap code codesample directionality emoticons fullscreen help image importcss insertdatetime link linkchecker lists media nonbreaking pagebreak preview quickbars save searchreplace table template tinydrive visualblocks visualchars',
+      toolbar1: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image ',
+      toolbar2: 'table tableinsertdialog | link image | print preview media | forecolor backcolor emoticons',
+      toolbar3: 'table tablecellprops tablecopyrow tablecutrow tabledelete tabledeletecol tabledeleterow tableinsertdialog tableinsertcolafter tableinsertcolbefore tableinsertrowafter tableinsertrowbefore tablemergecells tablepasterowafter tablepasterowbefore tableprops tablerowprops tablesplitcells tableclass tablecellclass tablecellvalign tablecellborderwidth tablecellborderstyle tablecaption tablecellbackgroundcolor tablecellbordercolor tablerowheader tablecolheader',
       image_advtab: true,
       file_picker_callback: function(cb: any, value: any, meta: any) {
         var input = document.createElement('input');
