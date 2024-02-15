@@ -15,5 +15,17 @@
 
 .text-section-image{
     max-width: -webkit-fill-available;
-    
+}
+
+.carousel-image{
+    max-width: -webkit-fill-available;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.carousel-image{
+
+    width: 295px;
+    height:200px;
+    background: linear-gradient(90deg, rgba(128,128,128,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,1) 100%);
 }

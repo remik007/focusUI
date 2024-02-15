@@ -272,7 +272,7 @@ export class AppEffects {
 
     getHighlightedTripFailure$ = createEffect(() =>
     this.actions$.pipe(
-            ofType(AppActions.getTripRequestFailure),
+            ofType(AppActions.getHighlightedTripsFailure),
             tap(({error}) => {
                 console.log(error);
                 this.modalService.open('bad-request-modal');
@@ -281,6 +281,42 @@ export class AppEffects {
         {dispatch: false}
     );
 
+    getHighlightedImagesRequest$ = createEffect(() => {
+        
+        return this.actions$.pipe(
+            ofType(AppActions.getHighlightedImagesRequest),
+            exhaustMap((action) => {
+                return this.httpService
+                .getHighlightedImages()
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Array<Trip> = Object.assign(new Array<Trip>(), jsonObj);
+                                return AppActions.getHighlightedImagesSuccess({images: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get highlighted images request failed.");
+                    return AppActions.getHighlightedImagesFailure({error: "Get highlighted images request failed."});
+                }))
+            })
+        )
+    })
+
+    getHighlightedImagesFailure$ = createEffect(() =>
+    this.actions$.pipe(
+            ofType(AppActions.getHighlightedImagesFailure),
+            tap(({error}) => {
+                console.log(error);
+                this.modalService.open('bad-request-modal');
+            })
+        ),
+        {dispatch: false}
+    );
 
     getTripRequest$ = createEffect(() => {
         

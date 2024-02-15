@@ -5,6 +5,7 @@ import { TripCategory } from "../models/tripcategory.model";
 import { Trip } from "../models/trip.model";
 import { TransportType } from "../models/transporttype.model";
 import { SubPage } from "../models/subpage.model";
+import { Image } from "../models/image.model";
 
 export const initialState: IAppState = {
     tripCategories: new Array<TripCategory>(),
@@ -61,7 +62,8 @@ export const initialState: IAppState = {
     },
     countries: new Array<string>(),
     departureCities: new Array<string>(),
-    highlightedTrips: new Array<Trip>()
+    highlightedTrips: new Array<Trip>(),
+    highlightedImages: new Array<Image>()
 }
 
 const _reducer = createReducer(
@@ -142,6 +144,13 @@ const _reducer = createReducer(
         return {
             ...state,
             highlightedTrips: action.highlightedTrips
+        };
+    }),
+
+    on(Actions.getHighlightedImagesSuccess, (state, action) => {
+        return {
+            ...state,
+            highlightedImages: action.images
         };
     }),
 );

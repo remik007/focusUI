@@ -1,4 +1,5 @@
 import { Contact } from "../models/contact.model";
+import { Image } from "../models/image.model";
 import { SubPage } from "../models/subpage.model";
 import { TransportType } from "../models/transporttype.model";
 import { Trip } from "../models/trip.model";
@@ -15,4 +16,6 @@ export interface IAppState{
     countries: Array<string>;
     departureCities: Array<string>;
     highlightedTrips: Array<Trip>;
+    highlightedImages: Array<Image>;
+
 }

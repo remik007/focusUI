@@ -5,8 +5,9 @@
       <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 carousel-trip">
           <div class="mb-3 ">
             <div class="w-6 shadow-2">
-              <img *ngIf="trip.imageContent === undefined || trip.imageContent === null || trip.imageContent ===''" class="text-section-image" src="../../../assets/images/trip.png">
-              <img *ngIf="trip.imageContent !== undefined && trip.imageContent !== null && trip.imageContent !==''" class="text-section-image" [src]="trip.imageContent | sanitizeImg">
+              <div  style="background: rgb(214, 214, 214); height: 200px;">
+                <img class="carousel-image"  [src]="getImageContent(trip.id) | sanitizeImg">
+              </div>
             </div>
           </div>
           <div>
@@ -24,7 +25,7 @@
 </p-carousel>
 <div class="row home-section text-section border-top">
   <div class="col-3 text-section-item">
-    <img class="text-section-image" src="../../../assets/images/travel.jpg">
+    <img class="text-section-image " src="../../../assets/images/travel.jpg">
   </div>
   <div class="col-9 text-section-item">
     <h4>Rozpocznij podróz z nami</h4>

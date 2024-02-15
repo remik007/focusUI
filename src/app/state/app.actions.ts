@@ -8,6 +8,21 @@ import { User } from "../models/user.model";
 import { TransportType } from "../models/transporttype.model";
 import { Header } from "../models/header.model";
 import { Search } from "../models/search.model";
+import { Image } from "../models/image.model";
+
+export const getHighlightedImagesRequest = createAction(
+    '[Get] Get highlighted images categories request'
+);
+
+export const getHighlightedImagesSuccess = createAction(
+    '[Get] Get highlighted images request success',
+    props<{images: Image[]}>()
+);
+
+export const getHighlightedImagesFailure = createAction(
+    '[Get] Get highlighted images request failure',
+    props<{error: string}>()
+);
 
 export const getHighlightedTripsRequest = createAction(
     '[Get] Get highlighted trips categories request'
