@@ -31,5 +31,5 @@ export const environment = {
     deleteTripAdminUrl: "https://localhost:7013/api/admin/trips/",
     textBoxCharactersLimit: 255,
     allowedFileExtensions: ".jpg,.png,.jpeg",
-    maxFileSizeBytes: "5242880" //5MB
+    maxFileSizeBytes: "1048576" //1MB
 }
