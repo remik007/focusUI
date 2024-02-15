@@ -37,7 +37,7 @@ export class JwtInterceptor implements HttpInterceptor
           ) {
             return this.handle401Error(request, next, user.accessToken, user.refreshToken);
           }
-          else if (error.status === 404 || error.status === 0){
+          else if ((error.status === 404 && !request.url.includes('images')) || error.status === 0){
             this.handle404Error();
           }
           

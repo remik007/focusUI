@@ -18,5 +18,5 @@ export interface IAppState{
     departureCities: Array<string>;
     highlightedTrips: Array<Trip>;
     highlightedImages: Array<Image>;
-
+    currentTripImage: Image;
 }

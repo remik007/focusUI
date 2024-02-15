@@ -59,7 +59,11 @@ export class HttpService{
         //return of(test);
     }
 
-
+    getTripImage(id: number): Observable<HttpResponse<Object>>{
+        return this.http.get(environment.getTripImageUrl+"/"+id, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "[{\"id\":\"1\", \"name\":\"test1\"}, {\"id\":\"2\", \"name\":\"test2\"}]"});
+        //return of(test);
+    }
 
     getTripCategory(search: Search): Observable<HttpResponse<Object>>{
         if(search.country !== undefined || search.departureCity !== undefined || search.from !== undefined || search.to !== undefined || search.transportType !== undefined){

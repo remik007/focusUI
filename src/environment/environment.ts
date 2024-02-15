@@ -13,6 +13,7 @@ export const environment = {
     refreshTokenUrl: "https://localhost:7013/api/account/refresh",
     getHeaderDataUrl: "https://localhost:7013/api/trips/header",
     getTripUrl: "https://localhost:7013/api/trips",
+    getTripImageUrl: "https://localhost:7013/api/trips/images",
     getHighlightedTripsUrl: "https://localhost:7013/api/trips/highlighted",
     getHighlightedImagesUrl: "https://localhost:7013/api/trips/images/highlighted",
     getSearchUrl: "https://localhost:7013/api/categories/search",

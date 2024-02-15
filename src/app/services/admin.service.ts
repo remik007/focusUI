@@ -25,6 +25,12 @@ export class AdminService{
         //return of(test);
     }
 
+    getTripImage(tripId: number): Observable<HttpResponse<Object>>{
+        return this.http.get(environment.tripImageAdminUrl+tripId, {responseType: 'text' as 'json', observe: 'response'});
+        //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});
+        //return of(test);
+    }
+
     updateTrip(trip: Trip): Observable<HttpResponse<Object>>{
         return this.http.put(environment.tripAdminUrl, trip, {responseType: 'text' as 'json', observe: 'response'});
         //let test = new HttpResponse<Object>({status: 200, body: "{\"email\":\"test@email.com\",\"accessToken\":\"testAccessToken\", \"refreshToken\":\"testRefreshToken\"}", \"Expiration\":\"expirationDate\"});

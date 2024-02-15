@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import * as Actions from '../../state/app.actions';
 import { Trip } from 'src/app/models/trip.model';
-import { selectTripDetails } from 'src/app/state/app.selectors';
+import { selectCurrentTripImage, selectTripDetails } from 'src/app/state/app.selectors';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/state/app.state';
@@ -10,6 +10,7 @@ import { ValidationService } from 'src/app/services/validation.service';
 import { ModalService } from '../_modal';
 import { AdminService } from 'src/app/services/admin.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { Image } from 'src/app/models/image.model';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,8 @@ import { StorageService } from 'src/app/services/storage.service';
 export class ItemComponent {
   trip$: Observable<Trip>;
   trip: Trip  = new Trip();
+  image$: Observable<Image>;
+  image: Image = new Image();
   tripId!: number;
   loading: boolean = false;
 
@@ -29,18 +32,24 @@ export class ItemComponent {
       }
     )
     this.trip$ = this.store.pipe(select(selectTripDetails));
+    this.image$ = this.store.pipe(select(selectCurrentTripImage));
   }
 
   ngOnInit(): void{
     if(this.storageService.isAdmin()){
       this.store.dispatch(Actions.getTripAdminRequest({tripId: this.tripId}));
+      this.store.dispatch(Actions.getTripImageAdminRequest({id: this.tripId}));
     }
     else{
       this.store.dispatch(Actions.getTripRequest({tripId: this.tripId}));
+      this.store.dispatch(Actions.getTripImageRequest({id: this.tripId}));
     }
     
     this.trip$.subscribe(trip => {
       this.trip = trip;
+    })
+    this.image$.subscribe(image => {
+      this.image = image;
     })
   }
   

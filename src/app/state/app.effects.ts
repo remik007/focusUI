@@ -15,6 +15,7 @@ import { StorageService } from "../services/storage.service";
 import { TransportType } from "../models/transporttype.model";
 import { AdminService } from "../services/admin.service";
 import { Header } from "../models/header.model";
+import { Image } from "../models/image.model";
 
 @Injectable()
 export class AppEffects {
@@ -293,7 +294,7 @@ export class AppEffects {
                         try{
                             if(httpResponse.body){
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
-                                let obj: Array<Trip> = Object.assign(new Array<Trip>(), jsonObj);
+                                let obj: Array<Image> = Object.assign(new Array<Image>(), jsonObj);
                                 return AppActions.getHighlightedImagesSuccess({images: obj});
                             }
                         } catch (error){
@@ -320,7 +321,7 @@ export class AppEffects {
                         try{
                             if(httpResponse.body){
                                 let jsonObj = JSON.parse(httpResponse.body.toString());
-                                let obj: Array<Trip> = Object.assign(new Array<Trip>(), jsonObj);
+                                let obj: Array<Image> = Object.assign(new Array<Image>(), jsonObj);
                                 return AppActions.getCategoryImagesSuccess({images: obj});
                             }
                         } catch (error){
@@ -329,6 +330,56 @@ export class AppEffects {
                     }
                     console.log("Get category images request failed.");
                     return AppActions.getImagesFailure({error: "Get category images request failed."});
+                }))
+            })
+        )
+    })
+
+    getTripImageRequest$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(AppActions.getTripImageRequest),
+            exhaustMap((action) => {
+                return this.httpService
+                .getTripImage(action.id)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Image = Object.assign(Image, jsonObj);
+                                return AppActions.getTripImageSuccess({image: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get trip image request failed.");
+                    return AppActions.getImagesFailure({error: "Get trip image request failed."});
+                }))
+            })
+        )
+    })
+
+    getTripImageAdminRequest$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(AppActions.getTripImageAdminRequest),
+            exhaustMap((action) => {
+                return this.adminService
+                .getTripImage(action.id)
+                .pipe(map((httpResponse) =>{
+                    if(httpResponse.status == 200){
+                        try{
+                            if(httpResponse.body){
+                                let jsonObj = JSON.parse(httpResponse.body.toString());
+                                let obj: Image = Object.assign(Image, jsonObj);
+                                return AppActions.getTripImageAdminSuccess({image: obj});
+                            }
+                        } catch (error){
+                            console.log(error);
+                        }
+                    }
+                    console.log("Get trip image admin request failed.");
+                    return AppActions.getImagesFailure({error: "Get trip image admin request failed."});
                 }))
             })
         )

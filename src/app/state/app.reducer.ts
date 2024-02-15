@@ -64,7 +64,8 @@ export const initialState: IAppState = {
     departureCities: new Array<string>(),
     highlightedTrips: new Array<Trip>(),
     highlightedImages: new Array<Image>(),
-    currentTripCategoryImages: new Array<Image>()
+    currentTripCategoryImages: new Array<Image>(),
+    currentTripImage: {}
 }
 
 const _reducer = createReducer(
@@ -159,6 +160,20 @@ const _reducer = createReducer(
         return {
             ...state,
             currentTripCategoryImages: action.images
+        };
+    }),
+
+    on(Actions.getTripImageSuccess, (state, action) => {
+        return {
+            ...state,
+            currentTripImage: action.image
+        };
+    }),
+
+    on(Actions.getTripImageAdminSuccess, (state, action) => {
+        return {
+            ...state,
+            currentTripImage: action.image
         };
     }),
 );

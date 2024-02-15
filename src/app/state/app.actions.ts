@@ -10,6 +10,26 @@ import { Header } from "../models/header.model";
 import { Search } from "../models/search.model";
 import { Image } from "../models/image.model";
 
+export const getTripImageRequest = createAction(
+    '[Get] Get trip image request',
+    props<{id: number}>()
+);
+
+export const getTripImageSuccess = createAction(
+    '[Get] Get category images request success',
+    props<{image: Image}>()
+);
+
+export const getTripImageAdminRequest = createAction(
+    '[Get] Get trip image admin request',
+    props<{id: number}>()
+);
+
+export const getTripImageAdminSuccess = createAction(
+    '[Get] Get category images request success',
+    props<{image: Image}>()
+);
+
 export const getCategoryImagesRequest = createAction(
     '[Get] Get category images request',
     props<{search: Search}>()
